@@ -93,8 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-jsDesign.showUI(__html__, { width: 200, height: 200 });
-console.log(__html__);
+jsDesign.showUI(__html__, { width: 260, height: 480 });
 
 
 /***/ })

@@ -1,0 +1,84 @@
+<script>
+    export let show = 0;
+    export let value = 1;
+    export let placeholder = '';
+    export let step = 1;
+    export let disabled = false;
+</script>
+
+{#if show === 0}
+  <label for="input-label">
+    <div class="left-side">
+      <div class="label">
+        <slot name="textfield-label" />
+      </div>
+    </div>
+    <div class="right-side {disabled ? 'right-disabled' : ''}">
+      <input
+        type="number"
+        bind:value
+        {placeholder}
+        {step}
+        {disabled}
+        min="{1}"
+        on:click={(event) => event.currentTarget.select()}
+      />
+      <div class="unit-measure">
+        <slot name="unit-measure" />
+      </div>
+    </div>
+  </label>
+{/if}
+
+<style>
+  label {
+    display: flex;
+    margin: 8px 0;
+    height: 26px;
+    line-height: 26px;
+  }
+  .label {
+    font-size: 12px;
+    color: rgba(32, 32, 32, 0.8);
+  }
+  .left-side {
+    width: auto;
+    white-space: nowrap;
+    margin-right: 8px;
+  }
+  .right-side {
+    display: inline-flex;
+    border-radius: 4px;
+    height: 26px;
+    justify-content: space-between;
+    flex: 1;
+    background-color: rgba(0, 0, 0, 0.02);
+  }
+  .right-disabled {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+  .right-side input {
+    background: transparent;
+    border: transparent;
+    font-weight: 400;
+    padding: 3px 8px;
+    font-size: 12px;
+    width: 100%;
+    color: rgba(32, 32, 32, 1);
+  }
+  .right-side input::-webkit-inner-spin-button,
+  .right-side input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  .right-side input:focus {
+    outline: transparent;
+  }
+  .right-side .unit-measure {
+    padding: 3px 6px;
+    line-height: 20px;
+    color: rgba(32, 32, 32, 0.4);
+    font-size: 12px;
+    white-space: nowrap;
+  }
+</style>
