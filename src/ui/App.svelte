@@ -1,5 +1,9 @@
 <script>
-    export let name = "ZeroIce";
+    import Select from "./components/Select.svelte";
 </script>
 
-<h1>Hello {name}!</h1>
+<main>
+    <!-- 头部选择栏 -->
+    <Select />
+    <p>Hello123</p>
+</main>
