@@ -1,13 +1,15 @@
 import { EventHandler } from './events';
 
-export type GuiSize  = {
+export type GuiSize = {
     width: number,
     height: number
 }
 
+export type SelectionSize = GuiSize;
+
 export interface SelectionChangedHandler extends EventHandler {
     name: 'SELECTION_CHANGED'
-    handler: (hasSelection: boolean) => void
+    handler: (hasSelection: string[]) => void
 }
 
 export interface ChangeGuiSizeHandler extends EventHandler {

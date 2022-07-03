@@ -5,12 +5,10 @@ const variables = {
     guidelines: {
         row: {
             count: 1,
-            height: 100,
             scales: [1]
         },
         column: {
             count: 1,
-            height: 100,
             scales: [1]
         },
     },

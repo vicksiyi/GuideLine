@@ -1,7 +1,7 @@
 <script>
     import Tags from "./components/Tags.svelte";
     import Card from "./components/Card.svelte";
-    import {tags,guiSizeEmpty,guiSize} from "./common/variables";
+    import {tags,guiSizeEmpty,guiSize,guidelines} from "./common/variables";
     import Button from "./components/Button.svelte";
     import Empty from "./components/Empty.svelte";
     import {on,emit} from "./common/events";
@@ -9,15 +9,18 @@
     
     let active = 0;
     let hasSelected = false;
+    let selectedLayers = []; // 记录已经选择的图层ID
 
     function handleActiveChange(event) {
         active = event.detail.active;
+        updateGuiSize(guiSize);
 	  }
     
     // 监听图层选择情况
-    on("SELECTION_CHANGED",(hasSelection)=>{
-      hasSelected = hasSelection;
-      if(!hasSelection) {
+    on("SELECTION_CHANGED",(layers)=>{
+      hasSelected = layers.length > 0;
+      selectedLayers = layers;
+      if(!hasSelected) {
         emit('CHANGE_GUI_SIZE', guiSizeEmpty)
       }else {
         updateGuiSize(guiSize);
@@ -32,20 +35,27 @@
       <Tags on:activeChange={handleActiveChange} {tags} {active} />
     </header>
     <div class="content">
-      <!-- 辅助线 -->
-      <div class="guide-line">
-        <Card />
-      </div>
-      <!-- 自定义 -->
-      <!-- 已保存 -->
+      {#if active !== 2}
+        <!-- 辅助线 -->
+        <div class="guide-lines">
+          <Card {guidelines} />
+        </div>
+      {:else}
+        <!-- 已保存 -->
+        <div class="save-lines">已经保存</div>
+      {/if}
     </div>
     <footer>
       <div class="manage-btn">
         <div class="clear-btn">
-          <Button text="取消" />
+          <Button text={active === 0 ? "重置" : "取消"} />
         </div>
         <div class="show-btn">
-          <Button class="show-btn" text="预览" hasMasters />
+          <Button
+            class="show-btn"
+            text={active === 0 ? "预览" : active === 1 ? "保存" : "编辑"}
+            hasMasters
+          />
         </div>
       </div>
     </footer>

@@ -1,8 +1,10 @@
 <script>
     import NumberField from "./NumberField.svelte";
     import {determineSize, toast} from "../common/global";
-    import {MIN_VALUE, MAX_VALUE, guidelines,guiSize} from "../common/variables";
+    import {MIN_VALUE, MAX_VALUE,guiSize} from "../common/variables";
     import {updateGuiSize} from "../common/global";
+
+    export let guidelines = {};
 
     // 判断数量是否超过或者小于最大值
     const inputChange = (event,handler)=> {
@@ -57,20 +59,13 @@
       <span class="label" slot="textfield-label"
         >数量(<span class="measure">N</span>)</span
       >
-      <span slot="unit-measure">个</span>
+      <span slot="unit-measure">份</span>
     </NumberField>
     <!-- 比例 -->
     <NumberField base={false} bind:value={guidelines.row.scales}>
       <span class="label" slot="textfield-label"
         >比例(<span class="measure">G</span>)</span
       >
-    </NumberField>
-    <!-- 宽度 -->
-    <NumberField value={guidelines.row.height} disabled>
-      <span class="label" slot="textfield-label"
-        >宽度(<span class="measure">H</span>)</span
-      >
-      <span slot="unit-measure">像素</span>
     </NumberField>
   </div>
   <div class="card-column">
@@ -84,19 +79,13 @@
       <span class="label" slot="textfield-label"
         >数量(<span class="measure">N</span>)</span
       >
-      <span slot="unit-measure">个</span>
+      <span slot="unit-measure">份</span>
     </NumberField>
     <!-- 比例 -->
     <NumberField base={false} bind:value={guidelines.column.scales}>
       <span class="label" slot="textfield-label"
         >比例(<span class="measure">G</span>)</span
       >
-    </NumberField>
-    <NumberField value={guidelines.column.height} disabled>
-      <span class="label" slot="textfield-label"
-        >高度(<span class="measure">H</span>)</span
-      >
-      <span slot="unit-measure">像素</span>
     </NumberField>
   </div>
 </div>
@@ -105,7 +94,6 @@
   .card > [class^="card"] {
     border: 1px solid rgba(32, 32, 32, 0.2);
     border-radius: 8px;
-    min-height: 100px;
     margin: 0 12px;
     position: relative;
     padding: 16px;

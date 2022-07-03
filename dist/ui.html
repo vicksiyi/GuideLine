@@ -2946,8 +2946,8 @@ function add_css(target) {
 	Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append_styles"])(target, "svelte-14422fb", ".toast{position:absolute;bottom:16px;left:16px;right:16px;padding:8px 16px;border:1px solid #909399;border-radius:4px;background-color:#909399;box-shadow:0 2px 12px 0 rgba(0, 0, 0, 0.1);color:#ffffff;transition:all 0.5s ease-in-out;text-align:center;font-size:12px}.toast--error{border:1px solid #f56c6c;background-color:#f56c6c}.toast--warning{border:1px solid #e6a23c;background-color:#e6a23c}.toast--success{border:1px solid #67c23a;background-color:#67c23a}footer.svelte-14422fb{width:100%;height:64px;margin-top:16px;background-color:rgba(0, 0, 0, 0.03)}.manage-btn.svelte-14422fb{display:flex;justify-content:space-between;padding:16px}.manage-btn.svelte-14422fb .clear-btn{width:58px;height:32px}.manage-btn.svelte-14422fb .show-btn{flex:1;margin-left:12px}");
 }
 
-// (53:0) {:else}
-function create_else_block(ctx) {
+// (63:0) {:else}
+function create_else_block_1(ctx) {
 	let main;
 	let empty_1;
 	let current;
@@ -2981,22 +2981,22 @@ function create_else_block(ctx) {
 	};
 }
 
-// (28:0) {#if hasSelected}
+// (31:0) {#if hasSelected}
 function create_if_block(ctx) {
 	let main;
 	let header;
 	let tags_1;
 	let t0;
-	let div1;
 	let div0;
-	let card;
+	let current_block_type_index;
+	let if_block;
 	let t1;
 	let footer;
-	let div4;
-	let div2;
+	let div3;
+	let div1;
 	let button0;
 	let t2;
-	let div3;
+	let div2;
 	let button1;
 	let current;
 
@@ -3005,13 +3005,29 @@ function create_if_block(ctx) {
 		});
 
 	tags_1.$on("activeChange", /*handleActiveChange*/ ctx[2]);
-	card = new _components_Card_svelte__WEBPACK_IMPORTED_MODULE_2__["default"]({});
-	button0 = new _components_Button_svelte__WEBPACK_IMPORTED_MODULE_4__["default"]({ props: { text: "取消" } });
+	const if_block_creators = [create_if_block_1, create_else_block];
+	const if_blocks = [];
+
+	function select_block_type_1(ctx, dirty) {
+		if (/*active*/ ctx[0] !== 2) return 0;
+		return 1;
+	}
+
+	current_block_type_index = select_block_type_1(ctx, -1);
+	if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+
+	button0 = new _components_Button_svelte__WEBPACK_IMPORTED_MODULE_4__["default"]({
+			props: {
+				text: /*active*/ ctx[0] === 0 ? "重置" : "取消"
+			}
+		});
 
 	button1 = new _components_Button_svelte__WEBPACK_IMPORTED_MODULE_4__["default"]({
 			props: {
 				class: "show-btn",
-				text: "预览",
+				text: /*active*/ ctx[0] === 0
+				? "预览"
+				: /*active*/ ctx[0] === 1 ? "保存" : "编辑",
 				hasMasters: true
 			}
 		});
@@ -3022,22 +3038,20 @@ function create_if_block(ctx) {
 			header = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("header");
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["create_component"])(tags_1.$$.fragment);
 			t0 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
-			div1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
 			div0 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["create_component"])(card.$$.fragment);
+			if_block.c();
 			t1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
 			footer = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("footer");
-			div4 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
-			div2 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
+			div3 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
+			div1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["create_component"])(button0.$$.fragment);
 			t2 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
-			div3 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
+			div2 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["create_component"])(button1.$$.fragment);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div0, "class", "guide-line");
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div1, "class", "content");
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div2, "class", "clear-btn");
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div3, "class", "show-btn");
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div4, "class", "manage-btn svelte-14422fb");
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div0, "class", "content");
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div1, "class", "clear-btn");
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div2, "class", "show-btn");
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div3, "class", "manage-btn svelte-14422fb");
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(footer, "class", "svelte-14422fb");
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(main, "id", "main");
 		},
@@ -3046,35 +3060,70 @@ function create_if_block(ctx) {
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(main, header);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["mount_component"])(tags_1, header, null);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(main, t0);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(main, div1);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div1, div0);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["mount_component"])(card, div0, null);
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(main, div0);
+			if_blocks[current_block_type_index].m(div0, null);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(main, t1);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(main, footer);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(footer, div4);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div4, div2);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["mount_component"])(button0, div2, null);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div4, t2);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div4, div3);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["mount_component"])(button1, div3, null);
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(footer, div3);
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div3, div1);
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["mount_component"])(button0, div1, null);
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div3, t2);
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div3, div2);
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["mount_component"])(button1, div2, null);
 			current = true;
 		},
 		p(ctx, dirty) {
 			const tags_1_changes = {};
 			if (dirty & /*active*/ 1) tags_1_changes.active = /*active*/ ctx[0];
 			tags_1.$set(tags_1_changes);
+			let previous_block_index = current_block_type_index;
+			current_block_type_index = select_block_type_1(ctx, dirty);
+
+			if (current_block_type_index === previous_block_index) {
+				if_blocks[current_block_type_index].p(ctx, dirty);
+			} else {
+				Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["group_outros"])();
+
+				Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_out"])(if_blocks[previous_block_index], 1, 1, () => {
+					if_blocks[previous_block_index] = null;
+				});
+
+				Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["check_outros"])();
+				if_block = if_blocks[current_block_type_index];
+
+				if (!if_block) {
+					if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+					if_block.c();
+				} else {
+					if_block.p(ctx, dirty);
+				}
+
+				Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_in"])(if_block, 1);
+				if_block.m(div0, null);
+			}
+
+			const button0_changes = {};
+			if (dirty & /*active*/ 1) button0_changes.text = /*active*/ ctx[0] === 0 ? "重置" : "取消";
+			button0.$set(button0_changes);
+			const button1_changes = {};
+
+			if (dirty & /*active*/ 1) button1_changes.text = /*active*/ ctx[0] === 0
+			? "预览"
+			: /*active*/ ctx[0] === 1 ? "保存" : "编辑";
+
+			button1.$set(button1_changes);
 		},
 		i(local) {
 			if (current) return;
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_in"])(tags_1.$$.fragment, local);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_in"])(card.$$.fragment, local);
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_in"])(if_block);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_in"])(button0.$$.fragment, local);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_in"])(button1.$$.fragment, local);
 			current = true;
 		},
 		o(local) {
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_out"])(tags_1.$$.fragment, local);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_out"])(card.$$.fragment, local);
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_out"])(if_block);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_out"])(button0.$$.fragment, local);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_out"])(button1.$$.fragment, local);
 			current = false;
@@ -3082,9 +3131,66 @@ function create_if_block(ctx) {
 		d(detaching) {
 			if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(main);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["destroy_component"])(tags_1);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["destroy_component"])(card);
+			if_blocks[current_block_type_index].d();
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["destroy_component"])(button0);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["destroy_component"])(button1);
+		}
+	};
+}
+
+// (43:6) {:else}
+function create_else_block(ctx) {
+	let div;
+
+	return {
+		c() {
+			div = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
+			div.textContent = "已经保存";
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div, "class", "save-lines");
+		},
+		m(target, anchor) {
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, div, anchor);
+		},
+		p: svelte_internal__WEBPACK_IMPORTED_MODULE_0__["noop"],
+		i: svelte_internal__WEBPACK_IMPORTED_MODULE_0__["noop"],
+		o: svelte_internal__WEBPACK_IMPORTED_MODULE_0__["noop"],
+		d(detaching) {
+			if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(div);
+		}
+	};
+}
+
+// (38:6) {#if active !== 2}
+function create_if_block_1(ctx) {
+	let div;
+	let card;
+	let current;
+	card = new _components_Card_svelte__WEBPACK_IMPORTED_MODULE_2__["default"]({ props: { guidelines: _common_variables__WEBPACK_IMPORTED_MODULE_3__["guidelines"] } });
+
+	return {
+		c() {
+			div = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["create_component"])(card.$$.fragment);
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div, "class", "guide-lines");
+		},
+		m(target, anchor) {
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, div, anchor);
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["mount_component"])(card, div, null);
+			current = true;
+		},
+		p: svelte_internal__WEBPACK_IMPORTED_MODULE_0__["noop"],
+		i(local) {
+			if (current) return;
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_in"])(card.$$.fragment, local);
+			current = true;
+		},
+		o(local) {
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_out"])(card.$$.fragment, local);
+			current = false;
+		},
+		d(detaching) {
+			if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(div);
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["destroy_component"])(card);
 		}
 	};
 }
@@ -3094,7 +3200,7 @@ function create_fragment(ctx) {
 	let if_block;
 	let if_block_anchor;
 	let current;
-	const if_block_creators = [create_if_block, create_else_block];
+	const if_block_creators = [create_if_block, create_else_block_1];
 	const if_blocks = [];
 
 	function select_block_type(ctx, dirty) {
@@ -3161,16 +3267,19 @@ function create_fragment(ctx) {
 function instance($$self, $$props, $$invalidate) {
 	let active = 0;
 	let hasSelected = false;
+	let selectedLayers = []; // 记录已经选择的图层ID
 
 	function handleActiveChange(event) {
 		$$invalidate(0, active = event.detail.active);
+		Object(_common_global__WEBPACK_IMPORTED_MODULE_7__["updateGuiSize"])(_common_variables__WEBPACK_IMPORTED_MODULE_3__["guiSize"]);
 	}
 
 	// 监听图层选择情况
-	Object(_common_events__WEBPACK_IMPORTED_MODULE_6__["on"])("SELECTION_CHANGED", hasSelection => {
-		$$invalidate(1, hasSelected = hasSelection);
+	Object(_common_events__WEBPACK_IMPORTED_MODULE_6__["on"])("SELECTION_CHANGED", layers => {
+		$$invalidate(1, hasSelected = layers.length > 0);
+		selectedLayers = layers;
 
-		if (!hasSelection) {
+		if (!hasSelected) {
 			Object(_common_events__WEBPACK_IMPORTED_MODULE_6__["emit"])('CHANGE_GUI_SIZE', _common_variables__WEBPACK_IMPORTED_MODULE_3__["guiSizeEmpty"]);
 		} else {
 			Object(_common_global__WEBPACK_IMPORTED_MODULE_7__["updateGuiSize"])(_common_variables__WEBPACK_IMPORTED_MODULE_3__["guiSize"]);
@@ -3363,12 +3472,10 @@ const variables = {
     guidelines: {
         row: {
             count: 1,
-            height: 100,
             scales: [1]
         },
         column: {
             count: 1,
-            height: 100,
             scales: [1]
         },
     },
@@ -3484,80 +3591,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function add_css(target) {
-	Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append_styles"])(target, "svelte-1xia91j", ".card.svelte-1xia91j>[class^=\"card\"].svelte-1xia91j.svelte-1xia91j{border:1px solid rgba(32, 32, 32, 0.2);border-radius:8px;min-height:100px;margin:0 12px;position:relative;padding:16px}.card.svelte-1xia91j>[class^=\"card\"].svelte-1xia91j>.header-text.svelte-1xia91j{position:absolute;top:-20px;left:16px;font-weight:400;color:rgba(32, 32, 32, 1);font-size:12px;display:block;background-color:rgba(255, 255, 255, 1);padding:4px}.card-column.svelte-1xia91j.svelte-1xia91j.svelte-1xia91j{margin-top:20px !important}span.svelte-1xia91j>.measure.svelte-1xia91j.svelte-1xia91j{text-decoration:underline rgba(32, 32, 32, 0.8)}");
+	Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append_styles"])(target, "svelte-1hvucur", ".card.svelte-1hvucur>[class^=\"card\"].svelte-1hvucur.svelte-1hvucur{border:1px solid rgba(32, 32, 32, 0.2);border-radius:8px;margin:0 12px;position:relative;padding:16px}.card.svelte-1hvucur>[class^=\"card\"].svelte-1hvucur>.header-text.svelte-1hvucur{position:absolute;top:-20px;left:16px;font-weight:400;color:rgba(32, 32, 32, 1);font-size:12px;display:block;background-color:rgba(255, 255, 255, 1);padding:4px}.card-column.svelte-1hvucur.svelte-1hvucur.svelte-1hvucur{margin-top:20px !important}span.svelte-1hvucur>.measure.svelte-1hvucur.svelte-1hvucur{text-decoration:underline rgba(32, 32, 32, 0.8)}");
 }
 
-// (57:6) 
-function create_textfield_label_slot_5(ctx) {
-	let span1;
-
-	return {
-		c() {
-			span1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("span");
-			span1.innerHTML = `数量(<span class="measure svelte-1xia91j">N</span>)`;
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(span1, "class", "label svelte-1xia91j");
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(span1, "slot", "textfield-label");
-		},
-		m(target, anchor) {
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, span1, anchor);
-		},
-		p: svelte_internal__WEBPACK_IMPORTED_MODULE_0__["noop"],
-		d(detaching) {
-			if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(span1);
-		}
-	};
-}
-
-// (60:6) 
-function create_unit_measure_slot_3(ctx) {
-	let span;
-
-	return {
-		c() {
-			span = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("span");
-			span.textContent = "个";
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(span, "slot", "unit-measure");
-		},
-		m(target, anchor) {
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, span, anchor);
-		},
-		p: svelte_internal__WEBPACK_IMPORTED_MODULE_0__["noop"],
-		d(detaching) {
-			if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(span);
-		}
-	};
-}
-
-// (64:6) 
-function create_textfield_label_slot_4(ctx) {
-	let span1;
-
-	return {
-		c() {
-			span1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("span");
-			span1.innerHTML = `比例(<span class="measure svelte-1xia91j">G</span>)`;
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(span1, "class", "label svelte-1xia91j");
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(span1, "slot", "textfield-label");
-		},
-		m(target, anchor) {
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, span1, anchor);
-		},
-		p: svelte_internal__WEBPACK_IMPORTED_MODULE_0__["noop"],
-		d(detaching) {
-			if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(span1);
-		}
-	};
-}
-
-// (70:6) 
+// (59:6) 
 function create_textfield_label_slot_3(ctx) {
 	let span1;
 
 	return {
 		c() {
 			span1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("span");
-			span1.innerHTML = `宽度(<span class="measure svelte-1xia91j">H</span>)`;
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(span1, "class", "label svelte-1xia91j");
+			span1.innerHTML = `数量(<span class="measure svelte-1hvucur">N</span>)`;
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(span1, "class", "label svelte-1hvucur");
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(span1, "slot", "textfield-label");
 		},
 		m(target, anchor) {
@@ -3570,55 +3615,14 @@ function create_textfield_label_slot_3(ctx) {
 	};
 }
 
-// (73:6) 
-function create_unit_measure_slot_2(ctx) {
-	let span;
-
-	return {
-		c() {
-			span = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("span");
-			span.textContent = "像素";
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(span, "slot", "unit-measure");
-		},
-		m(target, anchor) {
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, span, anchor);
-		},
-		p: svelte_internal__WEBPACK_IMPORTED_MODULE_0__["noop"],
-		d(detaching) {
-			if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(span);
-		}
-	};
-}
-
-// (84:6) 
-function create_textfield_label_slot_2(ctx) {
-	let span1;
-
-	return {
-		c() {
-			span1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("span");
-			span1.innerHTML = `数量(<span class="measure svelte-1xia91j">N</span>)`;
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(span1, "class", "label svelte-1xia91j");
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(span1, "slot", "textfield-label");
-		},
-		m(target, anchor) {
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, span1, anchor);
-		},
-		p: svelte_internal__WEBPACK_IMPORTED_MODULE_0__["noop"],
-		d(detaching) {
-			if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(span1);
-		}
-	};
-}
-
-// (87:6) 
+// (62:6) 
 function create_unit_measure_slot_1(ctx) {
 	let span;
 
 	return {
 		c() {
 			span = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("span");
-			span.textContent = "个";
+			span.textContent = "份";
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(span, "slot", "unit-measure");
 		},
 		m(target, anchor) {
@@ -3631,15 +3635,36 @@ function create_unit_measure_slot_1(ctx) {
 	};
 }
 
-// (91:6) 
+// (66:6) 
+function create_textfield_label_slot_2(ctx) {
+	let span1;
+
+	return {
+		c() {
+			span1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("span");
+			span1.innerHTML = `比例(<span class="measure svelte-1hvucur">G</span>)`;
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(span1, "class", "label svelte-1hvucur");
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(span1, "slot", "textfield-label");
+		},
+		m(target, anchor) {
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, span1, anchor);
+		},
+		p: svelte_internal__WEBPACK_IMPORTED_MODULE_0__["noop"],
+		d(detaching) {
+			if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(span1);
+		}
+	};
+}
+
+// (79:6) 
 function create_textfield_label_slot_1(ctx) {
 	let span1;
 
 	return {
 		c() {
 			span1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("span");
-			span1.innerHTML = `比例(<span class="measure svelte-1xia91j">G</span>)`;
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(span1, "class", "label svelte-1xia91j");
+			span1.innerHTML = `数量(<span class="measure svelte-1hvucur">N</span>)`;
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(span1, "class", "label svelte-1hvucur");
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(span1, "slot", "textfield-label");
 		},
 		m(target, anchor) {
@@ -3652,35 +3677,14 @@ function create_textfield_label_slot_1(ctx) {
 	};
 }
 
-// (96:6) 
-function create_textfield_label_slot(ctx) {
-	let span1;
-
-	return {
-		c() {
-			span1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("span");
-			span1.innerHTML = `高度(<span class="measure svelte-1xia91j">H</span>)`;
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(span1, "class", "label svelte-1xia91j");
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(span1, "slot", "textfield-label");
-		},
-		m(target, anchor) {
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, span1, anchor);
-		},
-		p: svelte_internal__WEBPACK_IMPORTED_MODULE_0__["noop"],
-		d(detaching) {
-			if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(span1);
-		}
-	};
-}
-
-// (99:6) 
+// (82:6) 
 function create_unit_measure_slot(ctx) {
 	let span;
 
 	return {
 		c() {
 			span = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("span");
-			span.textContent = "像素";
+			span.textContent = "份";
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(span, "slot", "unit-measure");
 		},
 		m(target, anchor) {
@@ -3689,6 +3693,27 @@ function create_unit_measure_slot(ctx) {
 		p: svelte_internal__WEBPACK_IMPORTED_MODULE_0__["noop"],
 		d(detaching) {
 			if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(span);
+		}
+	};
+}
+
+// (86:6) 
+function create_textfield_label_slot(ctx) {
+	let span1;
+
+	return {
+		c() {
+			span1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("span");
+			span1.innerHTML = `比例(<span class="measure svelte-1hvucur">G</span>)`;
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(span1, "class", "label svelte-1hvucur");
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(span1, "slot", "textfield-label");
+		},
+		m(target, anchor) {
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, span1, anchor);
+		},
+		p: svelte_internal__WEBPACK_IMPORTED_MODULE_0__["noop"],
+		d(detaching) {
+			if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(span1);
 		}
 	};
 }
@@ -3704,18 +3729,14 @@ function create_fragment(ctx) {
 	let numberfield1;
 	let updating_value_1;
 	let t3;
-	let numberfield2;
-	let t4;
 	let div1;
 	let h11;
+	let t5;
+	let numberfield2;
+	let updating_value_2;
 	let t6;
 	let numberfield3;
-	let updating_value_2;
-	let t7;
-	let numberfield4;
 	let updating_value_3;
-	let t8;
-	let numberfield5;
 	let current;
 
 	function numberfield0_value_binding(value) {
@@ -3726,8 +3747,8 @@ function create_fragment(ctx) {
 		min: _common_variables__WEBPACK_IMPORTED_MODULE_3__["MIN_VALUE"],
 		max: _common_variables__WEBPACK_IMPORTED_MODULE_3__["MAX_VALUE"],
 		$$slots: {
-			"unit-measure": [create_unit_measure_slot_3],
-			"textfield-label": [create_textfield_label_slot_5]
+			"unit-measure": [create_unit_measure_slot_1],
+			"textfield-label": [create_textfield_label_slot_3]
 		},
 		$$scope: { ctx }
 	};
@@ -3747,7 +3768,7 @@ function create_fragment(ctx) {
 	let numberfield1_props = {
 		base: false,
 		$$slots: {
-			"textfield-label": [create_textfield_label_slot_4]
+			"textfield-label": [create_textfield_label_slot_2]
 		},
 		$$scope: { ctx }
 	};
@@ -3759,70 +3780,46 @@ function create_fragment(ctx) {
 	numberfield1 = new _NumberField_svelte__WEBPACK_IMPORTED_MODULE_1__["default"]({ props: numberfield1_props });
 	svelte_internal__WEBPACK_IMPORTED_MODULE_0__["binding_callbacks"].push(() => Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["bind"])(numberfield1, 'value', numberfield1_value_binding));
 
-	numberfield2 = new _NumberField_svelte__WEBPACK_IMPORTED_MODULE_1__["default"]({
-			props: {
-				value: /*guidelines*/ ctx[0].row.height,
-				disabled: true,
-				$$slots: {
-					"unit-measure": [create_unit_measure_slot_2],
-					"textfield-label": [create_textfield_label_slot_3]
-				},
-				$$scope: { ctx }
-			}
-		});
-
-	function numberfield3_value_binding(value) {
-		/*numberfield3_value_binding*/ ctx[7](value);
+	function numberfield2_value_binding(value) {
+		/*numberfield2_value_binding*/ ctx[7](value);
 	}
 
-	let numberfield3_props = {
+	let numberfield2_props = {
 		min: _common_variables__WEBPACK_IMPORTED_MODULE_3__["MIN_VALUE"],
 		max: _common_variables__WEBPACK_IMPORTED_MODULE_3__["MAX_VALUE"],
 		$$slots: {
-			"unit-measure": [create_unit_measure_slot_1],
-			"textfield-label": [create_textfield_label_slot_2]
-		},
-		$$scope: { ctx }
-	};
-
-	if (/*guidelines*/ ctx[0].column.count !== void 0) {
-		numberfield3_props.value = /*guidelines*/ ctx[0].column.count;
-	}
-
-	numberfield3 = new _NumberField_svelte__WEBPACK_IMPORTED_MODULE_1__["default"]({ props: numberfield3_props });
-	svelte_internal__WEBPACK_IMPORTED_MODULE_0__["binding_callbacks"].push(() => Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["bind"])(numberfield3, 'value', numberfield3_value_binding));
-	numberfield3.$on("inputChange", /*inputChange_handler_1*/ ctx[8]);
-
-	function numberfield4_value_binding(value) {
-		/*numberfield4_value_binding*/ ctx[9](value);
-	}
-
-	let numberfield4_props = {
-		base: false,
-		$$slots: {
+			"unit-measure": [create_unit_measure_slot],
 			"textfield-label": [create_textfield_label_slot_1]
 		},
 		$$scope: { ctx }
 	};
 
-	if (/*guidelines*/ ctx[0].column.scales !== void 0) {
-		numberfield4_props.value = /*guidelines*/ ctx[0].column.scales;
+	if (/*guidelines*/ ctx[0].column.count !== void 0) {
+		numberfield2_props.value = /*guidelines*/ ctx[0].column.count;
 	}
 
-	numberfield4 = new _NumberField_svelte__WEBPACK_IMPORTED_MODULE_1__["default"]({ props: numberfield4_props });
-	svelte_internal__WEBPACK_IMPORTED_MODULE_0__["binding_callbacks"].push(() => Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["bind"])(numberfield4, 'value', numberfield4_value_binding));
+	numberfield2 = new _NumberField_svelte__WEBPACK_IMPORTED_MODULE_1__["default"]({ props: numberfield2_props });
+	svelte_internal__WEBPACK_IMPORTED_MODULE_0__["binding_callbacks"].push(() => Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["bind"])(numberfield2, 'value', numberfield2_value_binding));
+	numberfield2.$on("inputChange", /*inputChange_handler_1*/ ctx[8]);
 
-	numberfield5 = new _NumberField_svelte__WEBPACK_IMPORTED_MODULE_1__["default"]({
-			props: {
-				value: /*guidelines*/ ctx[0].column.height,
-				disabled: true,
-				$$slots: {
-					"unit-measure": [create_unit_measure_slot],
-					"textfield-label": [create_textfield_label_slot]
-				},
-				$$scope: { ctx }
-			}
-		});
+	function numberfield3_value_binding(value) {
+		/*numberfield3_value_binding*/ ctx[9](value);
+	}
+
+	let numberfield3_props = {
+		base: false,
+		$$slots: {
+			"textfield-label": [create_textfield_label_slot]
+		},
+		$$scope: { ctx }
+	};
+
+	if (/*guidelines*/ ctx[0].column.scales !== void 0) {
+		numberfield3_props.value = /*guidelines*/ ctx[0].column.scales;
+	}
+
+	numberfield3 = new _NumberField_svelte__WEBPACK_IMPORTED_MODULE_1__["default"]({ props: numberfield3_props });
+	svelte_internal__WEBPACK_IMPORTED_MODULE_0__["binding_callbacks"].push(() => Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["bind"])(numberfield3, 'value', numberfield3_value_binding));
 
 	return {
 		c() {
@@ -3835,22 +3832,18 @@ function create_fragment(ctx) {
 			t2 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["create_component"])(numberfield1.$$.fragment);
 			t3 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["create_component"])(numberfield2.$$.fragment);
-			t4 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
 			div1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
 			h11 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("h1");
 			h11.textContent = "列";
+			t5 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["create_component"])(numberfield2.$$.fragment);
 			t6 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["create_component"])(numberfield3.$$.fragment);
-			t7 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["create_component"])(numberfield4.$$.fragment);
-			t8 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["create_component"])(numberfield5.$$.fragment);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(h10, "class", "header-text svelte-1xia91j");
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div0, "class", "card-row svelte-1xia91j");
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(h11, "class", "header-text svelte-1xia91j");
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div1, "class", "card-column svelte-1xia91j");
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div2, "class", "card svelte-1xia91j");
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(h10, "class", "header-text svelte-1hvucur");
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div0, "class", "card-row svelte-1hvucur");
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(h11, "class", "header-text svelte-1hvucur");
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div1, "class", "card-column svelte-1hvucur");
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div2, "class", "card svelte-1hvucur");
 		},
 		m(target, anchor) {
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, div2, anchor);
@@ -3860,17 +3853,13 @@ function create_fragment(ctx) {
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["mount_component"])(numberfield0, div0, null);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div0, t2);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["mount_component"])(numberfield1, div0, null);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div0, t3);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["mount_component"])(numberfield2, div0, null);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div2, t4);
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div2, t3);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div2, div1);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div1, h11);
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div1, t5);
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["mount_component"])(numberfield2, div1, null);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div1, t6);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["mount_component"])(numberfield3, div1, null);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div1, t7);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["mount_component"])(numberfield4, div1, null);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div1, t8);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["mount_component"])(numberfield5, div1, null);
 			current = true;
 		},
 		p(ctx, [dirty]) {
@@ -3901,10 +3890,15 @@ function create_fragment(ctx) {
 
 			numberfield1.$set(numberfield1_changes);
 			const numberfield2_changes = {};
-			if (dirty & /*guidelines*/ 1) numberfield2_changes.value = /*guidelines*/ ctx[0].row.height;
 
 			if (dirty & /*$$scope*/ 1024) {
 				numberfield2_changes.$$scope = { dirty, ctx };
+			}
+
+			if (!updating_value_2 && dirty & /*guidelines*/ 1) {
+				updating_value_2 = true;
+				numberfield2_changes.value = /*guidelines*/ ctx[0].column.count;
+				Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_flush_callback"])(() => updating_value_2 = false);
 			}
 
 			numberfield2.$set(numberfield2_changes);
@@ -3914,34 +3908,13 @@ function create_fragment(ctx) {
 				numberfield3_changes.$$scope = { dirty, ctx };
 			}
 
-			if (!updating_value_2 && dirty & /*guidelines*/ 1) {
-				updating_value_2 = true;
-				numberfield3_changes.value = /*guidelines*/ ctx[0].column.count;
-				Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_flush_callback"])(() => updating_value_2 = false);
-			}
-
-			numberfield3.$set(numberfield3_changes);
-			const numberfield4_changes = {};
-
-			if (dirty & /*$$scope*/ 1024) {
-				numberfield4_changes.$$scope = { dirty, ctx };
-			}
-
 			if (!updating_value_3 && dirty & /*guidelines*/ 1) {
 				updating_value_3 = true;
-				numberfield4_changes.value = /*guidelines*/ ctx[0].column.scales;
+				numberfield3_changes.value = /*guidelines*/ ctx[0].column.scales;
 				Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_flush_callback"])(() => updating_value_3 = false);
 			}
 
-			numberfield4.$set(numberfield4_changes);
-			const numberfield5_changes = {};
-			if (dirty & /*guidelines*/ 1) numberfield5_changes.value = /*guidelines*/ ctx[0].column.height;
-
-			if (dirty & /*$$scope*/ 1024) {
-				numberfield5_changes.$$scope = { dirty, ctx };
-			}
-
-			numberfield5.$set(numberfield5_changes);
+			numberfield3.$set(numberfield3_changes);
 		},
 		i(local) {
 			if (current) return;
@@ -3949,8 +3922,6 @@ function create_fragment(ctx) {
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_in"])(numberfield1.$$.fragment, local);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_in"])(numberfield2.$$.fragment, local);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_in"])(numberfield3.$$.fragment, local);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_in"])(numberfield4.$$.fragment, local);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_in"])(numberfield5.$$.fragment, local);
 			current = true;
 		},
 		o(local) {
@@ -3958,8 +3929,6 @@ function create_fragment(ctx) {
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_out"])(numberfield1.$$.fragment, local);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_out"])(numberfield2.$$.fragment, local);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_out"])(numberfield3.$$.fragment, local);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_out"])(numberfield4.$$.fragment, local);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_out"])(numberfield5.$$.fragment, local);
 			current = false;
 		},
 		d(detaching) {
@@ -3968,13 +3937,14 @@ function create_fragment(ctx) {
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["destroy_component"])(numberfield1);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["destroy_component"])(numberfield2);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["destroy_component"])(numberfield3);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["destroy_component"])(numberfield4);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["destroy_component"])(numberfield5);
 		}
 	};
 }
 
 function instance($$self, $$props, $$invalidate) {
+	let { guidelines = {} } = $$props;
+
+	// 判断数量是否超过或者小于最大值
 	const inputChange = (event, handler) => {
 		let { value } = event.detail;
 		let deter = Object(_common_global__WEBPACK_IMPORTED_MODULE_2__["determineSize"])(value, _common_variables__WEBPACK_IMPORTED_MODULE_3__["MIN_VALUE"], _common_variables__WEBPACK_IMPORTED_MODULE_3__["MAX_VALUE"]);
@@ -3994,80 +3964,84 @@ function instance($$self, $$props, $$invalidate) {
 
 	// 处理行输入
 	const rowHandler = value => {
-		$$invalidate(0, _common_variables__WEBPACK_IMPORTED_MODULE_3__["guidelines"].row.count = value, _common_variables__WEBPACK_IMPORTED_MODULE_3__["guidelines"]);
-		let _scales = _common_variables__WEBPACK_IMPORTED_MODULE_3__["guidelines"].row.scales;
+		$$invalidate(0, guidelines.row.count = value, guidelines);
+		let _scales = guidelines.row.scales;
 		const len = _scales.length;
 
 		if (len > value) {
-			$$invalidate(0, _common_variables__WEBPACK_IMPORTED_MODULE_3__["guidelines"].row.scales = _scales.splice(0, value), _common_variables__WEBPACK_IMPORTED_MODULE_3__["guidelines"]);
+			$$invalidate(0, guidelines.row.scales = _scales.splice(0, value), guidelines);
 		} else if (len < value) {
-			$$invalidate(0, _common_variables__WEBPACK_IMPORTED_MODULE_3__["guidelines"].row.scales = _scales.concat(Array(value - len).fill(1)), _common_variables__WEBPACK_IMPORTED_MODULE_3__["guidelines"]);
+			$$invalidate(0, guidelines.row.scales = _scales.concat(Array(value - len).fill(1)), guidelines);
 		}
 	};
 
 	// 处理列输入
 	const columnHandler = value => {
-		$$invalidate(0, _common_variables__WEBPACK_IMPORTED_MODULE_3__["guidelines"].column.count = value, _common_variables__WEBPACK_IMPORTED_MODULE_3__["guidelines"]);
-		let _scales = _common_variables__WEBPACK_IMPORTED_MODULE_3__["guidelines"].column.scales;
+		$$invalidate(0, guidelines.column.count = value, guidelines);
+		let _scales = guidelines.column.scales;
 		const len = _scales.length;
 
 		if (len > value) {
-			$$invalidate(0, _common_variables__WEBPACK_IMPORTED_MODULE_3__["guidelines"].column.scales = _scales.splice(0, value), _common_variables__WEBPACK_IMPORTED_MODULE_3__["guidelines"]);
+			$$invalidate(0, guidelines.column.scales = _scales.splice(0, value), guidelines);
 		} else if (len < value) {
-			$$invalidate(0, _common_variables__WEBPACK_IMPORTED_MODULE_3__["guidelines"].column.scales = _scales.concat(Array(value - len).fill(1)), _common_variables__WEBPACK_IMPORTED_MODULE_3__["guidelines"]);
+			$$invalidate(0, guidelines.column.scales = _scales.concat(Array(value - len).fill(1)), guidelines);
 		}
 	};
 
 	function numberfield0_value_binding(value) {
-		if ($$self.$$.not_equal(_common_variables__WEBPACK_IMPORTED_MODULE_3__["guidelines"].row.count, value)) {
-			_common_variables__WEBPACK_IMPORTED_MODULE_3__["guidelines"].row.count = value;
-			$$invalidate(0, _common_variables__WEBPACK_IMPORTED_MODULE_3__["guidelines"]);
+		if ($$self.$$.not_equal(guidelines.row.count, value)) {
+			guidelines.row.count = value;
+			$$invalidate(0, guidelines);
 		}
 	}
 
 	const inputChange_handler = event => inputChange(event, rowHandler);
 
 	function numberfield1_value_binding(value) {
-		if ($$self.$$.not_equal(_common_variables__WEBPACK_IMPORTED_MODULE_3__["guidelines"].row.scales, value)) {
-			_common_variables__WEBPACK_IMPORTED_MODULE_3__["guidelines"].row.scales = value;
-			$$invalidate(0, _common_variables__WEBPACK_IMPORTED_MODULE_3__["guidelines"]);
+		if ($$self.$$.not_equal(guidelines.row.scales, value)) {
+			guidelines.row.scales = value;
+			$$invalidate(0, guidelines);
 		}
 	}
 
-	function numberfield3_value_binding(value) {
-		if ($$self.$$.not_equal(_common_variables__WEBPACK_IMPORTED_MODULE_3__["guidelines"].column.count, value)) {
-			_common_variables__WEBPACK_IMPORTED_MODULE_3__["guidelines"].column.count = value;
-			$$invalidate(0, _common_variables__WEBPACK_IMPORTED_MODULE_3__["guidelines"]);
+	function numberfield2_value_binding(value) {
+		if ($$self.$$.not_equal(guidelines.column.count, value)) {
+			guidelines.column.count = value;
+			$$invalidate(0, guidelines);
 		}
 	}
 
 	const inputChange_handler_1 = event => inputChange(event, columnHandler);
 
-	function numberfield4_value_binding(value) {
-		if ($$self.$$.not_equal(_common_variables__WEBPACK_IMPORTED_MODULE_3__["guidelines"].column.scales, value)) {
-			_common_variables__WEBPACK_IMPORTED_MODULE_3__["guidelines"].column.scales = value;
-			$$invalidate(0, _common_variables__WEBPACK_IMPORTED_MODULE_3__["guidelines"]);
+	function numberfield3_value_binding(value) {
+		if ($$self.$$.not_equal(guidelines.column.scales, value)) {
+			guidelines.column.scales = value;
+			$$invalidate(0, guidelines);
 		}
 	}
 
+	$$self.$$set = $$props => {
+		if ('guidelines' in $$props) $$invalidate(0, guidelines = $$props.guidelines);
+	};
+
 	return [
-		_common_variables__WEBPACK_IMPORTED_MODULE_3__["guidelines"],
+		guidelines,
 		inputChange,
 		rowHandler,
 		columnHandler,
 		numberfield0_value_binding,
 		inputChange_handler,
 		numberfield1_value_binding,
-		numberfield3_value_binding,
+		numberfield2_value_binding,
 		inputChange_handler_1,
-		numberfield4_value_binding
+		numberfield3_value_binding
 	];
 }
 
 class Card extends svelte_internal__WEBPACK_IMPORTED_MODULE_0__["SvelteComponent"] {
 	constructor(options) {
 		super();
-		Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["init"])(this, options, instance, create_fragment, svelte_internal__WEBPACK_IMPORTED_MODULE_0__["safe_not_equal"], {}, add_css);
+		Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["init"])(this, options, instance, create_fragment, svelte_internal__WEBPACK_IMPORTED_MODULE_0__["safe_not_equal"], { guidelines: 0 }, add_css);
 	}
 }
 

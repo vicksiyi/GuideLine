@@ -98,12 +98,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _common_events__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./common/events */ "./src/common/events.js");
 
 jsDesign.showUI(__html__, { width: 260, height: 440 });
-Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["emit"])('SELECTION_CHANGED', jsDesign.currentPage.selection.length > 0);
+const selections = jsDesign.currentPage.selection;
+const selectionIds = selections.map(item => {
+    return item.id;
+});
+Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["emit"])('SELECTION_CHANGED', selectionIds);
 jsDesign.on('selectionchange', function () {
-    Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["emit"])('SELECTION_CHANGED', jsDesign.currentPage.selection.length > 0);
+    const selections = jsDesign.currentPage.selection;
+    const selectionIds = selections.map(item => {
+        return item.id;
+    });
+    Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["emit"])('SELECTION_CHANGED', selectionIds);
 });
 Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["on"])("CHANGE_GUI_SIZE", (guiSize) => {
-    console.log(guiSize === null || guiSize === void 0 ? void 0 : guiSize.width, guiSize === null || guiSize === void 0 ? void 0 : guiSize.height);
     jsDesign.ui.resize(guiSize === null || guiSize === void 0 ? void 0 : guiSize.width, guiSize === null || guiSize === void 0 ? void 0 : guiSize.height);
 });
 
