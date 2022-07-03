@@ -2,25 +2,48 @@
     import Tags from "./components/Tags.svelte";
     import Card from "./components/Card.svelte";
     import {tags} from "./common/variables";
+    import Button from "./components/Button.svelte";
+    import Empty from "./components/Empty.svelte";
+    
     let active = 0;
+    let hasSelected = false;
 
     function handleActiveChange(event) {
         active = event.detail.active;
 	}
 </script>
 
-<main>
-  <!-- 头部选择栏 -->
-  <Tags on:activeChange={handleActiveChange} {tags} {active} />
-  <div class="content">
-    <!-- 辅助线 -->
-    <div class="guide-line">
-      <Card />
+{#if hasSelected}
+  <main>
+    <!-- 头部选择栏 -->
+    <header>
+      <Tags on:activeChange={handleActiveChange} {tags} {active} />
+    </header>
+    <div class="content">
+      <!-- 辅助线 -->
+      <div class="guide-line">
+        <Card />
+      </div>
+      <!-- 自定义 -->
+      <!-- 已保存 -->
     </div>
-    <!-- 自定义 -->
-    <!-- 已保存 -->
-  </div>
-</main>
+    <footer>
+      <div class="manage-btn">
+        <div class="clear-btn">
+          <Button text="取消" />
+        </div>
+        <div class="show-btn">
+          <Button class="show-btn" text="预览" hasMasters />
+        </div>
+      </div>
+    </footer>
+  </main>
+{:else}
+  <!-- 没有选择任何组件时 -->
+  <main>
+    <Empty text="请先选择一个图层" />
+  </main>
+{/if}
 
 <style>
   :global(.toast) {
@@ -38,19 +61,36 @@
     text-align: center;
     font-size: 12px;
   }
-
   :global(.toast--error) {
     border: 1px solid #f56c6c;
     background-color: #f56c6c;
   }
-
   :global(.toast--warning) {
-    border: 1px solid #E6A23C;
-    background-color: #E6A23C;
+    border: 1px solid #e6a23c;
+    background-color: #e6a23c;
   }
-
   :global(.toast--success) {
-    border: 1px solid #67C23A;
-    background-color: #67C23A;
+    border: 1px solid #67c23a;
+    background-color: #67c23a;
+  }
+  footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 64px;
+    background-color: rgba(0, 0, 0, 0.03);
+  }
+  .manage-btn {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px;
+  }
+  .manage-btn :global(.clear-btn) {
+    width: 58px;
+    height: 32px;
+  }
+  .manage-btn :global(.show-btn) {
+    flex: 1;
+    margin-left: 12px;
   }
 </style>

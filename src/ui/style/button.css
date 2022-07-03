@@ -1,0 +1,78 @@
+/* 按钮样式 */
+.js-design-button {
+    width: 100%;
+    border-radius: 6px;
+    height: 32px;
+}
+
+.js-design-master-button {
+    font-weight: 400;
+}
+
+.js-design-second-button {
+    font-weight: 300;
+}
+
+/* 深色模式下 */
+/* 主按钮 */
+.figma-dark .js-design-master-button {
+    background-color: rgba(69, 150, 255, 1);
+    color: rgba(255, 255, 255, 1);
+    border: none;
+}
+
+.figma-dark .js-design-master-button:hover {
+    background: rgba(70, 139, 242, 1);
+}
+
+.figma-dark .js-design-master-button[disabled] {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* 次按钮 */
+.figma-dark .js-design-second-button {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.8);
+    background: none;
+}
+
+.figma-dark .js-design-second-button:hover {
+    border: 1px solid rgba(255, 255, 255, 1);
+    color: rgba(255, 255, 255, 1);
+}
+
+.figma-dark .js-design-second-button[disabled] {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* 浅色模式 */
+/* 主按钮 */
+.js-design-master-button {
+    background-color: rgba(69, 150, 255, 1);
+    color: rgba(255, 255, 255, 1);
+    border: none;
+}
+
+.js-design-master-button:hover {
+    background-color: rgba(70, 139, 242, 1);
+}
+
+.js-design-master-button[disabled] {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.js-design-second-button {
+    border: 1px solid rgba(32, 32, 32, 0.2);
+    color: rgba(32, 32, 32, 1);
+    background: none;
+}
+
+.js-design-second-button:hover {
+    border: 1px solid rgba(32, 32, 32, 0.4);
+}
+
+.js-design-second-button[disabled] {
+    border: 1px solid rgba(32, 32, 32, 0.1);
+    color: rgba(32, 32, 32, 0.3);
+}
