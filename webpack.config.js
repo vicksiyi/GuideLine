@@ -8,8 +8,8 @@ const prod = mode === 'production';
 
 module.exports = {
   entry: {
-    ui: './src/ui/main.js',
-    code: './src/code/main.ts',
+    ui: './src/ui.js',
+    code: './src/code.ts',
   },
 
   output: {
@@ -57,7 +57,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: './src/ui/main.html',
+      template: './src/ui.html',
       filename: 'ui.html',
       inlineSource: '.(js|css)$',
       chunks: ['ui'],

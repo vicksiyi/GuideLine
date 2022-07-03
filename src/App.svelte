@@ -1,20 +1,32 @@
 <script>
     import Tags from "./components/Tags.svelte";
     import Card from "./components/Card.svelte";
-    import {tags} from "./common/variables";
+    import {tags,guiSizeEmpty,guiSize} from "./common/variables";
     import Button from "./components/Button.svelte";
     import Empty from "./components/Empty.svelte";
+    import {on,emit} from "./common/events";
+    import {updateGuiSize} from "./common/global";
     
     let active = 0;
     let hasSelected = false;
 
     function handleActiveChange(event) {
         active = event.detail.active;
-	}
+	  }
+    
+    // 监听图层选择情况
+    on("SELECTION_CHANGED",(hasSelection)=>{
+      hasSelected = hasSelection;
+      if(!hasSelection) {
+        emit('CHANGE_GUI_SIZE', guiSizeEmpty)
+      }else {
+        updateGuiSize(guiSize);
+      }
+    })
 </script>
 
 {#if hasSelected}
-  <main>
+  <main id="main">
     <!-- 头部选择栏 -->
     <header>
       <Tags on:activeChange={handleActiveChange} {tags} {active} />
@@ -40,7 +52,7 @@
   </main>
 {:else}
   <!-- 没有选择任何组件时 -->
-  <main>
+  <main id="main">
     <Empty text="请先选择一个图层" />
   </main>
 {/if}
@@ -74,10 +86,9 @@
     background-color: #67c23a;
   }
   footer {
-    position: fixed;
-    bottom: 0;
     width: 100%;
     height: 64px;
+    margin-top: 16px;
     background-color: rgba(0, 0, 0, 0.03);
   }
   .manage-btn {

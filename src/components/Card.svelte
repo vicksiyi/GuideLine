@@ -1,21 +1,23 @@
 <script>
     import NumberField from "./NumberField.svelte";
     import {determineSize, toast} from "../common/global";
-    import {MIN_VALUE, MAX_VALUE, guidelines} from "../common/variables";
+    import {MIN_VALUE, MAX_VALUE, guidelines,guiSize} from "../common/variables";
+    import {updateGuiSize} from "../common/global";
 
     // 判断数量是否超过或者小于最大值
     const inputChange = (event,handler)=> {
         let {value} = event.detail;
         let deter = determineSize(value, MIN_VALUE, MAX_VALUE);
         if(deter === -1) {
-            toast(`值不能小于${MIN_VALUE}`,'warning');
+            toast(`数量不能小于${MIN_VALUE}`,'warning');
             handler(MIN_VALUE);
         }else if(deter === 1) {
-            toast(`值不能大于${MAX_VALUE}`,'warning');
+            toast(`数量不能大于${MAX_VALUE}`,'warning');
             handler(MAX_VALUE);
         }else{
             handler(value);
         }
+        updateGuiSize(guiSize);
     }
     // 处理行输入
     const rowHandler = (value)=>{
@@ -60,14 +62,13 @@
     <!-- 比例 -->
     <NumberField base={false} bind:value={guidelines.row.scales}>
       <span class="label" slot="textfield-label"
-        >比例(<span class="measure">G</span
-        >)</span
+        >比例(<span class="measure">G</span>)</span
       >
     </NumberField>
     <!-- 宽度 -->
     <NumberField value={guidelines.row.height} disabled>
       <span class="label" slot="textfield-label"
-        >宽度{guidelines.row.count}(<span class="measure">H</span>)</span
+        >宽度(<span class="measure">H</span>)</span
       >
       <span slot="unit-measure">像素</span>
     </NumberField>
@@ -121,7 +122,7 @@
     padding: 4px;
   }
   .card-column {
-    top: 20px;
+    margin-top: 20px !important;
   }
   span > .measure {
     text-decoration: underline rgba(32, 32, 32, 0.8);

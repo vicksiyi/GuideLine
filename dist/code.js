@@ -81,20 +81,94 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/code/main.ts");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/code.ts");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./src/code/main.ts":
-/*!**************************!*\
-  !*** ./src/code/main.ts ***!
-  \**************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ "./src/code.ts":
+/*!*********************!*\
+  !*** ./src/code.ts ***!
+  \*********************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-jsDesign.showUI(__html__, { width: 260, height: 480 });
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _common_events__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./common/events */ "./src/common/events.js");
 
+jsDesign.showUI(__html__, { width: 260, height: 440 });
+Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["emit"])('SELECTION_CHANGED', jsDesign.currentPage.selection.length > 0);
+jsDesign.on('selectionchange', function () {
+    Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["emit"])('SELECTION_CHANGED', jsDesign.currentPage.selection.length > 0);
+});
+Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["on"])("CHANGE_GUI_SIZE", (guiSize) => {
+    console.log(guiSize === null || guiSize === void 0 ? void 0 : guiSize.width, guiSize === null || guiSize === void 0 ? void 0 : guiSize.height);
+    jsDesign.ui.resize(guiSize === null || guiSize === void 0 ? void 0 : guiSize.width, guiSize === null || guiSize === void 0 ? void 0 : guiSize.height);
+});
+
+
+/***/ }),
+
+/***/ "./src/common/events.js":
+/*!******************************!*\
+  !*** ./src/common/events.js ***!
+  \******************************/
+/*! exports provided: on, once, emit */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "on", function() { return on; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "once", function() { return once; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "emit", function() { return emit; });
+const eventHandlers = {};
+let currentId = 0;
+function on(name, handler) {
+    const id = `${currentId}`;
+    currentId += 1;
+    eventHandlers[id] = { handler, name };
+    return function () {
+        delete eventHandlers[id];
+    };
+}
+function once(name, handler) {
+    let done = false;
+    return on(name, function (...args) {
+        if (done === true) {
+            return;
+        }
+        done = true;
+        handler(...args);
+    });
+}
+const emit = typeof window === 'undefined'
+    ? function (name, ...args) {
+        jsDesign.ui.postMessage([name, ...args]);
+    }
+    : function (name, ...args) {
+        window.parent.postMessage({
+            pluginMessage: [name, ...args]
+        }, '*');
+    };
+function invokeEventHandler(name, args) {
+    for (const id in eventHandlers) {
+        if (eventHandlers[id].name === name) {
+            eventHandlers[id].handler.apply(null, args);
+        }
+    }
+}
+if (typeof window === 'undefined') {
+    jsDesign.ui.onmessage = function ([name, ...args]) {
+        invokeEventHandler(name, args);
+    };
+}
+else {
+    window.onmessage = function (event) {
+        const [name, ...args] = event.data.pluginMessage;
+        invokeEventHandler(name, args);
+    };
+}
 
 /***/ })
 

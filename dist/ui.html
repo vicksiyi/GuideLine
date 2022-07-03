@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/ui/main.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/ui.js");
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -104,15 +104,15 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/ui/style/button.css":
-/*!**************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/ui/style/button.css ***!
-  \**************************************************************************************************************/
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/style/button.css":
+/*!***********************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/style/button.css ***!
+  \***********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
-var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
 exports.push([module.i, "@charset \"UTF-8\";\n/* 按钮样式 */\n.js-design-button {\n  width: 100%;\n  border-radius: 6px;\n  height: 32px;\n}\n\n.js-design-master-button {\n  font-weight: 400;\n}\n\n.js-design-second-button {\n  font-weight: 300;\n}\n\n/* 深色模式下 */\n/* 主按钮 */\n.figma-dark .js-design-master-button {\n  background-color: rgb(69, 150, 255);\n  color: rgb(255, 255, 255);\n  border: none;\n}\n\n.figma-dark .js-design-master-button:hover {\n  background: rgb(70, 139, 242);\n}\n\n.figma-dark .js-design-master-button[disabled] {\n  background: rgba(255, 255, 255, 0.3);\n}\n\n/* 次按钮 */\n.figma-dark .js-design-second-button {\n  border: 1px solid rgba(255, 255, 255, 0.4);\n  color: rgba(255, 255, 255, 0.8);\n  background: none;\n}\n\n.figma-dark .js-design-second-button:hover {\n  border: 1px solid rgb(255, 255, 255);\n  color: rgb(255, 255, 255);\n}\n\n.figma-dark .js-design-second-button[disabled] {\n  border: 1px solid rgba(255, 255, 255, 0.1);\n  color: rgba(255, 255, 255, 0.3);\n}\n\n/* 浅色模式 */\n/* 主按钮 */\n.js-design-master-button {\n  background-color: rgb(69, 150, 255);\n  color: rgb(255, 255, 255);\n  border: none;\n}\n\n.js-design-master-button:hover {\n  background-color: rgb(70, 139, 242);\n}\n\n.js-design-master-button[disabled] {\n  background-color: rgba(0, 0, 0, 0.3);\n}\n\n.js-design-second-button {\n  border: 1px solid rgba(32, 32, 32, 0.2);\n  color: rgb(32, 32, 32);\n  background: none;\n}\n\n.js-design-second-button:hover {\n  border: 1px solid rgba(32, 32, 32, 0.4);\n}\n\n.js-design-second-button[disabled] {\n  border: 1px solid rgba(32, 32, 32, 0.1);\n  color: rgba(32, 32, 32, 0.3);\n}", ""]);
@@ -2913,23 +2913,27 @@ function loop_guard(timeout) {
 
 /***/ }),
 
-/***/ "./src/ui/App.svelte":
-/*!***************************!*\
-  !*** ./src/ui/App.svelte ***!
-  \***************************/
+/***/ "./src/App.svelte":
+/*!************************!*\
+  !*** ./src/App.svelte ***!
+  \************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/internal */ "./node_modules/svelte/internal/index.mjs");
-/* harmony import */ var _components_Tags_svelte__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/Tags.svelte */ "./src/ui/components/Tags.svelte");
-/* harmony import */ var _components_Card_svelte__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Card.svelte */ "./src/ui/components/Card.svelte");
-/* harmony import */ var _common_variables__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./common/variables */ "./src/ui/common/variables.js");
+/* harmony import */ var _components_Tags_svelte__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/Tags.svelte */ "./src/components/Tags.svelte");
+/* harmony import */ var _components_Card_svelte__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Card.svelte */ "./src/components/Card.svelte");
+/* harmony import */ var _common_variables__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./common/variables */ "./src/common/variables.js");
 /* harmony import */ var _common_variables__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_common_variables__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _components_Button_svelte__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Button.svelte */ "./src/ui/components/Button.svelte");
-/* harmony import */ var _components_Empty_svelte__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Empty.svelte */ "./src/ui/components/Empty.svelte");
-/* src/ui/App.svelte generated by Svelte v3.48.0 */
+/* harmony import */ var _components_Button_svelte__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Button.svelte */ "./src/components/Button.svelte");
+/* harmony import */ var _components_Empty_svelte__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Empty.svelte */ "./src/components/Empty.svelte");
+/* harmony import */ var _common_events__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./common/events */ "./src/common/events.js");
+/* harmony import */ var _common_global__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./common/global */ "./src/common/global.js");
+/* src/App.svelte generated by Svelte v3.48.0 */
+
+
 
 
 
@@ -2939,10 +2943,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function add_css(target) {
-	Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append_styles"])(target, "svelte-1u9srcp", ".toast{position:absolute;bottom:16px;left:16px;right:16px;padding:8px 16px;border:1px solid #909399;border-radius:4px;background-color:#909399;box-shadow:0 2px 12px 0 rgba(0, 0, 0, 0.1);color:#ffffff;transition:all 0.5s ease-in-out;text-align:center;font-size:12px}.toast--error{border:1px solid #f56c6c;background-color:#f56c6c}.toast--warning{border:1px solid #e6a23c;background-color:#e6a23c}.toast--success{border:1px solid #67c23a;background-color:#67c23a}footer.svelte-1u9srcp{position:fixed;bottom:0;width:100%;height:64px;background-color:rgba(0, 0, 0, 0.03)}.manage-btn.svelte-1u9srcp{display:flex;justify-content:space-between;padding:16px}.manage-btn.svelte-1u9srcp .clear-btn{width:58px;height:32px}.manage-btn.svelte-1u9srcp .show-btn{flex:1;margin-left:12px}");
+	Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append_styles"])(target, "svelte-14422fb", ".toast{position:absolute;bottom:16px;left:16px;right:16px;padding:8px 16px;border:1px solid #909399;border-radius:4px;background-color:#909399;box-shadow:0 2px 12px 0 rgba(0, 0, 0, 0.1);color:#ffffff;transition:all 0.5s ease-in-out;text-align:center;font-size:12px}.toast--error{border:1px solid #f56c6c;background-color:#f56c6c}.toast--warning{border:1px solid #e6a23c;background-color:#e6a23c}.toast--success{border:1px solid #67c23a;background-color:#67c23a}footer.svelte-14422fb{width:100%;height:64px;margin-top:16px;background-color:rgba(0, 0, 0, 0.03)}.manage-btn.svelte-14422fb{display:flex;justify-content:space-between;padding:16px}.manage-btn.svelte-14422fb .clear-btn{width:58px;height:32px}.manage-btn.svelte-14422fb .show-btn{flex:1;margin-left:12px}");
 }
 
-// (41:0) {:else}
+// (53:0) {:else}
 function create_else_block(ctx) {
 	let main;
 	let empty_1;
@@ -2953,6 +2957,7 @@ function create_else_block(ctx) {
 		c() {
 			main = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("main");
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["create_component"])(empty_1.$$.fragment);
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(main, "id", "main");
 		},
 		m(target, anchor) {
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, main, anchor);
@@ -2976,7 +2981,7 @@ function create_else_block(ctx) {
 	};
 }
 
-// (16:0) {#if hasSelected}
+// (28:0) {#if hasSelected}
 function create_if_block(ctx) {
 	let main;
 	let header;
@@ -2999,7 +3004,7 @@ function create_if_block(ctx) {
 			props: { tags: _common_variables__WEBPACK_IMPORTED_MODULE_3__["tags"], active: /*active*/ ctx[0] }
 		});
 
-	tags_1.$on("activeChange", /*handleActiveChange*/ ctx[1]);
+	tags_1.$on("activeChange", /*handleActiveChange*/ ctx[2]);
 	card = new _components_Card_svelte__WEBPACK_IMPORTED_MODULE_2__["default"]({});
 	button0 = new _components_Button_svelte__WEBPACK_IMPORTED_MODULE_4__["default"]({ props: { text: "取消" } });
 
@@ -3032,8 +3037,9 @@ function create_if_block(ctx) {
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div1, "class", "content");
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div2, "class", "clear-btn");
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div3, "class", "show-btn");
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div4, "class", "manage-btn svelte-1u9srcp");
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(footer, "class", "svelte-1u9srcp");
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div4, "class", "manage-btn svelte-14422fb");
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(footer, "class", "svelte-14422fb");
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(main, "id", "main");
 		},
 		m(target, anchor) {
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, main, anchor);
@@ -3092,7 +3098,7 @@ function create_fragment(ctx) {
 	const if_blocks = [];
 
 	function select_block_type(ctx, dirty) {
-		if (hasSelected) return 0;
+		if (/*hasSelected*/ ctx[1]) return 0;
 		return 1;
 	}
 
@@ -3110,7 +3116,31 @@ function create_fragment(ctx) {
 			current = true;
 		},
 		p(ctx, [dirty]) {
-			if_block.p(ctx, dirty);
+			let previous_block_index = current_block_type_index;
+			current_block_type_index = select_block_type(ctx, dirty);
+
+			if (current_block_type_index === previous_block_index) {
+				if_blocks[current_block_type_index].p(ctx, dirty);
+			} else {
+				Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["group_outros"])();
+
+				Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_out"])(if_blocks[previous_block_index], 1, 1, () => {
+					if_blocks[previous_block_index] = null;
+				});
+
+				Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["check_outros"])();
+				if_block = if_blocks[current_block_type_index];
+
+				if (!if_block) {
+					if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+					if_block.c();
+				} else {
+					if_block.p(ctx, dirty);
+				}
+
+				Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_in"])(if_block, 1);
+				if_block.m(if_block_anchor.parentNode, if_block_anchor);
+			}
 		},
 		i(local) {
 			if (current) return;
@@ -3128,16 +3158,26 @@ function create_fragment(ctx) {
 	};
 }
 
-let hasSelected = false;
-
 function instance($$self, $$props, $$invalidate) {
 	let active = 0;
+	let hasSelected = false;
 
 	function handleActiveChange(event) {
 		$$invalidate(0, active = event.detail.active);
 	}
 
-	return [active, handleActiveChange];
+	// 监听图层选择情况
+	Object(_common_events__WEBPACK_IMPORTED_MODULE_6__["on"])("SELECTION_CHANGED", hasSelection => {
+		$$invalidate(1, hasSelected = hasSelection);
+
+		if (!hasSelection) {
+			Object(_common_events__WEBPACK_IMPORTED_MODULE_6__["emit"])('CHANGE_GUI_SIZE', _common_variables__WEBPACK_IMPORTED_MODULE_3__["guiSizeEmpty"]);
+		} else {
+			Object(_common_global__WEBPACK_IMPORTED_MODULE_7__["updateGuiSize"])(_common_variables__WEBPACK_IMPORTED_MODULE_3__["guiSize"]);
+		}
+	});
+
+	return [active, hasSelected, handleActiveChange];
 }
 
 class App extends svelte_internal__WEBPACK_IMPORTED_MODULE_0__["SvelteComponent"] {
@@ -3151,10 +3191,10 @@ class App extends svelte_internal__WEBPACK_IMPORTED_MODULE_0__["SvelteComponent"
 
 /***/ }),
 
-/***/ "./src/ui/assets/empty.svg":
-/*!*********************************!*\
-  !*** ./src/ui/assets/empty.svg ***!
-  \*********************************/
+/***/ "./src/assets/empty.svg":
+/*!******************************!*\
+  !*** ./src/assets/empty.svg ***!
+  \******************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -3162,24 +3202,91 @@ module.exports = "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http:/
 
 /***/ }),
 
-/***/ "./src/ui/common/global.js":
-/*!*********************************!*\
-  !*** ./src/ui/common/global.js ***!
-  \*********************************/
-/*! exports provided: determineSize, toast */
+/***/ "./src/common/events.js":
+/*!******************************!*\
+  !*** ./src/common/events.js ***!
+  \******************************/
+/*! exports provided: on, once, emit */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "on", function() { return on; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "once", function() { return once; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "emit", function() { return emit; });
+const eventHandlers = {};
+let currentId = 0;
+function on(name, handler) {
+    const id = `${currentId}`;
+    currentId += 1;
+    eventHandlers[id] = { handler, name };
+    return function () {
+        delete eventHandlers[id];
+    };
+}
+function once(name, handler) {
+    let done = false;
+    return on(name, function (...args) {
+        if (done === true) {
+            return;
+        }
+        done = true;
+        handler(...args);
+    });
+}
+const emit = typeof window === 'undefined'
+    ? function (name, ...args) {
+        jsDesign.ui.postMessage([name, ...args]);
+    }
+    : function (name, ...args) {
+        window.parent.postMessage({
+            pluginMessage: [name, ...args]
+        }, '*');
+    };
+function invokeEventHandler(name, args) {
+    for (const id in eventHandlers) {
+        if (eventHandlers[id].name === name) {
+            eventHandlers[id].handler.apply(null, args);
+        }
+    }
+}
+if (typeof window === 'undefined') {
+    jsDesign.ui.onmessage = function ([name, ...args]) {
+        invokeEventHandler(name, args);
+    };
+}
+else {
+    window.onmessage = function (event) {
+        const [name, ...args] = event.data.pluginMessage;
+        invokeEventHandler(name, args);
+    };
+}
+
+/***/ }),
+
+/***/ "./src/common/global.js":
+/*!******************************!*\
+  !*** ./src/common/global.js ***!
+  \******************************/
+/*! exports provided: determineSize, toast, getPageHeight, updateGuiSize */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "determineSize", function() { return determineSize; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toast", function() { return toast; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getPageHeight", function() { return getPageHeight; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateGuiSize", function() { return updateGuiSize; });
+/* harmony import */ var _events__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./events */ "./src/common/events.js");
+
+
 /**
  * @name: 判断值的区间
  * @msg:
  * @param {number} value 需要判断的值
  * @param {number} min   最小值
  * @param {number} max   最大值
- * @return {*}
+ * @return {number} -1 0 1
  */
 function determineSize(value, min, max) {
     return value > max ? 1 : value < min ? -1 : 0;
@@ -3216,18 +3323,42 @@ function toast(message, type = 'info') {
     setTimeout(removeToast, 1200)
 }
 
+/**
+ * @name: 获取页面高度
+ * @return {number}
+ */
+function getPageHeight() {
+    const node = document.getElementById('main');
+    return node ? node.offsetHeight : 0;
+}
+
+/**
+ * @name: 更新GUI高度 
+ * @returns {*}
+ */
+function updateGuiSize(guiSize) {
+    // 视图更新后再获取高度，否则为0
+    setTimeout(() => {
+        const height = getPageHeight();
+        Object(_events__WEBPACK_IMPORTED_MODULE_0__["emit"])('CHANGE_GUI_SIZE', {
+            width: guiSize.width,
+            height: height ? height : guiSize.height
+        })
+    }, 0)
+}
+
 /***/ }),
 
-/***/ "./src/ui/common/variables.js":
-/*!************************************!*\
-  !*** ./src/ui/common/variables.js ***!
-  \************************************/
+/***/ "./src/common/variables.js":
+/*!*********************************!*\
+  !*** ./src/common/variables.js ***!
+  \*********************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
 const variables = {
-    MIN_VALUE: 1,
-    MAX_VALUE: 100,
+    MIN_VALUE: 0,
+    MAX_VALUE: 24,
     tags: ['辅助线', '自定义', '已保存'],
     guidelines: {
         row: {
@@ -3240,6 +3371,14 @@ const variables = {
             height: 100,
             scales: [1]
         },
+    },
+    guiSizeEmpty: {
+        width: 260,
+        height: 161
+    },
+    guiSize: {
+        width: 260,
+        height: 440
     }
 }
 
@@ -3247,19 +3386,19 @@ module.exports = variables;
 
 /***/ }),
 
-/***/ "./src/ui/components/Button.svelte":
-/*!*****************************************!*\
-  !*** ./src/ui/components/Button.svelte ***!
-  \*****************************************/
+/***/ "./src/components/Button.svelte":
+/*!**************************************!*\
+  !*** ./src/components/Button.svelte ***!
+  \**************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/internal */ "./node_modules/svelte/internal/index.mjs");
-/* harmony import */ var _style_button_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../style/button.css */ "./src/ui/style/button.css");
+/* harmony import */ var _style_button_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../style/button.css */ "./src/style/button.css");
 /* harmony import */ var _style_button_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_style_button_css__WEBPACK_IMPORTED_MODULE_1__);
-/* src/ui/components/Button.svelte generated by Svelte v3.48.0 */
+/* src/components/Button.svelte generated by Svelte v3.48.0 */
 
 
 
@@ -3322,21 +3461,22 @@ class Button extends svelte_internal__WEBPACK_IMPORTED_MODULE_0__["SvelteCompone
 
 /***/ }),
 
-/***/ "./src/ui/components/Card.svelte":
-/*!***************************************!*\
-  !*** ./src/ui/components/Card.svelte ***!
-  \***************************************/
+/***/ "./src/components/Card.svelte":
+/*!************************************!*\
+  !*** ./src/components/Card.svelte ***!
+  \************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/internal */ "./node_modules/svelte/internal/index.mjs");
-/* harmony import */ var _NumberField_svelte__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NumberField.svelte */ "./src/ui/components/NumberField.svelte");
-/* harmony import */ var _common_global__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../common/global */ "./src/ui/common/global.js");
-/* harmony import */ var _common_variables__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../common/variables */ "./src/ui/common/variables.js");
+/* harmony import */ var _NumberField_svelte__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NumberField.svelte */ "./src/components/NumberField.svelte");
+/* harmony import */ var _common_global__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../common/global */ "./src/common/global.js");
+/* harmony import */ var _common_variables__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../common/variables */ "./src/common/variables.js");
 /* harmony import */ var _common_variables__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_common_variables__WEBPACK_IMPORTED_MODULE_3__);
-/* src/ui/components/Card.svelte generated by Svelte v3.48.0 */
+/* src/components/Card.svelte generated by Svelte v3.48.0 */
+
 
 
 
@@ -3344,18 +3484,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function add_css(target) {
-	Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append_styles"])(target, "svelte-l6ipzn", ".card.svelte-l6ipzn>[class^=\"card\"].svelte-l6ipzn.svelte-l6ipzn{border:1px solid rgba(32, 32, 32, 0.2);border-radius:8px;min-height:100px;margin:0 12px;position:relative;padding:16px}.card.svelte-l6ipzn>[class^=\"card\"].svelte-l6ipzn>.header-text.svelte-l6ipzn{position:absolute;top:-20px;left:16px;font-weight:400;color:rgba(32, 32, 32, 1);font-size:12px;display:block;background-color:rgba(255, 255, 255, 1);padding:4px}.card-column.svelte-l6ipzn.svelte-l6ipzn.svelte-l6ipzn{top:20px}span.svelte-l6ipzn>.measure.svelte-l6ipzn.svelte-l6ipzn{text-decoration:underline rgba(32, 32, 32, 0.8)}");
+	Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append_styles"])(target, "svelte-1xia91j", ".card.svelte-1xia91j>[class^=\"card\"].svelte-1xia91j.svelte-1xia91j{border:1px solid rgba(32, 32, 32, 0.2);border-radius:8px;min-height:100px;margin:0 12px;position:relative;padding:16px}.card.svelte-1xia91j>[class^=\"card\"].svelte-1xia91j>.header-text.svelte-1xia91j{position:absolute;top:-20px;left:16px;font-weight:400;color:rgba(32, 32, 32, 1);font-size:12px;display:block;background-color:rgba(255, 255, 255, 1);padding:4px}.card-column.svelte-1xia91j.svelte-1xia91j.svelte-1xia91j{margin-top:20px !important}span.svelte-1xia91j>.measure.svelte-1xia91j.svelte-1xia91j{text-decoration:underline rgba(32, 32, 32, 0.8)}");
 }
 
-// (55:6) 
+// (57:6) 
 function create_textfield_label_slot_5(ctx) {
 	let span1;
 
 	return {
 		c() {
 			span1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("span");
-			span1.innerHTML = `数量(<span class="measure svelte-l6ipzn">N</span>)`;
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(span1, "class", "label svelte-l6ipzn");
+			span1.innerHTML = `数量(<span class="measure svelte-1xia91j">N</span>)`;
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(span1, "class", "label svelte-1xia91j");
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(span1, "slot", "textfield-label");
 		},
 		m(target, anchor) {
@@ -3368,7 +3508,7 @@ function create_textfield_label_slot_5(ctx) {
 	};
 }
 
-// (58:6) 
+// (60:6) 
 function create_unit_measure_slot_3(ctx) {
 	let span;
 
@@ -3388,15 +3528,15 @@ function create_unit_measure_slot_3(ctx) {
 	};
 }
 
-// (62:6) 
+// (64:6) 
 function create_textfield_label_slot_4(ctx) {
 	let span1;
 
 	return {
 		c() {
 			span1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("span");
-			span1.innerHTML = `比例(<span class="measure svelte-l6ipzn">G</span>)`;
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(span1, "class", "label svelte-l6ipzn");
+			span1.innerHTML = `比例(<span class="measure svelte-1xia91j">G</span>)`;
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(span1, "class", "label svelte-1xia91j");
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(span1, "slot", "textfield-label");
 		},
 		m(target, anchor) {
@@ -3409,47 +3549,28 @@ function create_textfield_label_slot_4(ctx) {
 	};
 }
 
-// (69:6) 
+// (70:6) 
 function create_textfield_label_slot_3(ctx) {
 	let span1;
-	let t0;
-	let t1_value = /*guidelines*/ ctx[0].row.count + "";
-	let t1;
-	let t2;
-	let span0;
-	let t4;
 
 	return {
 		c() {
 			span1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("span");
-			t0 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["text"])("宽度");
-			t1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["text"])(t1_value);
-			t2 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["text"])("(");
-			span0 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("span");
-			span0.textContent = "H";
-			t4 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["text"])(")");
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(span0, "class", "measure svelte-l6ipzn");
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(span1, "class", "label svelte-l6ipzn");
+			span1.innerHTML = `宽度(<span class="measure svelte-1xia91j">H</span>)`;
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(span1, "class", "label svelte-1xia91j");
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(span1, "slot", "textfield-label");
 		},
 		m(target, anchor) {
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, span1, anchor);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(span1, t0);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(span1, t1);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(span1, t2);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(span1, span0);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(span1, t4);
 		},
-		p(ctx, dirty) {
-			if (dirty & /*guidelines*/ 1 && t1_value !== (t1_value = /*guidelines*/ ctx[0].row.count + "")) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_data"])(t1, t1_value);
-		},
+		p: svelte_internal__WEBPACK_IMPORTED_MODULE_0__["noop"],
 		d(detaching) {
 			if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(span1);
 		}
 	};
 }
 
-// (72:6) 
+// (73:6) 
 function create_unit_measure_slot_2(ctx) {
 	let span;
 
@@ -3469,15 +3590,15 @@ function create_unit_measure_slot_2(ctx) {
 	};
 }
 
-// (83:6) 
+// (84:6) 
 function create_textfield_label_slot_2(ctx) {
 	let span1;
 
 	return {
 		c() {
 			span1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("span");
-			span1.innerHTML = `数量(<span class="measure svelte-l6ipzn">N</span>)`;
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(span1, "class", "label svelte-l6ipzn");
+			span1.innerHTML = `数量(<span class="measure svelte-1xia91j">N</span>)`;
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(span1, "class", "label svelte-1xia91j");
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(span1, "slot", "textfield-label");
 		},
 		m(target, anchor) {
@@ -3490,7 +3611,7 @@ function create_textfield_label_slot_2(ctx) {
 	};
 }
 
-// (86:6) 
+// (87:6) 
 function create_unit_measure_slot_1(ctx) {
 	let span;
 
@@ -3510,15 +3631,15 @@ function create_unit_measure_slot_1(ctx) {
 	};
 }
 
-// (90:6) 
+// (91:6) 
 function create_textfield_label_slot_1(ctx) {
 	let span1;
 
 	return {
 		c() {
 			span1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("span");
-			span1.innerHTML = `比例(<span class="measure svelte-l6ipzn">G</span>)`;
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(span1, "class", "label svelte-l6ipzn");
+			span1.innerHTML = `比例(<span class="measure svelte-1xia91j">G</span>)`;
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(span1, "class", "label svelte-1xia91j");
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(span1, "slot", "textfield-label");
 		},
 		m(target, anchor) {
@@ -3531,15 +3652,15 @@ function create_textfield_label_slot_1(ctx) {
 	};
 }
 
-// (95:6) 
+// (96:6) 
 function create_textfield_label_slot(ctx) {
 	let span1;
 
 	return {
 		c() {
 			span1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("span");
-			span1.innerHTML = `高度(<span class="measure svelte-l6ipzn">H</span>)`;
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(span1, "class", "label svelte-l6ipzn");
+			span1.innerHTML = `高度(<span class="measure svelte-1xia91j">H</span>)`;
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(span1, "class", "label svelte-1xia91j");
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(span1, "slot", "textfield-label");
 		},
 		m(target, anchor) {
@@ -3552,7 +3673,7 @@ function create_textfield_label_slot(ctx) {
 	};
 }
 
-// (98:6) 
+// (99:6) 
 function create_unit_measure_slot(ctx) {
 	let span;
 
@@ -3725,11 +3846,11 @@ function create_fragment(ctx) {
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["create_component"])(numberfield4.$$.fragment);
 			t8 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["create_component"])(numberfield5.$$.fragment);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(h10, "class", "header-text svelte-l6ipzn");
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div0, "class", "card-row svelte-l6ipzn");
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(h11, "class", "header-text svelte-l6ipzn");
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div1, "class", "card-column svelte-l6ipzn");
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div2, "class", "card svelte-l6ipzn");
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(h10, "class", "header-text svelte-1xia91j");
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div0, "class", "card-row svelte-1xia91j");
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(h11, "class", "header-text svelte-1xia91j");
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div1, "class", "card-column svelte-1xia91j");
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div2, "class", "card svelte-1xia91j");
 		},
 		m(target, anchor) {
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, div2, anchor);
@@ -3782,7 +3903,7 @@ function create_fragment(ctx) {
 			const numberfield2_changes = {};
 			if (dirty & /*guidelines*/ 1) numberfield2_changes.value = /*guidelines*/ ctx[0].row.height;
 
-			if (dirty & /*$$scope, guidelines*/ 1025) {
+			if (dirty & /*$$scope*/ 1024) {
 				numberfield2_changes.$$scope = { dirty, ctx };
 			}
 
@@ -3859,14 +3980,16 @@ function instance($$self, $$props, $$invalidate) {
 		let deter = Object(_common_global__WEBPACK_IMPORTED_MODULE_2__["determineSize"])(value, _common_variables__WEBPACK_IMPORTED_MODULE_3__["MIN_VALUE"], _common_variables__WEBPACK_IMPORTED_MODULE_3__["MAX_VALUE"]);
 
 		if (deter === -1) {
-			Object(_common_global__WEBPACK_IMPORTED_MODULE_2__["toast"])(`值不能小于${_common_variables__WEBPACK_IMPORTED_MODULE_3__["MIN_VALUE"]}`, 'warning');
+			Object(_common_global__WEBPACK_IMPORTED_MODULE_2__["toast"])(`数量不能小于${_common_variables__WEBPACK_IMPORTED_MODULE_3__["MIN_VALUE"]}`, 'warning');
 			handler(_common_variables__WEBPACK_IMPORTED_MODULE_3__["MIN_VALUE"]);
 		} else if (deter === 1) {
-			Object(_common_global__WEBPACK_IMPORTED_MODULE_2__["toast"])(`值不能大于${_common_variables__WEBPACK_IMPORTED_MODULE_3__["MAX_VALUE"]}`, 'warning');
+			Object(_common_global__WEBPACK_IMPORTED_MODULE_2__["toast"])(`数量不能大于${_common_variables__WEBPACK_IMPORTED_MODULE_3__["MAX_VALUE"]}`, 'warning');
 			handler(_common_variables__WEBPACK_IMPORTED_MODULE_3__["MAX_VALUE"]);
 		} else {
 			handler(value);
 		}
+
+		Object(_common_global__WEBPACK_IMPORTED_MODULE_2__["updateGuiSize"])(_common_variables__WEBPACK_IMPORTED_MODULE_3__["guiSize"]);
 	};
 
 	// 处理行输入
@@ -3952,25 +4075,25 @@ class Card extends svelte_internal__WEBPACK_IMPORTED_MODULE_0__["SvelteComponent
 
 /***/ }),
 
-/***/ "./src/ui/components/Empty.svelte":
-/*!****************************************!*\
-  !*** ./src/ui/components/Empty.svelte ***!
-  \****************************************/
+/***/ "./src/components/Empty.svelte":
+/*!*************************************!*\
+  !*** ./src/components/Empty.svelte ***!
+  \*************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/internal */ "./node_modules/svelte/internal/index.mjs");
-/* harmony import */ var _assets_empty_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../assets/empty.svg */ "./src/ui/assets/empty.svg");
+/* harmony import */ var _assets_empty_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../assets/empty.svg */ "./src/assets/empty.svg");
 /* harmony import */ var _assets_empty_svg__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_assets_empty_svg__WEBPACK_IMPORTED_MODULE_1__);
-/* src/ui/components/Empty.svelte generated by Svelte v3.48.0 */
+/* src/components/Empty.svelte generated by Svelte v3.48.0 */
 
 
 
 
 function add_css(target) {
-	Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append_styles"])(target, "svelte-17ycxp6", ".empty.svelte-17ycxp6{text-align:center}.empty-svg.svelte-17ycxp6{width:120px;height:90px;margin:16px auto}.empty-text.svelte-17ycxp6{width:100%;color:rgba(32, 32, 32, 0.6);font-size:12px}");
+	Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append_styles"])(target, "svelte-qasvcc", ".empty.svelte-qasvcc{text-align:center}.empty-svg.svelte-qasvcc{width:120px;height:90px;margin:16px auto}.empty-text.svelte-qasvcc{width:100%;color:rgba(32, 32, 32, 0.6);font-size:12px;margin-bottom:16px}");
 }
 
 function create_fragment(ctx) {
@@ -3987,9 +4110,9 @@ function create_fragment(ctx) {
 			t0 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
 			span = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("span");
 			t1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["text"])(/*text*/ ctx[0]);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div0, "class", "empty-svg svelte-17ycxp6");
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(span, "class", "empty-text svelte-17ycxp6");
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div1, "class", "empty svelte-17ycxp6");
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div0, "class", "empty-svg svelte-qasvcc");
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(span, "class", "empty-text svelte-qasvcc");
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div1, "class", "empty svelte-qasvcc");
 		},
 		m(target, anchor) {
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, div1, anchor);
@@ -4031,10 +4154,10 @@ class Empty extends svelte_internal__WEBPACK_IMPORTED_MODULE_0__["SvelteComponen
 
 /***/ }),
 
-/***/ "./src/ui/components/NumberField.svelte":
-/*!**********************************************!*\
-  !*** ./src/ui/components/NumberField.svelte ***!
-  \**********************************************/
+/***/ "./src/components/NumberField.svelte":
+/*!*******************************************!*\
+  !*** ./src/components/NumberField.svelte ***!
+  \*******************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -4042,7 +4165,7 @@ class Empty extends svelte_internal__WEBPACK_IMPORTED_MODULE_0__["SvelteComponen
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/internal */ "./node_modules/svelte/internal/index.mjs");
 /* harmony import */ var svelte__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! svelte */ "./node_modules/svelte/index.mjs");
-/* src/ui/components/NumberField.svelte generated by Svelte v3.48.0 */
+/* src/components/NumberField.svelte generated by Svelte v3.48.0 */
 
 
 
@@ -4053,9 +4176,9 @@ function add_css(target) {
 
 function get_each_context(ctx, list, i) {
 	const child_ctx = ctx.slice();
-	child_ctx[14] = list[i];
-	child_ctx[15] = list;
-	child_ctx[16] = i;
+	child_ctx[13] = list[i];
+	child_ctx[14] = list;
+	child_ctx[15] = i;
 	return child_ctx;
 }
 
@@ -4136,7 +4259,7 @@ function create_else_block(ctx) {
 				}
 			}
 
-			if (dirty & /*value, step, disabled, min, max, dispatch*/ 249) {
+			if (dirty & /*value, disabled*/ 17) {
 				each_value = /*value*/ ctx[0];
 				let i;
 
@@ -4246,7 +4369,7 @@ function create_if_block(ctx) {
 			if (!mounted) {
 				dispose = [
 					Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["listen"])(input, "input", /*input_input_handler*/ ctx[10]),
-					Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["listen"])(input, "input", /*input_handler*/ ctx[11]),
+					Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["listen"])(input, "change", /*change_handler*/ ctx[11]),
 					Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["listen"])(input, "click", click_handler)
 				];
 
@@ -4333,7 +4456,7 @@ function create_if_block(ctx) {
 	};
 }
 
-// (60:8) {#if value.length !== index + 1}
+// (54:8) {#if value.length !== index + 1}
 function create_if_block_1(ctx) {
 	let span;
 
@@ -4361,10 +4484,10 @@ function create_each_block(ctx) {
 	let dispose;
 
 	function input_input_handler_1() {
-		/*input_input_handler_1*/ ctx[12].call(input, /*each_value*/ ctx[15], /*index*/ ctx[16]);
+		/*input_input_handler_1*/ ctx[12].call(input, /*each_value*/ ctx[14], /*index*/ ctx[15]);
 	}
 
-	let if_block = /*value*/ ctx[0].length !== /*index*/ ctx[16] + 1 && create_if_block_1(ctx);
+	let if_block = /*value*/ ctx[0].length !== /*index*/ ctx[15] + 1 && create_if_block_1(ctx);
 
 	return {
 		c() {
@@ -4373,15 +4496,12 @@ function create_each_block(ctx) {
 			if (if_block) if_block.c();
 			if_block_anchor = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["empty"])();
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(input, "type", "number");
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(input, "step", /*step*/ ctx[3]);
 			input.disabled = /*disabled*/ ctx[4];
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(input, "min", /*min*/ ctx[5]);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(input, "max", /*max*/ ctx[6]);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(input, "class", "svelte-16otghp");
 		},
 		m(target, anchor) {
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, input, anchor);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_input_value"])(input, /*item*/ ctx[14]);
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_input_value"])(input, /*item*/ ctx[13]);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, t, anchor);
 			if (if_block) if_block.m(target, anchor);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, if_block_anchor, anchor);
@@ -4389,7 +4509,6 @@ function create_each_block(ctx) {
 			if (!mounted) {
 				dispose = [
 					Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["listen"])(input, "input", input_input_handler_1),
-					Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["listen"])(input, "input", /*input_handler_1*/ ctx[13]),
 					Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["listen"])(input, "click", click_handler_1)
 				];
 
@@ -4399,27 +4518,15 @@ function create_each_block(ctx) {
 		p(new_ctx, dirty) {
 			ctx = new_ctx;
 
-			if (dirty & /*step*/ 8) {
-				Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(input, "step", /*step*/ ctx[3]);
-			}
-
 			if (dirty & /*disabled*/ 16) {
 				input.disabled = /*disabled*/ ctx[4];
 			}
 
-			if (dirty & /*min*/ 32) {
-				Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(input, "min", /*min*/ ctx[5]);
+			if (dirty & /*value*/ 1 && Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["to_number"])(input.value) !== /*item*/ ctx[13]) {
+				Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_input_value"])(input, /*item*/ ctx[13]);
 			}
 
-			if (dirty & /*max*/ 64) {
-				Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(input, "max", /*max*/ ctx[6]);
-			}
-
-			if (dirty & /*value*/ 1 && Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["to_number"])(input.value) !== /*item*/ ctx[14]) {
-				Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_input_value"])(input, /*item*/ ctx[14]);
-			}
-
-			if (/*value*/ ctx[0].length !== /*index*/ ctx[16] + 1) {
+			if (/*value*/ ctx[0].length !== /*index*/ ctx[15] + 1) {
 				if (if_block) {
 					
 				} else {
@@ -4531,7 +4638,7 @@ function instance($$self, $$props, $$invalidate) {
 		$$invalidate(0, value);
 	}
 
-	const input_handler = () => {
+	const change_handler = () => {
 		dispatch("inputChange", { value });
 	};
 
@@ -4539,10 +4646,6 @@ function instance($$self, $$props, $$invalidate) {
 		each_value[index] = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["to_number"])(this.value);
 		$$invalidate(0, value);
 	}
-
-	const input_handler_1 = () => {
-		dispatch("inputChange", { value });
-	};
 
 	$$self.$$set = $$props => {
 		if ('base' in $$props) $$invalidate(1, base = $$props.base);
@@ -4567,9 +4670,8 @@ function instance($$self, $$props, $$invalidate) {
 		$$scope,
 		slots,
 		input_input_handler,
-		input_handler,
-		input_input_handler_1,
-		input_handler_1
+		change_handler,
+		input_input_handler_1
 	];
 }
 
@@ -4601,10 +4703,10 @@ class NumberField extends svelte_internal__WEBPACK_IMPORTED_MODULE_0__["SvelteCo
 
 /***/ }),
 
-/***/ "./src/ui/components/Tags.svelte":
-/*!***************************************!*\
-  !*** ./src/ui/components/Tags.svelte ***!
-  \***************************************/
+/***/ "./src/components/Tags.svelte":
+/*!************************************!*\
+  !*** ./src/components/Tags.svelte ***!
+  \************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -4612,7 +4714,7 @@ class NumberField extends svelte_internal__WEBPACK_IMPORTED_MODULE_0__["SvelteCo
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/internal */ "./node_modules/svelte/internal/index.mjs");
 /* harmony import */ var svelte__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! svelte */ "./node_modules/svelte/index.mjs");
-/* src/ui/components/Tags.svelte generated by Svelte v3.48.0 */
+/* src/components/Tags.svelte generated by Svelte v3.48.0 */
 
 
 
@@ -4766,40 +4868,15 @@ class Tags extends svelte_internal__WEBPACK_IMPORTED_MODULE_0__["SvelteComponent
 
 /***/ }),
 
-/***/ "./src/ui/main.js":
-/*!************************!*\
-  !*** ./src/ui/main.js ***!
-  \************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var normalize_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! normalize.css */ "./node_modules/normalize.css/normalize.css");
-/* harmony import */ var normalize_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(normalize_css__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _App_svelte__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./App.svelte */ "./src/ui/App.svelte");
-
-
-
-
-const app = new _App_svelte__WEBPACK_IMPORTED_MODULE_1__["default"]({
-  target: document.body,
-});
-
-/* harmony default export */ __webpack_exports__["default"] = (app);
-
-
-/***/ }),
-
-/***/ "./src/ui/style/button.css":
-/*!*********************************!*\
-  !*** ./src/ui/style/button.css ***!
-  \*********************************/
+/***/ "./src/style/button.css":
+/*!******************************!*\
+  !*** ./src/style/button.css ***!
+  \******************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var api = __webpack_require__(/*! ../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
-            var content = __webpack_require__(/*! !../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/sass-loader/dist/cjs.js!./button.css */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/ui/style/button.css");
+var api = __webpack_require__(/*! ../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+            var content = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js!../../node_modules/sass-loader/dist/cjs.js!./button.css */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/style/button.css");
 
             content = content.__esModule ? content.default : content;
 
@@ -4817,6 +4894,31 @@ var update = api(content, options);
 
 
 module.exports = content.locals || {};
+
+/***/ }),
+
+/***/ "./src/ui.js":
+/*!*******************!*\
+  !*** ./src/ui.js ***!
+  \*******************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var normalize_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! normalize.css */ "./node_modules/normalize.css/normalize.css");
+/* harmony import */ var normalize_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(normalize_css__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _App_svelte__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./App.svelte */ "./src/App.svelte");
+
+
+
+
+const app = new _App_svelte__WEBPACK_IMPORTED_MODULE_1__["default"]({
+  target: document.body,
+});
+
+/* harmony default export */ __webpack_exports__["default"] = (app);
+
 
 /***/ })
 

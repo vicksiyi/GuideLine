@@ -23,5 +23,6 @@
     width: 100%;
     color: rgba(32, 32, 32, 0.6);
     font-size: 12px;
+    margin-bottom: 16px;
   }
 </style>

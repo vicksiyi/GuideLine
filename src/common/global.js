@@ -1,10 +1,12 @@
+import { emit } from "./events";
+
 /**
  * @name: 判断值的区间
  * @msg:
  * @param {number} value 需要判断的值
  * @param {number} min   最小值
  * @param {number} max   最大值
- * @return {*}
+ * @return {number} -1 0 1
  */
 export function determineSize(value, min, max) {
     return value > max ? 1 : value < min ? -1 : 0;
@@ -39,4 +41,28 @@ export function toast(message, type = 'info') {
     }
     setTimeout(hideToast, 1000)
     setTimeout(removeToast, 1200)
+}
+
+/**
+ * @name: 获取页面高度
+ * @return {number}
+ */
+export function getPageHeight() {
+    const node = document.getElementById('main');
+    return node ? node.offsetHeight : 0;
+}
+
+/**
+ * @name: 更新GUI高度 
+ * @returns {*}
+ */
+export function updateGuiSize(guiSize) {
+    // 视图更新后再获取高度，否则为0
+    setTimeout(() => {
+        const height = getPageHeight();
+        emit('CHANGE_GUI_SIZE', {
+            width: guiSize.width,
+            height: height ? height : guiSize.height
+        })
+    }, 0)
 }

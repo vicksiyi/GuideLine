@@ -26,7 +26,7 @@
         {disabled}
         {min}
         {max}
-        on:input={() => {
+        on:change={() => {
           dispatch("inputChange", { value });
         }}
         on:click={(event) => event.currentTarget.select()}
@@ -48,13 +48,7 @@
         <input
           type="number"
           bind:value={item}
-          {step}
           {disabled}
-          {min}
-          {max}
-          on:input={() => {
-            dispatch("inputChange", { value });
-          }}
           on:click={(event) => event.currentTarget.select()}
         />
         {#if value.length !== index + 1}
