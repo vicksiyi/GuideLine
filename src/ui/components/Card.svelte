@@ -17,29 +17,57 @@
             handler(value);
         }
     }
+    // 处理行输入
+    const rowHandler = (value)=>{
+      guidelines.row.count = value;
+      let _scales = guidelines.row.scales;
+      const len = _scales.length;
+      if(len > value) {
+        guidelines.row.scales = _scales.splice(0, value);
+      }else if(len < value) {
+        guidelines.row.scales = _scales.concat(Array(value - len).fill(1));
+      }
+    }
+
+    // 处理列输入
+    const columnHandler = (value)=>{
+      guidelines.column.count = value;
+      let _scales = guidelines.column.scales;
+      const len = _scales.length;
+      if(len > value) {
+        guidelines.column.scales = _scales.splice(0, value);
+      }else if(len < value) {
+        guidelines.column.scales = _scales.concat(Array(value - len).fill(1));
+      }
+    }
 </script>
 
 <div class="card">
   <div class="card-row">
     <h1 class="header-text">行</h1>
+    <!-- 数量 -->
     <NumberField
       bind:value={guidelines.row.count}
       min={MIN_VALUE}
       max={MAX_VALUE}
-      on:inputChange={(event) => {
-        inputChange(event, (value) => {
-          guidelines.row.count = value;
-        });
-      }}
+      on:inputChange={(event) => inputChange(event, rowHandler)}
     >
       <span class="label" slot="textfield-label"
         >数量(<span class="measure">N</span>)</span
       >
       <span slot="unit-measure">个</span>
     </NumberField>
+    <!-- 比例 -->
+    <NumberField base={false} bind:value={guidelines.row.scales}>
+      <span class="label" slot="textfield-label"
+        >比例(<span class="measure">G</span
+        >)</span
+      >
+    </NumberField>
+    <!-- 宽度 -->
     <NumberField value={guidelines.row.height} disabled>
       <span class="label" slot="textfield-label"
-        >宽度(<span class="measure">H</span>)</span
+        >宽度{guidelines.row.count}(<span class="measure">H</span>)</span
       >
       <span slot="unit-measure">像素</span>
     </NumberField>
@@ -50,16 +78,18 @@
       min={MIN_VALUE}
       max={MAX_VALUE}
       bind:value={guidelines.column.count}
-      on:inputChange={(event) => {
-        inputChange(event, (value) => {
-          guidelines.column.count = value;
-        });
-      }}
+      on:inputChange={(event) => inputChange(event, columnHandler)}
     >
       <span class="label" slot="textfield-label"
         >数量(<span class="measure">N</span>)</span
       >
       <span slot="unit-measure">个</span>
+    </NumberField>
+    <!-- 比例 -->
+    <NumberField base={false} bind:value={guidelines.column.scales}>
+      <span class="label" slot="textfield-label"
+        >比例(<span class="measure">G</span>)</span
+      >
     </NumberField>
     <NumberField value={guidelines.column.height} disabled>
       <span class="label" slot="textfield-label"

@@ -1,7 +1,7 @@
 <script>
     import { createEventDispatcher } from 'svelte';
     const dispatch = createEventDispatcher();
-    export let show = 0;
+    export let base = true;
     export let value = 1;
     export let placeholder = '';
     export let step = 1;
@@ -10,7 +10,7 @@
     export let max = Math.max;
 </script>
 
-{#if show === 0}
+{#if base}
   <label for="input-label">
     <div class="left-side">
       <div class="label">
@@ -36,13 +36,39 @@
       </div>
     </div>
   </label>
+{:else}
+  <label for="input-label">
+    <div class="left-side">
+      <div class="label">
+        <slot name="textfield-label" />
+      </div>
+    </div>
+    <div class="right-side right-scale">
+      {#each value as item, index}
+        <input
+          type="number"
+          bind:value={item}
+          {step}
+          {disabled}
+          {min}
+          {max}
+          on:input={() => {
+            dispatch("inputChange", { value });
+          }}
+          on:click={(event) => event.currentTarget.select()}
+        />
+        {#if value.length !== index + 1}
+          <span>:</span>
+        {/if}
+      {/each}
+    </div>
+  </label>
 {/if}
 
 <style>
   label {
     display: flex;
     margin: 8px 0;
-    height: 26px;
     line-height: 26px;
   }
   .label {
@@ -88,5 +114,25 @@
     color: rgba(32, 32, 32, 0.4);
     font-size: 12px;
     white-space: nowrap;
+  }
+
+  .right-scale {
+    display: flex;
+    flex-wrap: wrap;
+    height: auto;
+    background: none;
+    justify-content: start;
+    align-items: center;
+  }
+
+  .right-scale input {
+    width: 30px;
+    background-color: rgba(0, 0, 0, 0.02);
+    padding: 3px 4px;
+  }
+
+  .right-scale span {
+    margin: 0 2px;
+    color: rgba(32, 32, 32, 0.3);
   }
 </style>
