@@ -13,8 +13,13 @@
         "esModuleInterop": true,
         "typeRoots": [
             "./node_modules/@types",
-            "./node_modules/@jsdesigndeveloper"
-        ]
+            "./node_modules/@jsdesigndeveloper",
+            "./src/ui/common"
+        ],
+        "declaration": true,
+        "allowJs": true,
+        "outDir": "dist",
+        "declarationMap": true
     },
     "include": [
         "src/**/*"

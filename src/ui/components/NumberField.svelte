@@ -1,9 +1,13 @@
 <script>
+    import { createEventDispatcher } from 'svelte';
+    const dispatch = createEventDispatcher();
     export let show = 0;
     export let value = 1;
     export let placeholder = '';
     export let step = 1;
     export let disabled = false;
+    export let min = 0;
+    export let max = Math.max;
 </script>
 
 {#if show === 0}
@@ -20,7 +24,11 @@
         {placeholder}
         {step}
         {disabled}
-        min="{1}"
+        {min}
+        {max}
+        on:input={() => {
+          dispatch("inputChange", { value });
+        }}
         on:click={(event) => event.currentTarget.select()}
       />
       <div class="unit-measure">
