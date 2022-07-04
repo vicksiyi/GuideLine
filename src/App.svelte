@@ -1,15 +1,15 @@
 <script>
     import Tags from "./components/Tags.svelte";
     import Card from "./components/Card.svelte";
-    import {tags,guiSizeEmpty,guiSize,guidelines} from "./common/variables";
+    import {tags,guiSizeEmpty,guiSize,guidelines,saveCardList} from "./common/variables";
     import Button from "./components/Button.svelte";
     import Empty from "./components/Empty.svelte";
     import {on,emit} from "./common/events";
     import {updateGuiSize} from "./common/global";
+    import SaveCard from "./components/SaveCard.svelte";
     
     let active = 0;
     let hasSelected = false;
-    let selectedLayers = []; // 记录已经选择的图层ID
 
     function handleActiveChange(event) {
         active = event.detail.active;
@@ -34,14 +34,14 @@
       <Tags on:activeChange={handleActiveChange} {tags} {active} />
     </header>
     <div class="content">
-      {#if active !== 2}
+      {#if active === 2}
         <!-- 辅助线 -->
         <div class="guide-lines">
           <Card {guidelines} />
         </div>
       {:else}
         <!-- 已保存 -->
-        <div class="save-lines">已经保存</div>
+        <SaveCard {saveCardList} />
       {/if}
     </div>
     <footer>
@@ -52,7 +52,7 @@
         <div class="show-btn">
           <Button
             class="show-btn"
-            text={active === 0 ? "预览" : active === 1 ? "保存" : "编辑"}
+            text={active === 2 ? "预览" : active === 1 ? "保存" : "生成"}
             hasMasters
           />
         </div>
