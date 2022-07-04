@@ -2950,7 +2950,7 @@ function add_css(target) {
 	Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append_styles"])(target, "svelte-14422fb", ".toast{position:absolute;bottom:16px;left:16px;right:16px;padding:8px 16px;border:1px solid #909399;border-radius:4px;background-color:#909399;box-shadow:0 2px 12px 0 rgba(0, 0, 0, 0.1);color:#ffffff;transition:all 0.5s ease-in-out;text-align:center;font-size:12px}.toast--error{border:1px solid #f56c6c;background-color:#f56c6c}.toast--warning{border:1px solid #e6a23c;background-color:#e6a23c}.toast--success{border:1px solid #67c23a;background-color:#67c23a}footer.svelte-14422fb{width:100%;height:64px;margin-top:16px;background-color:rgba(0, 0, 0, 0.03)}.manage-btn.svelte-14422fb{display:flex;justify-content:space-between;padding:16px}.manage-btn.svelte-14422fb .clear-btn{width:58px;height:32px}.manage-btn.svelte-14422fb .show-btn{flex:1;margin-left:12px}");
 }
 
-// (62:0) {:else}
+// (104:0) {:else}
 function create_else_block_1(ctx) {
 	let main;
 	let empty_1;
@@ -2985,7 +2985,7 @@ function create_else_block_1(ctx) {
 	};
 }
 
-// (30:0) {#if hasSelected}
+// (62:0) {#if hasSelected}
 function create_if_block(ctx) {
 	let main;
 	let header;
@@ -3008,7 +3008,7 @@ function create_if_block(ctx) {
 			props: { tags: _common_variables__WEBPACK_IMPORTED_MODULE_3__["tags"], active: /*active*/ ctx[0] }
 		});
 
-	tags_1.$on("activeChange", /*handleActiveChange*/ ctx[2]);
+	tags_1.$on("activeChange", /*handleActiveChange*/ ctx[3]);
 	const if_block_creators = [create_if_block_1, create_else_block];
 	const if_blocks = [];
 
@@ -3022,16 +3022,26 @@ function create_if_block(ctx) {
 
 	button0 = new _components_Button_svelte__WEBPACK_IMPORTED_MODULE_4__["default"]({
 			props: {
+				disabled: /*lineSelected*/ ctx[1].length === 0,
 				text: /*active*/ ctx[0] === 0 ? "重置" : "取消"
 			}
 		});
 
+	button0.$on("click", function () {
+		if (Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["is_function"])(/*active*/ ctx[0] === 0
+		? /*resetHandler*/ ctx[5]
+		: clearHandler)) (/*active*/ ctx[0] === 0
+		? /*resetHandler*/ ctx[5]
+		: clearHandler).apply(this, arguments);
+	});
+
 	button1 = new _components_Button_svelte__WEBPACK_IMPORTED_MODULE_4__["default"]({
 			props: {
+				disabled: /*lineSelected*/ ctx[1].length === 0,
 				class: "show-btn",
 				text: /*active*/ ctx[0] === 2
 				? "预览"
-				: /*active*/ ctx[0] === 1 ? "保存" : "生成",
+				: /*active*/ ctx[0] === 1 ? "保存" : "应用",
 				hasMasters: true
 			}
 		});
@@ -3076,7 +3086,8 @@ function create_if_block(ctx) {
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["mount_component"])(button1, div2, null);
 			current = true;
 		},
-		p(ctx, dirty) {
+		p(new_ctx, dirty) {
+			ctx = new_ctx;
 			const tags_1_changes = {};
 			if (dirty & /*active*/ 1) tags_1_changes.active = /*active*/ ctx[0];
 			tags_1.$set(tags_1_changes);
@@ -3107,13 +3118,15 @@ function create_if_block(ctx) {
 			}
 
 			const button0_changes = {};
+			if (dirty & /*lineSelected*/ 2) button0_changes.disabled = /*lineSelected*/ ctx[1].length === 0;
 			if (dirty & /*active*/ 1) button0_changes.text = /*active*/ ctx[0] === 0 ? "重置" : "取消";
 			button0.$set(button0_changes);
 			const button1_changes = {};
+			if (dirty & /*lineSelected*/ 2) button1_changes.disabled = /*lineSelected*/ ctx[1].length === 0;
 
 			if (dirty & /*active*/ 1) button1_changes.text = /*active*/ ctx[0] === 2
 			? "预览"
-			: /*active*/ ctx[0] === 1 ? "保存" : "生成";
+			: /*active*/ ctx[0] === 1 ? "保存" : "应用";
 
 			button1.$set(button1_changes);
 		},
@@ -3142,11 +3155,25 @@ function create_if_block(ctx) {
 	};
 }
 
-// (42:6) {:else}
+// (75:6) {:else}
 function create_else_block(ctx) {
 	let savecard;
+	let updating_selected;
 	let current;
-	savecard = new _components_SaveCard_svelte__WEBPACK_IMPORTED_MODULE_8__["default"]({ props: { saveCardList: _common_variables__WEBPACK_IMPORTED_MODULE_3__["saveCardList"] } });
+
+	function savecard_selected_binding(value) {
+		/*savecard_selected_binding*/ ctx[6](value);
+	}
+
+	let savecard_props = { saveCardList: _common_variables__WEBPACK_IMPORTED_MODULE_3__["saveCardList"] };
+
+	if (/*lineSelected*/ ctx[1] !== void 0) {
+		savecard_props.selected = /*lineSelected*/ ctx[1];
+	}
+
+	savecard = new _components_SaveCard_svelte__WEBPACK_IMPORTED_MODULE_8__["default"]({ props: savecard_props });
+	svelte_internal__WEBPACK_IMPORTED_MODULE_0__["binding_callbacks"].push(() => Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["bind"])(savecard, 'selected', savecard_selected_binding));
+	savecard.$on("activeChange", /*lineActiveChange*/ ctx[4]);
 
 	return {
 		c() {
@@ -3156,7 +3183,17 @@ function create_else_block(ctx) {
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["mount_component"])(savecard, target, anchor);
 			current = true;
 		},
-		p: svelte_internal__WEBPACK_IMPORTED_MODULE_0__["noop"],
+		p(ctx, dirty) {
+			const savecard_changes = {};
+
+			if (!updating_selected && dirty & /*lineSelected*/ 2) {
+				updating_selected = true;
+				savecard_changes.selected = /*lineSelected*/ ctx[1];
+				Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_flush_callback"])(() => updating_selected = false);
+			}
+
+			savecard.$set(savecard_changes);
+		},
 		i(local) {
 			if (current) return;
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_in"])(savecard.$$.fragment, local);
@@ -3172,7 +3209,7 @@ function create_else_block(ctx) {
 	};
 }
 
-// (37:6) {#if active === 2}
+// (70:6) {#if active === 2}
 function create_if_block_1(ctx) {
 	let div;
 	let card;
@@ -3216,7 +3253,7 @@ function create_fragment(ctx) {
 	const if_blocks = [];
 
 	function select_block_type(ctx, dirty) {
-		if (/*hasSelected*/ ctx[1]) return 0;
+		if (/*hasSelected*/ ctx[2]) return 0;
 		return 1;
 	}
 
@@ -3276,18 +3313,54 @@ function create_fragment(ctx) {
 	};
 }
 
+function clearHandler(event) {
+	
+}
+
 function instance($$self, $$props, $$invalidate) {
 	let active = 0;
+	let lineSelected = [];
 	let hasSelected = false;
 
+	// 重置选择
+	function resetSelection() {
+		$$invalidate(1, lineSelected = []);
+		Object(_common_events__WEBPACK_IMPORTED_MODULE_6__["emit"])('clear-line');
+	}
+
+	// 导航栏选择
 	function handleActiveChange(event) {
 		$$invalidate(0, active = event.detail.active);
+		resetSelection();
 		Object(_common_global__WEBPACK_IMPORTED_MODULE_7__["updateGuiSize"])(_common_variables__WEBPACK_IMPORTED_MODULE_3__["guiSize"]);
+	}
+
+	// 分割线选择【渲染生成分割线】
+	function lineActiveChange(event) {
+		const index = event.detail.index;
+		const lineIndex = lineSelected.indexOf(index);
+
+		// 判断是否已经预览
+		if (lineIndex === -1) {
+			Object(_common_events__WEBPACK_IMPORTED_MODULE_6__["emit"])('add-line', _common_variables__WEBPACK_IMPORTED_MODULE_3__["saveCardList"][index]);
+			$$invalidate(1, lineSelected = [...lineSelected, index]);
+		} else {
+			Object(_common_events__WEBPACK_IMPORTED_MODULE_6__["emit"])('delete-line', _common_variables__WEBPACK_IMPORTED_MODULE_3__["saveCardList"][index]);
+			lineSelected.splice(lineIndex, 1);
+			$$invalidate(1, lineSelected);
+		}
+
+		console.log(lineSelected);
+	}
+
+	// 重置
+	function resetHandler(event) {
+		resetSelection();
 	}
 
 	// 监听图层选择情况
 	Object(_common_events__WEBPACK_IMPORTED_MODULE_6__["on"])("SELECTION_CHANGED", hasSelection => {
-		$$invalidate(1, hasSelected = hasSelection);
+		$$invalidate(2, hasSelected = hasSelection);
 
 		if (!hasSelected) {
 			Object(_common_events__WEBPACK_IMPORTED_MODULE_6__["emit"])('CHANGE_GUI_SIZE', _common_variables__WEBPACK_IMPORTED_MODULE_3__["guiSizeEmpty"]);
@@ -3296,7 +3369,20 @@ function instance($$self, $$props, $$invalidate) {
 		}
 	});
 
-	return [active, hasSelected, handleActiveChange];
+	function savecard_selected_binding(value) {
+		lineSelected = value;
+		$$invalidate(1, lineSelected);
+	}
+
+	return [
+		active,
+		lineSelected,
+		hasSelected,
+		handleActiveChange,
+		lineActiveChange,
+		resetHandler,
+		savecard_selected_binding
+	];
 }
 
 class App extends svelte_internal__WEBPACK_IMPORTED_MODULE_0__["SvelteComponent"] {
@@ -3500,6 +3586,7 @@ const variables = {
     baseIcon: `<svg t="1656914567415" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3248" width="16" height="16"><path d="M895.026777 552.790744H142.513719a37.710281 37.710281 0 0 1-37.574876-37.574876 37.710281 37.710281 0 0 1 37.574876-37.574876h752.513058a37.710281 37.710281 0 0 1 37.574876 37.574876 37.710281 37.710281 0 0 1-37.574876 37.574876zM895.026777 221.387107h-112.724628A37.710281 37.710281 0 0 1 744.727273 183.812231a37.710281 37.710281 0 0 1 37.574876-37.574876h112.724628a37.710281 37.710281 0 0 1 37.574876 37.574876 37.710281 37.710281 0 0 1-37.574876 37.574876z m-319.894215 0h-112.724628a37.710281 37.710281 0 0 1-37.574876-37.574876 37.710281 37.710281 0 0 1 37.574876-37.574876h112.724628a37.710281 37.710281 0 0 1 37.574876 37.574876 37.710281 37.710281 0 0 1-37.574876 37.574876z m-319.894215 0H142.513719A37.710281 37.710281 0 0 1 104.938843 183.812231a37.710281 37.710281 0 0 1 37.574876-37.574876h112.724628a37.710281 37.710281 0 0 1 37.574876 37.574876 37.473322 37.473322 0 0 1-37.574876 37.574876zM887.579504 884.19438h-37.574876A37.710281 37.710281 0 0 1 812.429752 846.619504a37.710281 37.710281 0 0 1 37.574876-37.574876h37.574876a37.710281 37.710281 0 0 1 37.574876 37.574876 37.710281 37.710281 0 0 1-37.574876 37.574876z m-177.041983 0h-37.574876a37.710281 37.710281 0 0 1-37.574876-37.574876 37.710281 37.710281 0 0 1 37.574876-37.574876h37.574876a37.710281 37.710281 0 0 1 37.574876 37.574876 37.473322 37.473322 0 0 1-37.574876 37.574876z m-176.703471 0h-37.574876a37.710281 37.710281 0 0 1-37.574876-37.574876 37.710281 37.710281 0 0 1 37.574876-37.574876h37.574876a37.710281 37.710281 0 0 1 37.574876 37.574876 37.710281 37.710281 0 0 1-37.574876 37.574876z m-177.041984 0H319.21719a37.710281 37.710281 0 0 1-37.574876-37.574876 37.710281 37.710281 0 0 1 37.574876-37.574876h37.574876a37.710281 37.710281 0 0 1 37.574876 37.574876 37.236364 37.236364 0 0 1-37.574876 37.574876z m-176.703471 0H142.513719a37.710281 37.710281 0 0 1-37.574876-37.574876 37.710281 37.710281 0 0 1 37.574876-37.574876h37.574876a37.710281 37.710281 0 0 1 37.574876 37.574876 37.710281 37.710281 0 0 1-37.574876 37.574876z" p-id="3249" fill="#515151"></path></svg>`,
     saveCardList: [
         {
+            id: '1',
             name: '黄金分割',
             icon: '',
             guidelines: {
@@ -3514,6 +3601,7 @@ const variables = {
             }
         },
         {
+            id: '2',
             name: '白银分割',
             icon: '',
             guidelines: {
@@ -3528,6 +3616,7 @@ const variables = {
             }
         },
         {
+            id: '3',
             name: '五等分',
             icon: '',
             guidelines: {
@@ -3542,6 +3631,7 @@ const variables = {
             }
         },
         {
+            id: '4',
             name: '一二一',
             icon: '',
             guidelines: {
@@ -3556,6 +3646,7 @@ const variables = {
             }
         },
         {
+            id: '5',
             name: '一三二',
             icon: '',
             guidelines: {
@@ -3586,9 +3677,11 @@ module.exports = variables;
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/internal */ "./node_modules/svelte/internal/index.mjs");
-/* harmony import */ var _style_button_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../style/button.css */ "./src/style/button.css");
-/* harmony import */ var _style_button_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_style_button_css__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var svelte__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! svelte */ "./node_modules/svelte/index.mjs");
+/* harmony import */ var _style_button_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../style/button.css */ "./src/style/button.css");
+/* harmony import */ var _style_button_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_style_button_css__WEBPACK_IMPORTED_MODULE_2__);
 /* src/components/Button.svelte generated by Svelte v3.48.0 */
+
 
 
 
@@ -3597,11 +3690,14 @@ function create_fragment(ctx) {
 	let button;
 	let t;
 	let button_class_value;
+	let mounted;
+	let dispose;
 
 	return {
 		c() {
 			button = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("button");
-			t = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["text"])(/*text*/ ctx[1]);
+			t = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["text"])(/*text*/ ctx[2]);
+			button.disabled = /*disabled*/ ctx[1];
 
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(button, "class", button_class_value = "js-design-button " + (/*hasMasters*/ ctx[0]
 			? 'js-design-master-button'
@@ -3610,9 +3706,18 @@ function create_fragment(ctx) {
 		m(target, anchor) {
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, button, anchor);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(button, t);
+
+			if (!mounted) {
+				dispose = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["listen"])(button, "click", /*click_handler*/ ctx[4]);
+				mounted = true;
+			}
 		},
 		p(ctx, [dirty]) {
-			if (dirty & /*text*/ 2) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_data"])(t, /*text*/ ctx[1]);
+			if (dirty & /*text*/ 4) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_data"])(t, /*text*/ ctx[2]);
+
+			if (dirty & /*disabled*/ 2) {
+				button.disabled = /*disabled*/ ctx[1];
+			}
 
 			if (dirty & /*hasMasters*/ 1 && button_class_value !== (button_class_value = "js-design-button " + (/*hasMasters*/ ctx[0]
 			? 'js-design-master-button'
@@ -3624,26 +3729,35 @@ function create_fragment(ctx) {
 		o: svelte_internal__WEBPACK_IMPORTED_MODULE_0__["noop"],
 		d(detaching) {
 			if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(button);
+			mounted = false;
+			dispose();
 		}
 	};
 }
 
 function instance($$self, $$props, $$invalidate) {
+	const dispatch = Object(svelte__WEBPACK_IMPORTED_MODULE_1__["createEventDispatcher"])();
 	let { hasMasters = false } = $$props;
+	let { disabled = false } = $$props;
 	let { text = "按钮" } = $$props;
+
+	const click_handler = () => {
+		dispatch("click");
+	};
 
 	$$self.$$set = $$props => {
 		if ('hasMasters' in $$props) $$invalidate(0, hasMasters = $$props.hasMasters);
-		if ('text' in $$props) $$invalidate(1, text = $$props.text);
+		if ('disabled' in $$props) $$invalidate(1, disabled = $$props.disabled);
+		if ('text' in $$props) $$invalidate(2, text = $$props.text);
 	};
 
-	return [hasMasters, text];
+	return [hasMasters, disabled, text, dispatch, click_handler];
 }
 
 class Button extends svelte_internal__WEBPACK_IMPORTED_MODULE_0__["SvelteComponent"] {
 	constructor(options) {
 		super();
-		Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["init"])(this, options, instance, create_fragment, svelte_internal__WEBPACK_IMPORTED_MODULE_0__["safe_not_equal"], { hasMasters: 0, text: 1 });
+		Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["init"])(this, options, instance, create_fragment, svelte_internal__WEBPACK_IMPORTED_MODULE_0__["safe_not_equal"], { hasMasters: 0, disabled: 1, text: 2 });
 	}
 }
 
@@ -4770,33 +4884,43 @@ class NumberField extends svelte_internal__WEBPACK_IMPORTED_MODULE_0__["SvelteCo
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/internal */ "./node_modules/svelte/internal/index.mjs");
-/* harmony import */ var _common_variables__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../common/variables */ "./src/common/variables.js");
-/* harmony import */ var _common_variables__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_common_variables__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var svelte__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! svelte */ "./node_modules/svelte/index.mjs");
+/* harmony import */ var _common_variables__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../common/variables */ "./src/common/variables.js");
+/* harmony import */ var _common_variables__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_common_variables__WEBPACK_IMPORTED_MODULE_2__);
 /* src/components/SaveCard.svelte generated by Svelte v3.48.0 */
 
 
 
 
+
 function add_css(target) {
-	Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append_styles"])(target, "svelte-72n46r", ".save-card.svelte-72n46r.svelte-72n46r{display:flex;justify-content:flex-start;flex-wrap:wrap}.save-card.svelte-72n46r .card.svelte-72n46r{display:flex;flex-direction:column;align-items:center;cursor:pointer;width:50px;padding:5px 0;box-sizing:border-box;border:1px solid rgba(0, 0, 0, 0)}.save-card.svelte-72n46r .card.svelte-72n46r:hover{border:1px solid rgba(69, 150, 255, 1);background-color:rgba(0, 0, 0, 0.04);border-radius:4px}.save-card.svelte-72n46r .card.svelte-72n46r:nth-child(3n + 1){margin-left:18px}.save-card.svelte-72n46r .card.svelte-72n46r:nth-child(3n + 2){margin-left:36px}.save-card.svelte-72n46r .card.svelte-72n46r:nth-child(3n + 3){margin-left:38px}.save-card.svelte-72n46r .card.svelte-72n46r:nth-child(n + 4){margin-top:16px}.save-card.svelte-72n46r .card span.svelte-72n46r{font-size:8px;margin-top:8px;color:rgba(32, 32, 32, 0.8)}");
+	Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append_styles"])(target, "svelte-ktxbqw", ".save-card.svelte-ktxbqw.svelte-ktxbqw{display:flex;justify-content:flex-start;flex-wrap:wrap}.save-card.svelte-ktxbqw .card.svelte-ktxbqw{display:flex;flex-direction:column;align-items:center;cursor:pointer;width:50px;padding:5px 0;box-sizing:border-box;border:1px solid rgba(0, 0, 0, 0)}.save-card.svelte-ktxbqw .active-card.svelte-ktxbqw,.save-card.svelte-ktxbqw .card.svelte-ktxbqw:hover{border:1px solid rgba(69, 150, 255, 1);background-color:rgba(0, 0, 0, 0.04);border-radius:4px}.save-card.svelte-ktxbqw .card.svelte-ktxbqw:nth-child(3n + 1){margin-left:18px}.save-card.svelte-ktxbqw .card.svelte-ktxbqw:nth-child(3n + 2){margin-left:36px}.save-card.svelte-ktxbqw .card.svelte-ktxbqw:nth-child(3n + 3){margin-left:38px}.save-card.svelte-ktxbqw .card.svelte-ktxbqw:nth-child(n + 4){margin-top:16px}.save-card.svelte-ktxbqw .card span.svelte-ktxbqw{font-size:8px;margin-top:8px;color:rgba(32, 32, 32, 0.8)}");
 }
 
 function get_each_context(ctx, list, i) {
 	const child_ctx = ctx.slice();
-	child_ctx[1] = list[i];
+	child_ctx[4] = list[i];
+	child_ctx[6] = i;
 	return child_ctx;
 }
 
-// (7:2) {#each saveCardList as item}
+// (10:2) {#each saveCardList as item, index}
 function create_each_block(ctx) {
 	let div;
 	let html_tag;
-	let raw_value = (/*item*/ ctx[1].icon ? /*item*/ ctx[1].icon : _common_variables__WEBPACK_IMPORTED_MODULE_1__["baseIcon"]) + "";
+	let raw_value = (/*item*/ ctx[4].icon ? /*item*/ ctx[4].icon : _common_variables__WEBPACK_IMPORTED_MODULE_2__["baseIcon"]) + "";
 	let t0;
 	let span;
-	let t1_value = /*item*/ ctx[1].name + "";
+	let t1_value = /*item*/ ctx[4].name + "";
 	let t1;
 	let t2;
+	let div_class_value;
+	let mounted;
+	let dispose;
+
+	function click_handler() {
+		return /*click_handler*/ ctx[3](/*index*/ ctx[6]);
+	}
 
 	return {
 		c() {
@@ -4807,8 +4931,11 @@ function create_each_block(ctx) {
 			t1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["text"])(t1_value);
 			t2 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
 			html_tag.a = t0;
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(span, "class", "svelte-72n46r");
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div, "class", "card svelte-72n46r");
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(span, "class", "svelte-ktxbqw");
+
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div, "class", div_class_value = "card " + (/*selected*/ ctx[1].indexOf(/*index*/ ctx[6]) !== -1
+			? 'active-card'
+			: '') + " svelte-ktxbqw");
 		},
 		m(target, anchor) {
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, div, anchor);
@@ -4817,13 +4944,27 @@ function create_each_block(ctx) {
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div, span);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(span, t1);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div, t2);
+
+			if (!mounted) {
+				dispose = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["listen"])(div, "click", click_handler);
+				mounted = true;
+			}
 		},
-		p(ctx, dirty) {
-			if (dirty & /*saveCardList*/ 1 && raw_value !== (raw_value = (/*item*/ ctx[1].icon ? /*item*/ ctx[1].icon : _common_variables__WEBPACK_IMPORTED_MODULE_1__["baseIcon"]) + "")) html_tag.p(raw_value);
-			if (dirty & /*saveCardList*/ 1 && t1_value !== (t1_value = /*item*/ ctx[1].name + "")) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_data"])(t1, t1_value);
+		p(new_ctx, dirty) {
+			ctx = new_ctx;
+			if (dirty & /*saveCardList*/ 1 && raw_value !== (raw_value = (/*item*/ ctx[4].icon ? /*item*/ ctx[4].icon : _common_variables__WEBPACK_IMPORTED_MODULE_2__["baseIcon"]) + "")) html_tag.p(raw_value);
+			if (dirty & /*saveCardList*/ 1 && t1_value !== (t1_value = /*item*/ ctx[4].name + "")) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_data"])(t1, t1_value);
+
+			if (dirty & /*selected*/ 2 && div_class_value !== (div_class_value = "card " + (/*selected*/ ctx[1].indexOf(/*index*/ ctx[6]) !== -1
+			? 'active-card'
+			: '') + " svelte-ktxbqw")) {
+				Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div, "class", div_class_value);
+			}
 		},
 		d(detaching) {
 			if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(div);
+			mounted = false;
+			dispose();
 		}
 	};
 }
@@ -4845,7 +4986,7 @@ function create_fragment(ctx) {
 				each_blocks[i].c();
 			}
 
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div, "class", "save-card svelte-72n46r");
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div, "class", "save-card svelte-ktxbqw");
 		},
 		m(target, anchor) {
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, div, anchor);
@@ -4855,7 +4996,7 @@ function create_fragment(ctx) {
 			}
 		},
 		p(ctx, [dirty]) {
-			if (dirty & /*saveCardList, baseIcon*/ 1) {
+			if (dirty & /*selected, dispatch, saveCardList, baseIcon*/ 7) {
 				each_value = /*saveCardList*/ ctx[0];
 				let i;
 
@@ -4888,19 +5029,26 @@ function create_fragment(ctx) {
 }
 
 function instance($$self, $$props, $$invalidate) {
+	const dispatch = Object(svelte__WEBPACK_IMPORTED_MODULE_1__["createEventDispatcher"])();
 	let { saveCardList = [] } = $$props;
+	let { selected = [] } = $$props;
+
+	const click_handler = index => {
+		dispatch("activeChange", { index });
+	};
 
 	$$self.$$set = $$props => {
 		if ('saveCardList' in $$props) $$invalidate(0, saveCardList = $$props.saveCardList);
+		if ('selected' in $$props) $$invalidate(1, selected = $$props.selected);
 	};
 
-	return [saveCardList];
+	return [saveCardList, selected, dispatch, click_handler];
 }
 
 class SaveCard extends svelte_internal__WEBPACK_IMPORTED_MODULE_0__["SvelteComponent"] {
 	constructor(options) {
 		super();
-		Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["init"])(this, options, instance, create_fragment, svelte_internal__WEBPACK_IMPORTED_MODULE_0__["safe_not_equal"], { saveCardList: 0 }, add_css);
+		Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["init"])(this, options, instance, create_fragment, svelte_internal__WEBPACK_IMPORTED_MODULE_0__["safe_not_equal"], { saveCardList: 0, selected: 1 }, add_css);
 	}
 }
 

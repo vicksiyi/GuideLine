@@ -1,11 +1,19 @@
 <script>
+    import { createEventDispatcher } from 'svelte';
+    const dispatch = createEventDispatcher();
     import {baseIcon} from "../common/variables";
     export let saveCardList = [];
+    export let selected = [];
 </script>
 
 <div class="save-card">
-  {#each saveCardList as item}
-    <div class="card">
+  {#each saveCardList as item, index}
+    <div
+      class="card {selected.indexOf(index) !== -1 ? 'active-card' : ''}"
+      on:click={() => {
+        dispatch("activeChange", { index });
+      }}
+    >
       {@html item.icon ? item.icon : baseIcon}
       <span>{item.name}</span>
     </div>
@@ -28,6 +36,7 @@
     box-sizing: border-box;
     border: 1px solid rgba(0, 0, 0, 0);
   }
+  .save-card .active-card,
   .save-card .card:hover {
     border: 1px solid rgba(69, 150, 255, 1);
     background-color: rgba(0, 0, 0, 0.04);

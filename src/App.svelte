@@ -9,13 +9,45 @@
     import SaveCard from "./components/SaveCard.svelte";
     
     let active = 0;
+    let lineSelected = [];
     let hasSelected = false;
-
+    
+    // 重置选择
+    function resetSelection() {
+      lineSelected = [];  
+      emit('clear-line');
+    }
+    
+    // 导航栏选择
     function handleActiveChange(event) {
         active = event.detail.active;
+        resetSelection();
         updateGuiSize(guiSize);
 	  }
-    
+    // 分割线选择【渲染生成分割线】
+    function lineActiveChange(event){
+      const index = event.detail.index;
+      const lineIndex = lineSelected.indexOf(index);
+      // 判断是否已经预览
+      if(lineIndex === -1) { 
+        emit('add-line', saveCardList[index]);
+        lineSelected = [...lineSelected, index];
+      }else{ 
+        emit('delete-line', saveCardList[index]);
+        lineSelected.splice(lineIndex,1);
+        lineSelected = lineSelected;
+      }
+      console.log(lineSelected);
+    }
+
+    // 重置
+    function resetHandler(event){
+      resetSelection();
+    }
+    // 取消选择
+    function clearHandler(event){
+        
+    }
     // 监听图层选择情况
     on("SELECTION_CHANGED",(hasSelection)=>{
       hasSelected = hasSelection;
@@ -33,6 +65,7 @@
     <header>
       <Tags on:activeChange={handleActiveChange} {tags} {active} />
     </header>
+    <!-- 正文 -->
     <div class="content">
       {#if active === 2}
         <!-- 辅助线 -->
@@ -41,18 +74,27 @@
         </div>
       {:else}
         <!-- 已保存 -->
-        <SaveCard {saveCardList} />
+        <SaveCard
+          {saveCardList}
+          on:activeChange={lineActiveChange}
+          bind:selected={lineSelected}
+        />
       {/if}
     </div>
     <footer>
       <div class="manage-btn">
         <div class="clear-btn">
-          <Button text={active === 0 ? "重置" : "取消"} />
+          <Button
+            disabled={lineSelected.length === 0}
+            on:click={active === 0 ? resetHandler : clearHandler}
+            text={active === 0 ? "重置" : "取消"}
+          />
         </div>
         <div class="show-btn">
           <Button
+            disabled={lineSelected.length === 0}
             class="show-btn"
-            text={active === 2 ? "预览" : active === 1 ? "保存" : "生成"}
+            text={active === 2 ? "预览" : active === 1 ? "保存" : "应用"}
             hasMasters
           />
         </div>

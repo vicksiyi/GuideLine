@@ -97,6 +97,13 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _common_events__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./common/events */ "./src/common/events.js");
 
+let unApplyGroups = [];
+function clearCurrentUnApplyGroup() {
+    unApplyGroups.forEach(node => {
+        node.remove();
+    });
+    unApplyGroups = [];
+}
 jsDesign.showUI(__html__, { width: 260, height: 440 });
 Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["emit"])('SELECTION_CHANGED', jsDesign.currentPage.selection.length > 0);
 jsDesign.on('selectionchange', function () {
@@ -104,6 +111,14 @@ jsDesign.on('selectionchange', function () {
 });
 Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["on"])("CHANGE_GUI_SIZE", (guiSize) => {
     jsDesign.ui.resize(guiSize === null || guiSize === void 0 ? void 0 : guiSize.width, guiSize === null || guiSize === void 0 ? void 0 : guiSize.height);
+});
+Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["on"])('clear-line', () => {
+    clearCurrentUnApplyGroup();
+});
+Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["on"])('add-line', (saveCard) => {
+    console.log(saveCard);
+});
+Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["on"])('apply-line', () => {
 });
 
 
