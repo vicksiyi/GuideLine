@@ -2946,7 +2946,7 @@ function add_css(target) {
 	Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append_styles"])(target, "svelte-14422fb", ".toast{position:absolute;bottom:16px;left:16px;right:16px;padding:8px 16px;border:1px solid #909399;border-radius:4px;background-color:#909399;box-shadow:0 2px 12px 0 rgba(0, 0, 0, 0.1);color:#ffffff;transition:all 0.5s ease-in-out;text-align:center;font-size:12px}.toast--error{border:1px solid #f56c6c;background-color:#f56c6c}.toast--warning{border:1px solid #e6a23c;background-color:#e6a23c}.toast--success{border:1px solid #67c23a;background-color:#67c23a}footer.svelte-14422fb{width:100%;height:64px;margin-top:16px;background-color:rgba(0, 0, 0, 0.03)}.manage-btn.svelte-14422fb{display:flex;justify-content:space-between;padding:16px}.manage-btn.svelte-14422fb .clear-btn{width:58px;height:32px}.manage-btn.svelte-14422fb .show-btn{flex:1;margin-left:12px}");
 }
 
-// (63:0) {:else}
+// (62:0) {:else}
 function create_else_block_1(ctx) {
 	let main;
 	let empty_1;
@@ -2981,7 +2981,7 @@ function create_else_block_1(ctx) {
 	};
 }
 
-// (31:0) {#if hasSelected}
+// (30:0) {#if hasSelected}
 function create_if_block(ctx) {
 	let main;
 	let header;
@@ -3138,7 +3138,7 @@ function create_if_block(ctx) {
 	};
 }
 
-// (43:6) {:else}
+// (42:6) {:else}
 function create_else_block(ctx) {
 	let div;
 
@@ -3160,7 +3160,7 @@ function create_else_block(ctx) {
 	};
 }
 
-// (38:6) {#if active !== 2}
+// (37:6) {#if active !== 2}
 function create_if_block_1(ctx) {
 	let div;
 	let card;
@@ -3275,9 +3275,8 @@ function instance($$self, $$props, $$invalidate) {
 	}
 
 	// 监听图层选择情况
-	Object(_common_events__WEBPACK_IMPORTED_MODULE_6__["on"])("SELECTION_CHANGED", layers => {
-		$$invalidate(1, hasSelected = layers.length > 0);
-		selectedLayers = layers;
+	Object(_common_events__WEBPACK_IMPORTED_MODULE_6__["on"])("SELECTION_CHANGED", hasSelection => {
+		$$invalidate(1, hasSelected = hasSelection);
 
 		if (!hasSelected) {
 			Object(_common_events__WEBPACK_IMPORTED_MODULE_6__["emit"])('CHANGE_GUI_SIZE', _common_variables__WEBPACK_IMPORTED_MODULE_3__["guiSizeEmpty"]);

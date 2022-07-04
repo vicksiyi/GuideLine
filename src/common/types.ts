@@ -9,7 +9,7 @@ export type SelectionSize = GuiSize;
 
 export interface SelectionChangedHandler extends EventHandler {
     name: 'SELECTION_CHANGED'
-    handler: (hasSelection: string[]) => void
+    handler: (hasSelection: boolean) => void
 }
 
 export interface ChangeGuiSizeHandler extends EventHandler {

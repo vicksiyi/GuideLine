@@ -5,27 +5,18 @@ import {
 } from "./common/types";
 jsDesign.showUI(__html__, { width: 260, height: 440 });
 
-const selections = jsDesign.currentPage.selection;
-const selectionIds = selections.map(item => {
-    return item.id;
-})
-
 // GUI 界面发送消息【已选择图层，启动的时候发一次】
 emit<SelectionChangedHandler>(
     'SELECTION_CHANGED',
-    selectionIds
+    jsDesign.currentPage.selection.length > 0
 )
 
 // 监听图层选择事件
 jsDesign.on('selectionchange', function () {
-    const selections = jsDesign.currentPage.selection;
-    const selectionIds = selections.map(item => {
-        return item.id;
-    })
     // 向GUI 界面发送消息【已选择图层】
     emit<SelectionChangedHandler>(
         'SELECTION_CHANGED',
-        selectionIds
+        jsDesign.currentPage.selection.length > 0
     )
 })
 

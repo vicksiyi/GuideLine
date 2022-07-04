@@ -17,9 +17,8 @@
 	  }
     
     // 监听图层选择情况
-    on("SELECTION_CHANGED",(layers)=>{
-      hasSelected = layers.length > 0;
-      selectedLayers = layers;
+    on("SELECTION_CHANGED",(hasSelection)=>{
+      hasSelected = hasSelection;
       if(!hasSelected) {
         emit('CHANGE_GUI_SIZE', guiSizeEmpty)
       }else {
