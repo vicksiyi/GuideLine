@@ -13,6 +13,25 @@ import {
     SupportsGuideLineNode
 } from "./common/types";
 
+// 支持的节点
+let supportNodes = ['FRAME'];
+let typeToName: { [key: string]: string } = {
+    'FRAME': "画板",
+    'GROUP': "分组",
+    'RECTANGLE': "矩形",
+    'ELLIPSE': "椭圆",
+    'LINE': "线段",
+    'POLYGON': "多边形",
+    'STAR': "星形",
+    'TEXT': "文本",
+    'SLICE': "切片",
+    'VECTOR': "矢量",
+    'BOOLEAN_OPERATION': "布尔运算",
+    'COMPONENT': "引用",
+    'INSTANCE': "实例组件",
+    'COMPONENT_SET': "变体"
+}
+
 // 记录未应用分割线[分割线ID:分组ID]
 let unApplyGroup: UnApplyGroup | {} = {};
 
@@ -26,14 +45,30 @@ function clearCurrentUnApplyGroup(): void {
 }
 
 // 画分割线
-function drawGuideline(guideline: GuideLine): void {
-    // 已经选择的组件
-    const selections = jsDesign.currentPage.selection;
+function drawLine(node: SupportsGuideLineNode) {
+
+}
+
+// 处理分割线
+function createLine(node: SupportsGuideLineNode, guideline: GuideLine) {
+    let { width, height } = node;
     let rows = guideline.row.scales;
     let columns = guideline.column.scales;
+    let rowsTotal = rows.reduce((total, row) => total + row)
+    let columnTotal = columns.reduce((total, column) => total + column);
+    console.log(width, height, rowsTotal, columnTotal);
+}
 
+// 处理节点
+function createGuidelineHandler(guideline: GuideLine): void {
+    // 已经选择的组件
+    const selections = jsDesign.currentPage.selection;
     selections.forEach(node => {
-        console.log(node.type);
+        if (supportNodes.indexOf(node.type) !== -1) createLine((node as SupportsGuideLineNode), guideline);
+        else {
+            // 问题：平台不支持同时提示两个notify
+            jsDesign.notify(`${typeToName[node.type]}节点 ${node.name} 暂时支持`);
+        }
     })
 }
 
@@ -44,7 +79,7 @@ function createGuideline(saveCard: SaveCard): void {
     } else {
         // 生成
         unApplyGroup[saveCard.id] = <GroupNode>{ remove: () => { console.log('删除成功'); } };
-        drawGuideline(saveCard.guideline);
+        createGuidelineHandler(saveCard.guideline);
         jsDesign.notify(`创建${saveCard.name}分割线成功`);
     }
 }

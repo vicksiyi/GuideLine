@@ -31,7 +31,6 @@ export type UnApplyGroup = {
 // 只支持画板节点和矩形节点
 export type SupportsGuideLineNode =
     | FrameNode
-    | RectangleNode
 
 export interface SelectionChangedHandler extends EventHandler {
     name: 'SELECTION_CHANGED'

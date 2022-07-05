@@ -97,6 +97,23 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _common_events__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./common/events */ "./src/common/events.js");
 
+let supportNodes = ['FRAME'];
+let typeToName = {
+    'FRAME': "画板",
+    'GROUP': "分组",
+    'RECTANGLE': "矩形",
+    'ELLIPSE': "椭圆",
+    'LINE': "线段",
+    'POLYGON': "多边形",
+    'STAR': "星形",
+    'TEXT': "文本",
+    'SLICE': "切片",
+    'VECTOR': "矢量",
+    'BOOLEAN_OPERATION': "布尔运算",
+    'COMPONENT': "引用",
+    'INSTANCE': "实例组件",
+    'COMPONENT_SET': "变体"
+};
 let unApplyGroup = {};
 function clearCurrentUnApplyGroup() {
     Object.keys(unApplyGroup).forEach(key => {
@@ -105,12 +122,24 @@ function clearCurrentUnApplyGroup() {
     });
     unApplyGroup = {};
 }
-function drawGuideline(guideline) {
-    const selections = jsDesign.currentPage.selection;
+function drawLine(node) {
+}
+function createLine(node, guideline) {
+    let { width, height } = node;
     let rows = guideline.row.scales;
     let columns = guideline.column.scales;
+    let rowsTotal = rows.reduce((total, row) => total + row);
+    let columnTotal = columns.reduce((total, column) => total + column);
+    console.log(width, height, rowsTotal, columnTotal);
+}
+function createGuidelineHandler(guideline) {
+    const selections = jsDesign.currentPage.selection;
     selections.forEach(node => {
-        console.log(node.type);
+        if (supportNodes.indexOf(node.type) !== -1)
+            createLine(node, guideline);
+        else {
+            jsDesign.notify(`${typeToName[node.type]}节点 ${node.name} 暂时支持`);
+        }
     });
 }
 function createGuideline(saveCard) {
@@ -119,7 +148,7 @@ function createGuideline(saveCard) {
     }
     else {
         unApplyGroup[saveCard.id] = { remove: () => { console.log('删除成功'); } };
-        drawGuideline(saveCard.guideline);
+        createGuidelineHandler(saveCard.guideline);
         jsDesign.notify(`创建${saveCard.name}分割线成功`);
     }
 }
