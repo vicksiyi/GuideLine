@@ -1,4 +1,3 @@
-import { guidelines } from "common/variables";
 import { on, emit } from "./common/events";
 import {
     SelectionChangedHandler,
@@ -9,7 +8,9 @@ import {
     DeleteLineHandler,
     SaveCard,
     UnApplyGroup,
-    GuideLine
+    GuideLine,
+    clearActiveHandler,
+    SupportsGuideLineNode
 } from "./common/types";
 
 // 记录未应用分割线[分割线ID:分组ID]
@@ -26,7 +27,14 @@ function clearCurrentUnApplyGroup(): void {
 
 // 画分割线
 function drawGuideline(guideline: GuideLine): void {
-    console.log("画分割线");
+    // 已经选择的组件
+    const selections = jsDesign.currentPage.selection;
+    let rows = guideline.row.scales;
+    let columns = guideline.column.scales;
+
+    selections.forEach(node => {
+        console.log(node.type);
+    })
 }
 
 // 生成辅助线
@@ -39,7 +47,6 @@ function createGuideline(saveCard: SaveCard): void {
         drawGuideline(saveCard.guideline);
         jsDesign.notify(`创建${saveCard.name}分割线成功`);
     }
-    console.log(unApplyGroup);
 }
 
 // 删除辅助线 
@@ -71,7 +78,10 @@ jsDesign.on('selectionchange', function () {
     emit<SelectionChangedHandler>(
         'SELECTION_CHANGED',
         jsDesign.currentPage.selection.length > 0
-    )
+    );
+
+    // 重新选择会将未引用的分割线取消掉
+    emit<clearActiveHandler>('clear-active')
 })
 
 // 监听GUI发送过来的消息【改变窗口】

@@ -106,7 +106,12 @@ function clearCurrentUnApplyGroup() {
     unApplyGroup = {};
 }
 function drawGuideline(guideline) {
-    console.log("画分割线");
+    const selections = jsDesign.currentPage.selection;
+    let rows = guideline.row.scales;
+    let columns = guideline.column.scales;
+    selections.forEach(node => {
+        console.log(node.type);
+    });
 }
 function createGuideline(saveCard) {
     if (unApplyGroup.hasOwnProperty(saveCard.id)) {
@@ -117,7 +122,6 @@ function createGuideline(saveCard) {
         drawGuideline(saveCard.guideline);
         jsDesign.notify(`创建${saveCard.name}分割线成功`);
     }
-    console.log(unApplyGroup);
 }
 function deleteGuideline(saveCard) {
     const id = saveCard.id;
@@ -136,6 +140,7 @@ jsDesign.showUI(__html__, { width: 260, height: 440 });
 Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["emit"])('SELECTION_CHANGED', jsDesign.currentPage.selection.length > 0);
 jsDesign.on('selectionchange', function () {
     Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["emit"])('SELECTION_CHANGED', jsDesign.currentPage.selection.length > 0);
+    Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["emit"])('clear-active');
 });
 Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["on"])("CHANGE_GUI_SIZE", (guiSize) => {
     jsDesign.ui.resize(guiSize === null || guiSize === void 0 ? void 0 : guiSize.width, guiSize === null || guiSize === void 0 ? void 0 : guiSize.height);

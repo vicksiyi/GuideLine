@@ -2,7 +2,7 @@ const variables = {
     MIN_VALUE: 0,
     MAX_VALUE: 24,
     tags: ['默认', '自定义', '本地'],
-    guidelines: {
+    guideline: {
         row: {
             count: 1,
             scales: [1]
@@ -26,7 +26,7 @@ const variables = {
             id: '1',
             name: '黄金分割',
             icon: '',
-            guidelines: {
+            guideline: {
                 row: {
                     count: 2,
                     scales: [1, 1.618]
@@ -41,7 +41,7 @@ const variables = {
             id: '2',
             name: '白银分割',
             icon: '',
-            guidelines: {
+            guideline: {
                 row: {
                     count: 2,
                     scales: [1, 1.414]
@@ -56,7 +56,7 @@ const variables = {
             id: '3',
             name: '五等分',
             icon: '',
-            guidelines: {
+            guideline: {
                 row: {
                     count: 5,
                     scales: [1, 1, 1, 1, 1]
@@ -71,7 +71,7 @@ const variables = {
             id: '4',
             name: '一二一',
             icon: '',
-            guidelines: {
+            guideline: {
                 row: {
                     count: 3,
                     scales: [1, 2, 1]
@@ -86,7 +86,7 @@ const variables = {
             id: '5',
             name: '一三二',
             icon: '',
-            guidelines: {
+            guideline: {
                 row: {
                     count: 3,
                     scales: [1, 3, 2]

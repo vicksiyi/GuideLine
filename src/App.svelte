@@ -1,7 +1,7 @@
 <script>
     import Tags from "./components/Tags.svelte";
     import Card from "./components/Card.svelte";
-    import {tags,guiSizeEmpty,guiSize,guidelines,saveCardList} from "./common/variables";
+    import {tags,guiSizeEmpty,guiSize,guideline,saveCardList} from "./common/variables";
     import Button from "./components/Button.svelte";
     import Empty from "./components/Empty.svelte";
     import {on,emit} from "./common/events";
@@ -24,6 +24,7 @@
         resetSelection();
         updateGuiSize(guiSize);
 	  }
+
     // 分割线选择【渲染生成分割线】
     function lineActiveChange(event){
       const index = event.detail.index;
@@ -37,7 +38,6 @@
         lineSelected.splice(lineIndex,1);
         lineSelected = lineSelected;
       }
-      console.log(lineSelected);
     }
 
     // 重置
@@ -57,6 +57,9 @@
         updateGuiSize(guiSize);
       }
     })
+    on('clear-active',()=>{
+      resetSelection();
+    })
 </script>
 
 {#if hasSelected}
@@ -70,7 +73,7 @@
       {#if active === 2}
         <!-- 辅助线 -->
         <div class="guide-lines">
-          <Card {guidelines} />
+          <Card {guideline} />
         </div>
       {:else}
         <!-- 已保存 -->

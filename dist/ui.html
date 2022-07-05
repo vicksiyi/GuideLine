@@ -2950,7 +2950,7 @@ function add_css(target) {
 	Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append_styles"])(target, "svelte-14422fb", ".toast{position:absolute;bottom:16px;left:16px;right:16px;padding:8px 16px;border:1px solid #909399;border-radius:4px;background-color:#909399;box-shadow:0 2px 12px 0 rgba(0, 0, 0, 0.1);color:#ffffff;transition:all 0.5s ease-in-out;text-align:center;font-size:12px}.toast--error{border:1px solid #f56c6c;background-color:#f56c6c}.toast--warning{border:1px solid #e6a23c;background-color:#e6a23c}.toast--success{border:1px solid #67c23a;background-color:#67c23a}footer.svelte-14422fb{width:100%;height:64px;margin-top:16px;background-color:rgba(0, 0, 0, 0.03)}.manage-btn.svelte-14422fb{display:flex;justify-content:space-between;padding:16px}.manage-btn.svelte-14422fb .clear-btn{width:58px;height:32px}.manage-btn.svelte-14422fb .show-btn{flex:1;margin-left:12px}");
 }
 
-// (104:0) {:else}
+// (107:0) {:else}
 function create_else_block_1(ctx) {
 	let main;
 	let empty_1;
@@ -2985,7 +2985,7 @@ function create_else_block_1(ctx) {
 	};
 }
 
-// (62:0) {#if hasSelected}
+// (65:0) {#if hasSelected}
 function create_if_block(ctx) {
 	let main;
 	let header;
@@ -3155,7 +3155,7 @@ function create_if_block(ctx) {
 	};
 }
 
-// (75:6) {:else}
+// (78:6) {:else}
 function create_else_block(ctx) {
 	let savecard;
 	let updating_selected;
@@ -3209,12 +3209,12 @@ function create_else_block(ctx) {
 	};
 }
 
-// (70:6) {#if active === 2}
+// (73:6) {#if active === 2}
 function create_if_block_1(ctx) {
 	let div;
 	let card;
 	let current;
-	card = new _components_Card_svelte__WEBPACK_IMPORTED_MODULE_2__["default"]({ props: { guidelines: _common_variables__WEBPACK_IMPORTED_MODULE_3__["guidelines"] } });
+	card = new _components_Card_svelte__WEBPACK_IMPORTED_MODULE_2__["default"]({ props: { guideline: _common_variables__WEBPACK_IMPORTED_MODULE_3__["guideline"] } });
 
 	return {
 		c() {
@@ -3349,8 +3349,6 @@ function instance($$self, $$props, $$invalidate) {
 			lineSelected.splice(lineIndex, 1);
 			$$invalidate(1, lineSelected);
 		}
-
-		console.log(lineSelected);
 	}
 
 	// 重置
@@ -3367,6 +3365,10 @@ function instance($$self, $$props, $$invalidate) {
 		} else {
 			Object(_common_global__WEBPACK_IMPORTED_MODULE_7__["updateGuiSize"])(_common_variables__WEBPACK_IMPORTED_MODULE_3__["guiSize"]);
 		}
+	});
+
+	Object(_common_events__WEBPACK_IMPORTED_MODULE_6__["on"])('clear-active', () => {
+		resetSelection();
 	});
 
 	function savecard_selected_binding(value) {
@@ -3565,7 +3567,7 @@ const variables = {
     MIN_VALUE: 0,
     MAX_VALUE: 24,
     tags: ['默认', '自定义', '本地'],
-    guidelines: {
+    guideline: {
         row: {
             count: 1,
             scales: [1]
@@ -3589,7 +3591,7 @@ const variables = {
             id: '1',
             name: '黄金分割',
             icon: '',
-            guidelines: {
+            guideline: {
                 row: {
                     count: 2,
                     scales: [1, 1.618]
@@ -3604,7 +3606,7 @@ const variables = {
             id: '2',
             name: '白银分割',
             icon: '',
-            guidelines: {
+            guideline: {
                 row: {
                     count: 2,
                     scales: [1, 1.414]
@@ -3619,7 +3621,7 @@ const variables = {
             id: '3',
             name: '五等分',
             icon: '',
-            guidelines: {
+            guideline: {
                 row: {
                     count: 5,
                     scales: [1, 1, 1, 1, 1]
@@ -3634,7 +3636,7 @@ const variables = {
             id: '4',
             name: '一二一',
             icon: '',
-            guidelines: {
+            guideline: {
                 row: {
                     count: 3,
                     scales: [1, 2, 1]
@@ -3649,7 +3651,7 @@ const variables = {
             id: '5',
             name: '一三二',
             icon: '',
-            guidelines: {
+            guideline: {
                 row: {
                     count: 3,
                     scales: [1, 3, 2]
@@ -3950,8 +3952,8 @@ function create_fragment(ctx) {
 		$$scope: { ctx }
 	};
 
-	if (/*guidelines*/ ctx[0].row.count !== void 0) {
-		numberfield0_props.value = /*guidelines*/ ctx[0].row.count;
+	if (/*guideline*/ ctx[0].row.count !== void 0) {
+		numberfield0_props.value = /*guideline*/ ctx[0].row.count;
 	}
 
 	numberfield0 = new _NumberField_svelte__WEBPACK_IMPORTED_MODULE_1__["default"]({ props: numberfield0_props });
@@ -3970,8 +3972,8 @@ function create_fragment(ctx) {
 		$$scope: { ctx }
 	};
 
-	if (/*guidelines*/ ctx[0].row.scales !== void 0) {
-		numberfield1_props.value = /*guidelines*/ ctx[0].row.scales;
+	if (/*guideline*/ ctx[0].row.scales !== void 0) {
+		numberfield1_props.value = /*guideline*/ ctx[0].row.scales;
 	}
 
 	numberfield1 = new _NumberField_svelte__WEBPACK_IMPORTED_MODULE_1__["default"]({ props: numberfield1_props });
@@ -3991,8 +3993,8 @@ function create_fragment(ctx) {
 		$$scope: { ctx }
 	};
 
-	if (/*guidelines*/ ctx[0].column.count !== void 0) {
-		numberfield2_props.value = /*guidelines*/ ctx[0].column.count;
+	if (/*guideline*/ ctx[0].column.count !== void 0) {
+		numberfield2_props.value = /*guideline*/ ctx[0].column.count;
 	}
 
 	numberfield2 = new _NumberField_svelte__WEBPACK_IMPORTED_MODULE_1__["default"]({ props: numberfield2_props });
@@ -4011,8 +4013,8 @@ function create_fragment(ctx) {
 		$$scope: { ctx }
 	};
 
-	if (/*guidelines*/ ctx[0].column.scales !== void 0) {
-		numberfield3_props.value = /*guidelines*/ ctx[0].column.scales;
+	if (/*guideline*/ ctx[0].column.scales !== void 0) {
+		numberfield3_props.value = /*guideline*/ ctx[0].column.scales;
 	}
 
 	numberfield3 = new _NumberField_svelte__WEBPACK_IMPORTED_MODULE_1__["default"]({ props: numberfield3_props });
@@ -4066,9 +4068,9 @@ function create_fragment(ctx) {
 				numberfield0_changes.$$scope = { dirty, ctx };
 			}
 
-			if (!updating_value && dirty & /*guidelines*/ 1) {
+			if (!updating_value && dirty & /*guideline*/ 1) {
 				updating_value = true;
-				numberfield0_changes.value = /*guidelines*/ ctx[0].row.count;
+				numberfield0_changes.value = /*guideline*/ ctx[0].row.count;
 				Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_flush_callback"])(() => updating_value = false);
 			}
 
@@ -4079,9 +4081,9 @@ function create_fragment(ctx) {
 				numberfield1_changes.$$scope = { dirty, ctx };
 			}
 
-			if (!updating_value_1 && dirty & /*guidelines*/ 1) {
+			if (!updating_value_1 && dirty & /*guideline*/ 1) {
 				updating_value_1 = true;
-				numberfield1_changes.value = /*guidelines*/ ctx[0].row.scales;
+				numberfield1_changes.value = /*guideline*/ ctx[0].row.scales;
 				Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_flush_callback"])(() => updating_value_1 = false);
 			}
 
@@ -4092,9 +4094,9 @@ function create_fragment(ctx) {
 				numberfield2_changes.$$scope = { dirty, ctx };
 			}
 
-			if (!updating_value_2 && dirty & /*guidelines*/ 1) {
+			if (!updating_value_2 && dirty & /*guideline*/ 1) {
 				updating_value_2 = true;
-				numberfield2_changes.value = /*guidelines*/ ctx[0].column.count;
+				numberfield2_changes.value = /*guideline*/ ctx[0].column.count;
 				Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_flush_callback"])(() => updating_value_2 = false);
 			}
 
@@ -4105,9 +4107,9 @@ function create_fragment(ctx) {
 				numberfield3_changes.$$scope = { dirty, ctx };
 			}
 
-			if (!updating_value_3 && dirty & /*guidelines*/ 1) {
+			if (!updating_value_3 && dirty & /*guideline*/ 1) {
 				updating_value_3 = true;
-				numberfield3_changes.value = /*guidelines*/ ctx[0].column.scales;
+				numberfield3_changes.value = /*guideline*/ ctx[0].column.scales;
 				Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_flush_callback"])(() => updating_value_3 = false);
 			}
 
@@ -4139,7 +4141,7 @@ function create_fragment(ctx) {
 }
 
 function instance($$self, $$props, $$invalidate) {
-	let { guidelines = {} } = $$props;
+	let { guideline = {} } = $$props;
 
 	// 判断数量是否超过或者小于最大值
 	const inputChange = (event, handler) => {
@@ -4161,68 +4163,68 @@ function instance($$self, $$props, $$invalidate) {
 
 	// 处理行输入
 	const rowHandler = value => {
-		$$invalidate(0, guidelines.row.count = value, guidelines);
-		let _scales = guidelines.row.scales;
+		$$invalidate(0, guideline.row.count = value, guideline);
+		let _scales = guideline.row.scales;
 		const len = _scales.length;
 
 		if (len > value) {
-			$$invalidate(0, guidelines.row.scales = _scales.splice(0, value), guidelines);
+			$$invalidate(0, guideline.row.scales = _scales.splice(0, value), guideline);
 		} else if (len < value) {
-			$$invalidate(0, guidelines.row.scales = _scales.concat(Array(value - len).fill(1)), guidelines);
+			$$invalidate(0, guideline.row.scales = _scales.concat(Array(value - len).fill(1)), guideline);
 		}
 	};
 
 	// 处理列输入
 	const columnHandler = value => {
-		$$invalidate(0, guidelines.column.count = value, guidelines);
-		let _scales = guidelines.column.scales;
+		$$invalidate(0, guideline.column.count = value, guideline);
+		let _scales = guideline.column.scales;
 		const len = _scales.length;
 
 		if (len > value) {
-			$$invalidate(0, guidelines.column.scales = _scales.splice(0, value), guidelines);
+			$$invalidate(0, guideline.column.scales = _scales.splice(0, value), guideline);
 		} else if (len < value) {
-			$$invalidate(0, guidelines.column.scales = _scales.concat(Array(value - len).fill(1)), guidelines);
+			$$invalidate(0, guideline.column.scales = _scales.concat(Array(value - len).fill(1)), guideline);
 		}
 	};
 
 	function numberfield0_value_binding(value) {
-		if ($$self.$$.not_equal(guidelines.row.count, value)) {
-			guidelines.row.count = value;
-			$$invalidate(0, guidelines);
+		if ($$self.$$.not_equal(guideline.row.count, value)) {
+			guideline.row.count = value;
+			$$invalidate(0, guideline);
 		}
 	}
 
 	const inputChange_handler = event => inputChange(event, rowHandler);
 
 	function numberfield1_value_binding(value) {
-		if ($$self.$$.not_equal(guidelines.row.scales, value)) {
-			guidelines.row.scales = value;
-			$$invalidate(0, guidelines);
+		if ($$self.$$.not_equal(guideline.row.scales, value)) {
+			guideline.row.scales = value;
+			$$invalidate(0, guideline);
 		}
 	}
 
 	function numberfield2_value_binding(value) {
-		if ($$self.$$.not_equal(guidelines.column.count, value)) {
-			guidelines.column.count = value;
-			$$invalidate(0, guidelines);
+		if ($$self.$$.not_equal(guideline.column.count, value)) {
+			guideline.column.count = value;
+			$$invalidate(0, guideline);
 		}
 	}
 
 	const inputChange_handler_1 = event => inputChange(event, columnHandler);
 
 	function numberfield3_value_binding(value) {
-		if ($$self.$$.not_equal(guidelines.column.scales, value)) {
-			guidelines.column.scales = value;
-			$$invalidate(0, guidelines);
+		if ($$self.$$.not_equal(guideline.column.scales, value)) {
+			guideline.column.scales = value;
+			$$invalidate(0, guideline);
 		}
 	}
 
 	$$self.$$set = $$props => {
-		if ('guidelines' in $$props) $$invalidate(0, guidelines = $$props.guidelines);
+		if ('guideline' in $$props) $$invalidate(0, guideline = $$props.guideline);
 	};
 
 	return [
-		guidelines,
+		guideline,
 		inputChange,
 		rowHandler,
 		columnHandler,
@@ -4238,7 +4240,7 @@ function instance($$self, $$props, $$invalidate) {
 class Card extends svelte_internal__WEBPACK_IMPORTED_MODULE_0__["SvelteComponent"] {
 	constructor(options) {
 		super();
-		Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["init"])(this, options, instance, create_fragment, svelte_internal__WEBPACK_IMPORTED_MODULE_0__["safe_not_equal"], { guidelines: 0 }, add_css);
+		Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["init"])(this, options, instance, create_fragment, svelte_internal__WEBPACK_IMPORTED_MODULE_0__["safe_not_equal"], { guideline: 0 }, add_css);
 	}
 }
 

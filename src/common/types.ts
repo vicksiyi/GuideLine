@@ -28,6 +28,11 @@ export type UnApplyGroup = {
     [id: string]: GroupNode
 }
 
+// 只支持画板节点和矩形节点
+export type SupportsGuideLineNode =
+    | FrameNode
+    | RectangleNode
+
 export interface SelectionChangedHandler extends EventHandler {
     name: 'SELECTION_CHANGED'
     handler: (hasSelection: boolean) => void
@@ -56,4 +61,9 @@ export interface ApplyLineHandler extends EventHandler {
 export interface DeleteLineHandler extends EventHandler {
     name: 'delete-line',
     handler: (saveCard: SaveCard) => void
+}
+
+export interface clearActiveHandler extends EventHandler {
+    name: 'clear-active',
+    handler: () => void
 }
