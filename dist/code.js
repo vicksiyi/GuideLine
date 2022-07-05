@@ -97,12 +97,40 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _common_events__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./common/events */ "./src/common/events.js");
 
-let unApplyGroups = [];
+let unApplyGroup = {};
 function clearCurrentUnApplyGroup() {
-    unApplyGroups.forEach(node => {
+    Object.keys(unApplyGroup).forEach(key => {
+        const node = unApplyGroup[key].node;
         node.remove();
     });
-    unApplyGroups = [];
+    unApplyGroup = {};
+}
+function drawGuideline(guideline) {
+    console.log("画分割线");
+}
+function createGuideline(saveCard) {
+    if (unApplyGroup.hasOwnProperty(saveCard.id)) {
+        jsDesign.notify("请勿重复添加分割线");
+    }
+    else {
+        unApplyGroup[saveCard.id] = { remove: () => { console.log('删除成功'); } };
+        drawGuideline(saveCard.guideline);
+        jsDesign.notify(`创建${saveCard.name}分割线成功`);
+    }
+    console.log(unApplyGroup);
+}
+function deleteGuideline(saveCard) {
+    const id = saveCard.id;
+    if (!unApplyGroup.hasOwnProperty(id)) {
+        jsDesign.notify("分割线不存在");
+    }
+    else {
+        const node = unApplyGroup[id];
+        node.remove();
+        delete unApplyGroup[id];
+        jsDesign.notify(`取消${saveCard.name}分割线成功`);
+    }
+    console.log(unApplyGroup);
 }
 jsDesign.showUI(__html__, { width: 260, height: 440 });
 Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["emit"])('SELECTION_CHANGED', jsDesign.currentPage.selection.length > 0);
@@ -116,7 +144,10 @@ Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["on"])('clear-line', () => {
     clearCurrentUnApplyGroup();
 });
 Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["on"])('add-line', (saveCard) => {
-    console.log(saveCard);
+    createGuideline(saveCard);
+});
+Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["on"])('delete-line', (saveCard) => {
+    deleteGuideline(saveCard);
 });
 Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["on"])('apply-line', () => {
 });

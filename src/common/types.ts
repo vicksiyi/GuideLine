@@ -18,9 +18,14 @@ export type GuideLine = {
 }
 
 export type SaveCard = {
+    id: string,
     name: string,
     icon: string,
-    guidelines: GuideLine[]
+    guideline: GuideLine
+}
+
+export type UnApplyGroup = {
+    [id: string]: GroupNode
 }
 
 export interface SelectionChangedHandler extends EventHandler {
@@ -48,3 +53,7 @@ export interface ApplyLineHandler extends EventHandler {
     handler: () => void
 }
 
+export interface DeleteLineHandler extends EventHandler {
+    name: 'delete-line',
+    handler: (saveCard: SaveCard) => void
+}
