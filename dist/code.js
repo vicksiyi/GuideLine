@@ -101,7 +101,7 @@ let unApplyGroup = {};
 function clearCurrentUnApplyGroup() {
     Object.keys(unApplyGroup).forEach(key => {
         const node = unApplyGroup[key].node;
-        node.remove();
+        node === null || node === void 0 ? void 0 : node.remove();
     });
     unApplyGroup = {};
 }
@@ -126,7 +126,7 @@ function deleteGuideline(saveCard) {
     }
     else {
         const node = unApplyGroup[id];
-        node.remove();
+        node === null || node === void 0 ? void 0 : node.remove();
         delete unApplyGroup[id];
         jsDesign.notify(`取消${saveCard.name}分割线成功`);
     }

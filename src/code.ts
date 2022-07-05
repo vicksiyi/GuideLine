@@ -19,7 +19,7 @@ let unApplyGroup: UnApplyGroup | {} = {};
 function clearCurrentUnApplyGroup(): void {
     Object.keys(unApplyGroup).forEach(key => {
         const node = unApplyGroup[key].node;
-        node.remove();
+        node?.remove();
     });
     unApplyGroup = {};
 }
@@ -50,7 +50,7 @@ function deleteGuideline(saveCard: SaveCard): void {
     } else {
         // 删除
         const node = unApplyGroup[id];
-        node.remove();
+        node?.remove();
         delete unApplyGroup[id];
         jsDesign.notify(`取消${saveCard.name}分割线成功`);
     }
