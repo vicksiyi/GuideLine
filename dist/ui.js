@@ -3023,25 +3023,23 @@ function create_if_block(ctx) {
 	button0 = new _components_Button_svelte__WEBPACK_IMPORTED_MODULE_4__["default"]({
 			props: {
 				disabled: /*lineSelected*/ ctx[1].length === 0,
-				text: /*active*/ ctx[0] === 0 ? "重置" : "取消"
+				text: /*active*/ ctx[0] === 2 ? "取消" : "重置"
 			}
 		});
 
 	button0.$on("click", function () {
-		if (Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["is_function"])(/*active*/ ctx[0] === 0
-		? /*resetHandler*/ ctx[5]
-		: clearHandler)) (/*active*/ ctx[0] === 0
-		? /*resetHandler*/ ctx[5]
-		: clearHandler).apply(this, arguments);
+		if (Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["is_function"])(/*active*/ ctx[0] === 2
+		? clearHandler
+		: /*resetHandler*/ ctx[5])) (/*active*/ ctx[0] === 2
+		? clearHandler
+		: /*resetHandler*/ ctx[5]).apply(this, arguments);
 	});
 
 	button1 = new _components_Button_svelte__WEBPACK_IMPORTED_MODULE_4__["default"]({
 			props: {
 				disabled: /*lineSelected*/ ctx[1].length === 0,
 				class: "show-btn",
-				text: /*active*/ ctx[0] === 2
-				? "预览"
-				: /*active*/ ctx[0] === 1 ? "保存" : "应用",
+				text: /*active*/ ctx[0] === 2 ? "保存" : "应用",
 				hasMasters: true
 			}
 		});
@@ -3119,15 +3117,11 @@ function create_if_block(ctx) {
 
 			const button0_changes = {};
 			if (dirty & /*lineSelected*/ 2) button0_changes.disabled = /*lineSelected*/ ctx[1].length === 0;
-			if (dirty & /*active*/ 1) button0_changes.text = /*active*/ ctx[0] === 0 ? "重置" : "取消";
+			if (dirty & /*active*/ 1) button0_changes.text = /*active*/ ctx[0] === 2 ? "取消" : "重置";
 			button0.$set(button0_changes);
 			const button1_changes = {};
 			if (dirty & /*lineSelected*/ 2) button1_changes.disabled = /*lineSelected*/ ctx[1].length === 0;
-
-			if (dirty & /*active*/ 1) button1_changes.text = /*active*/ ctx[0] === 2
-			? "预览"
-			: /*active*/ ctx[0] === 1 ? "保存" : "应用";
-
+			if (dirty & /*active*/ 1) button1_changes.text = /*active*/ ctx[0] === 2 ? "保存" : "应用";
 			button1.$set(button1_changes);
 		},
 		i(local) {

@@ -89,15 +89,15 @@
         <div class="clear-btn">
           <Button
             disabled={lineSelected.length === 0}
-            on:click={active === 0 ? resetHandler : clearHandler}
-            text={active === 0 ? "重置" : "取消"}
+            on:click={active === 2 ? clearHandler : resetHandler}
+            text={active === 2 ? "取消" : "重置"}
           />
         </div>
         <div class="show-btn">
           <Button
             disabled={lineSelected.length === 0}
             class="show-btn"
-            text={active === 2 ? "预览" : active === 1 ? "保存" : "应用"}
+            text={active === 2 ? "保存" : "应用"}
             hasMasters
           />
         </div>
