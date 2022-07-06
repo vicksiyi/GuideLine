@@ -118,7 +118,7 @@ let dash = [2, 2];
 let unApplyGroup = {};
 function clearCurrentUnApplyGroup() {
     Object.keys(unApplyGroup).forEach(key => {
-        const node = unApplyGroup[key].node;
+        const node = unApplyGroup[key];
         node === null || node === void 0 ? void 0 : node.remove();
     });
     unApplyGroup = {};

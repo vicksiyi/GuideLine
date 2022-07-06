@@ -39,7 +39,7 @@ let unApplyGroup: UnApplyGroup | {} = {};
 // 清除所有未应用的分割线
 function clearCurrentUnApplyGroup(): void {
     Object.keys(unApplyGroup).forEach(key => {
-        const node = unApplyGroup[key].node;
+        const node = unApplyGroup[key];
         node?.remove();
     });
     unApplyGroup = {};
@@ -112,6 +112,7 @@ function createGuidelineHandler(saveCard: SaveCard): void {
 
             const children = (node as SupportsGuideLineNode).children;
             let lineGroup = children.find(node => node.name === '分割线集合');
+            // 首次创建分割线时候，创建一个大集合
             if (!lineGroup) {
                 lineGroup = figma.group([group], <SupportsGuideLineNode>node);
                 lineGroup.name = '分割线集合';
