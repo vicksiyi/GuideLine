@@ -126,10 +126,10 @@ function clearCurrentUnApplyGroup() {
 function drawLine(node, distance, isRow) {
     const { width, height, rotation, x, y } = node;
     const lineNode = figma.createLine();
-    lineNode.x = isRow ? x : y + distance;
-    lineNode.y = isRow ? y + distance : x;
+    lineNode.x = isRow ? x : x + distance;
+    lineNode.y = isRow ? y + distance : y;
     lineNode.resize(isRow ? width : height, 0);
-    lineNode.rotation = isRow ? 0 : 90;
+    lineNode.rotation = isRow ? 0 : -90;
     lineNode.dashPattern = dash;
     return lineNode;
 }
