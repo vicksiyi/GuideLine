@@ -114,6 +114,7 @@ let typeToName = {
     'INSTANCE': "实例组件",
     'COMPONENT_SET': "变体"
 };
+let dash = [2, 2];
 let unApplyGroup = {};
 function clearCurrentUnApplyGroup() {
     Object.keys(unApplyGroup).forEach(key => {
@@ -122,57 +123,112 @@ function clearCurrentUnApplyGroup() {
     });
     unApplyGroup = {};
 }
-function drawLine(node) {
+function drawLine(node, distance, isRow) {
+    const { width, height, rotation, x, y } = node;
+    const lineNode = figma.createLine();
+    lineNode.x = isRow ? x : y + distance;
+    lineNode.y = isRow ? y + distance : x;
+    lineNode.resize(isRow ? width : height, 0);
+    lineNode.rotation = isRow ? 0 : 90;
+    lineNode.dashPattern = dash;
+    return lineNode;
 }
 function createLine(node, guideline) {
     let { width, height } = node;
     let rows = guideline.row.scales;
     let columns = guideline.column.scales;
-    let rowsTotal = rows.reduce((total, row) => total + row);
-    let columnTotal = columns.reduce((total, column) => total + column);
-    console.log(width, height, rowsTotal, columnTotal);
+    let rowsLen = rows.length;
+    let columnsLen = columns.length;
+    let rowsPreSum = (() => {
+        let total = 0;
+        let sum = rows.map((row) => {
+            total += row;
+            return total;
+        });
+        return sum;
+    })();
+    let columnsPreSum = (() => {
+        let total = 0;
+        let sum = columns.map((column) => {
+            total += column;
+            return total;
+        });
+        return sum;
+    })();
+    let nodes = [];
+    rows.length > 1 && rows.forEach((_, index) => {
+        if (index === rows.length - 1) {
+            return;
+        }
+        let lineNode = drawLine(node, height * rowsPreSum[index] / rowsPreSum[rowsLen - 1], true);
+        nodes.push(lineNode);
+    });
+    columns.length > 1 && columns.forEach((_, index) => {
+        if (index === columns.length - 1) {
+            return;
+        }
+        let lineNode = drawLine(node, width * columnsPreSum[index] / columnsPreSum[columnsLen - 1], false);
+        nodes.push(lineNode);
+    });
+    return nodes;
 }
-function createGuidelineHandler(guideline) {
-    const selections = jsDesign.currentPage.selection;
+function createGuidelineHandler(saveCard) {
+    const selections = figma.currentPage.selection;
     selections.forEach(node => {
-        if (supportNodes.indexOf(node.type) !== -1)
-            createLine(node, guideline);
+        if (supportNodes.indexOf(node.type) !== -1) {
+            const nodes = createLine(node, saveCard.guideline);
+            let group = figma.group(nodes, node);
+            group.name = saveCard.name;
+            group.locked = true;
+            const children = node.children;
+            let lineGroup = children.find(node => node.name === '分割线集合');
+            if (!lineGroup) {
+                lineGroup = figma.group([group], node);
+                lineGroup.name = '分割线集合';
+                lineGroup.x = node.x;
+                lineGroup.y = node.y;
+                lineGroup.resize(node.width, node.height);
+            }
+            else {
+                lineGroup.appendChild(group);
+            }
+            unApplyGroup[saveCard === null || saveCard === void 0 ? void 0 : saveCard.id] = group;
+            figma.notify(`创建${saveCard.name}分割线成功`);
+        }
         else {
-            jsDesign.notify(`${typeToName[node.type]}节点 ${node.name} 暂时支持`);
+            figma.notify(`${typeToName[node.type]}节点 ${node.name} 暂时支持`);
         }
     });
 }
 function createGuideline(saveCard) {
     if (unApplyGroup.hasOwnProperty(saveCard.id)) {
-        jsDesign.notify("请勿重复添加分割线");
+        figma.notify("请勿重复添加分割线");
     }
     else {
         unApplyGroup[saveCard.id] = { remove: () => { console.log('删除成功'); } };
-        createGuidelineHandler(saveCard.guideline);
-        jsDesign.notify(`创建${saveCard.name}分割线成功`);
+        createGuidelineHandler(saveCard);
     }
 }
 function deleteGuideline(saveCard) {
     const id = saveCard.id;
     if (!unApplyGroup.hasOwnProperty(id)) {
-        jsDesign.notify("分割线不存在");
+        figma.notify("分割线不存在");
     }
     else {
         const node = unApplyGroup[id];
         node === null || node === void 0 ? void 0 : node.remove();
         delete unApplyGroup[id];
-        jsDesign.notify(`取消${saveCard.name}分割线成功`);
+        figma.notify(`取消${saveCard.name}分割线成功`);
     }
-    console.log(unApplyGroup);
 }
-jsDesign.showUI(__html__, { width: 260, height: 440 });
-Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["emit"])('SELECTION_CHANGED', jsDesign.currentPage.selection.length > 0);
-jsDesign.on('selectionchange', function () {
-    Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["emit"])('SELECTION_CHANGED', jsDesign.currentPage.selection.length > 0);
+figma.showUI(__html__, { width: 260, height: 440 });
+Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["emit"])('SELECTION_CHANGED', figma.currentPage.selection.length > 0);
+figma.on('selectionchange', function () {
+    Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["emit"])('SELECTION_CHANGED', figma.currentPage.selection.length > 0);
     Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["emit"])('clear-active');
 });
 Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["on"])("CHANGE_GUI_SIZE", (guiSize) => {
-    jsDesign.ui.resize(guiSize === null || guiSize === void 0 ? void 0 : guiSize.width, guiSize === null || guiSize === void 0 ? void 0 : guiSize.height);
+    figma.ui.resize(guiSize === null || guiSize === void 0 ? void 0 : guiSize.width, guiSize === null || guiSize === void 0 ? void 0 : guiSize.height);
 });
 Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["on"])('clear-line', () => {
     clearCurrentUnApplyGroup();
@@ -223,7 +279,7 @@ function once(name, handler) {
 }
 const emit = typeof window === 'undefined'
     ? function (name, ...args) {
-        jsDesign.ui.postMessage([name, ...args]);
+        figma.ui.postMessage([name, ...args]);
     }
     : function (name, ...args) {
         window.parent.postMessage({
@@ -238,7 +294,7 @@ function invokeEventHandler(name, args) {
     }
 }
 if (typeof window === 'undefined') {
-    jsDesign.ui.onmessage = function ([name, ...args]) {
+    figma.ui.onmessage = function ([name, ...args]) {
         invokeEventHandler(name, args);
     };
 }

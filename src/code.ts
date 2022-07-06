@@ -31,6 +31,7 @@ let typeToName: { [key: string]: string } = {
     'INSTANCE': "实例组件",
     'COMPONENT_SET': "变体"
 }
+let dash = [2, 2]
 
 // 记录未应用分割线[分割线ID:分组ID]
 let unApplyGroup: UnApplyGroup | {} = {};
@@ -44,30 +45,91 @@ function clearCurrentUnApplyGroup(): void {
     unApplyGroup = {};
 }
 
-// 画分割线
-function drawLine(node: SupportsGuideLineNode) {
-
+// 画分割线[注意：需要解决画板旋转角度问题]
+function drawLine(node: SupportsGuideLineNode, distance: number, isRow: boolean): LineNode {
+    const { width, height, rotation, x, y } = node;
+    const lineNode = figma.createLine();
+    lineNode.x = isRow ? x : y + distance;
+    lineNode.y = isRow ? y + distance : x;
+    lineNode.resize(isRow ? width : height, 0);
+    lineNode.rotation = isRow ? 0 : 90;
+    lineNode.dashPattern = dash;
+    return lineNode;
 }
 
 // 处理分割线
-function createLine(node: SupportsGuideLineNode, guideline: GuideLine) {
+function createLine(node: SupportsGuideLineNode, guideline: GuideLine): LineNode[] {
     let { width, height } = node;
     let rows = guideline.row.scales;
     let columns = guideline.column.scales;
-    let rowsTotal = rows.reduce((total, row) => total + row)
-    let columnTotal = columns.reduce((total, column) => total + column);
-    console.log(width, height, rowsTotal, columnTotal);
+    let rowsLen = rows.length;
+    let columnsLen = columns.length;
+    let rowsPreSum: number[] = (() => {
+        let total = 0;
+        let sum = rows.map((row) => {
+            total += row;
+            return total;
+        })
+        return sum;
+    })();
+    let columnsPreSum: number[] = (() => {
+        let total = 0;
+        let sum = columns.map((column) => {
+            total += column;
+            return total;
+        })
+        return sum;
+    })();
+    let nodes = [];
+    // 生成行分割线
+    rows.length > 1 && rows.forEach((_, index) => {
+        if (index === rows.length - 1) { return; }
+        let lineNode = drawLine(node, height * rowsPreSum[index] / rowsPreSum[rowsLen - 1], true);
+        nodes.push(lineNode);
+    });
+
+    // 生成列分割线
+    columns.length > 1 && columns.forEach((_, index) => {
+        if (index === columns.length - 1) { return; }
+        let lineNode = drawLine(node, width * columnsPreSum[index] / columnsPreSum[columnsLen - 1], false);
+        nodes.push(lineNode);
+    });
+
+    return nodes;
 }
 
 // 处理节点
-function createGuidelineHandler(guideline: GuideLine): void {
+function createGuidelineHandler(saveCard: SaveCard): void {
     // 已经选择的组件
-    const selections = jsDesign.currentPage.selection;
+    const selections = figma.currentPage.selection;
     selections.forEach(node => {
-        if (supportNodes.indexOf(node.type) !== -1) createLine((node as SupportsGuideLineNode), guideline);
+        // 判断类型是否支持
+        if (supportNodes.indexOf(node.type) !== -1) {
+            const nodes = createLine((node as SupportsGuideLineNode), saveCard.guideline);
+            let group = figma.group(nodes, <SupportsGuideLineNode>node);
+            group.name = saveCard.name;
+            group.locked = true;
+
+            const children = (node as SupportsGuideLineNode).children;
+            let lineGroup = children.find(node => node.name === '分割线集合');
+            if (!lineGroup) {
+                lineGroup = figma.group([group], <SupportsGuideLineNode>node);
+                lineGroup.name = '分割线集合';
+                lineGroup.x = node.x;
+                lineGroup.y = node.y;
+                lineGroup.resize(node.width, node.height);
+            } else {
+                (lineGroup as GroupNode).appendChild(group);
+            }
+
+
+            unApplyGroup[saveCard?.id] = group;
+            // 添加未引用组件
+            figma.notify(`创建${saveCard.name}分割线成功`);
+        }
         else {
             // 问题：平台不支持同时提示两个notify
-            jsDesign.notify(`${typeToName[node.type]}节点 ${node.name} 暂时支持`);
+            figma.notify(`${typeToName[node.type]}节点 ${node.name} 暂时支持`);
         }
     })
 }
@@ -75,12 +137,11 @@ function createGuidelineHandler(guideline: GuideLine): void {
 // 生成辅助线
 function createGuideline(saveCard: SaveCard): void {
     if (unApplyGroup.hasOwnProperty(saveCard.id)) {
-        jsDesign.notify("请勿重复添加分割线");
+        figma.notify("请勿重复添加分割线");
     } else {
         // 生成
         unApplyGroup[saveCard.id] = <GroupNode>{ remove: () => { console.log('删除成功'); } };
-        createGuidelineHandler(saveCard.guideline);
-        jsDesign.notify(`创建${saveCard.name}分割线成功`);
+        createGuidelineHandler(saveCard);
     }
 }
 
@@ -88,32 +149,32 @@ function createGuideline(saveCard: SaveCard): void {
 function deleteGuideline(saveCard: SaveCard): void {
     const id = saveCard.id;
     if (!unApplyGroup.hasOwnProperty(id)) {
-        jsDesign.notify("分割线不存在");
+        figma.notify("分割线不存在");
     } else {
         // 删除
         const node = unApplyGroup[id];
         node?.remove();
         delete unApplyGroup[id];
-        jsDesign.notify(`取消${saveCard.name}分割线成功`);
+        figma.notify(`取消${saveCard.name}分割线成功`);
     }
-    console.log(unApplyGroup);
 }
 
-jsDesign.showUI(__html__, { width: 260, height: 440 });
+figma.showUI(__html__, { width: 260, height: 440 });
 
 // GUI 界面发送消息【已选择图层，启动的时候发一次】
 emit<SelectionChangedHandler>(
     'SELECTION_CHANGED',
-    jsDesign.currentPage.selection.length > 0
+    figma.currentPage.selection.length > 0
 )
 
 // 监听图层选择事件
-jsDesign.on('selectionchange', function () {
+figma.on('selectionchange', function () {
     // 向GUI 界面发送消息【已选择图层】
     emit<SelectionChangedHandler>(
         'SELECTION_CHANGED',
-        jsDesign.currentPage.selection.length > 0
+        figma.currentPage.selection.length > 0
     );
+
 
     // 重新选择会将未引用的分割线取消掉
     emit<clearActiveHandler>('clear-active')
@@ -121,7 +182,7 @@ jsDesign.on('selectionchange', function () {
 
 // 监听GUI发送过来的消息【改变窗口】
 on<ChangeGuiSizeHandler>("CHANGE_GUI_SIZE", (guiSize) => {
-    jsDesign.ui.resize(guiSize?.width, guiSize?.height);
+    figma.ui.resize(guiSize?.width, guiSize?.height);
 })
 
 // 监听清空分割线消息【清空未应用】

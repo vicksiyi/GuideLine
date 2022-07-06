@@ -3443,7 +3443,7 @@ function once(name, handler) {
 }
 const emit = typeof window === 'undefined'
     ? function (name, ...args) {
-        jsDesign.ui.postMessage([name, ...args]);
+        figma.ui.postMessage([name, ...args]);
     }
     : function (name, ...args) {
         window.parent.postMessage({
@@ -3458,7 +3458,7 @@ function invokeEventHandler(name, args) {
     }
 }
 if (typeof window === 'undefined') {
-    jsDesign.ui.onmessage = function ([name, ...args]) {
+    figma.ui.onmessage = function ([name, ...args]) {
         invokeEventHandler(name, args);
     };
 }
