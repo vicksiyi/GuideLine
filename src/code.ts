@@ -64,6 +64,7 @@ function createLine(node: SupportsGuideLineNode, guideline: GuideLine): LineNode
     let columns = guideline.column.scales;
     let rowsLen = rows.length;
     let columnsLen = columns.length;
+    // 前缀和
     let rowsPreSum: number[] = (() => {
         let total = 0;
         let sum = rows.map((row) => {

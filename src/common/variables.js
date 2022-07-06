@@ -24,7 +24,7 @@ const variables = {
     saveCardList: [
         {
             id: '1',
-            name: '黄金分割',
+            name: '行黄金分割',
             icon: '',
             guideline: {
                 row: {
@@ -39,6 +39,21 @@ const variables = {
         },
         {
             id: '2',
+            name: '列黄金分割',
+            icon: '',
+            guideline: {
+                row: {
+                    count: 1,
+                    scales: [1]
+                },
+                column: {
+                    count: 2,
+                    scales: [1, 1.618]
+                }
+            }
+        },
+        {
+            id: '3',
             name: '白银分割',
             icon: '',
             guideline: {
@@ -53,7 +68,7 @@ const variables = {
             }
         },
         {
-            id: '3',
+            id: '4',
             name: '五等分',
             icon: '',
             guideline: {
@@ -68,7 +83,7 @@ const variables = {
             }
         },
         {
-            id: '4',
+            id: '5',
             name: '一二一',
             icon: '',
             guideline: {
@@ -83,7 +98,7 @@ const variables = {
             }
         },
         {
-            id: '5',
+            id: '6',
             name: '一三二',
             icon: '',
             guideline: {
