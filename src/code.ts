@@ -115,9 +115,7 @@ function createGuidelineHandler(saveCard: SaveCard): void {
             if (!lineGroup) {
                 lineGroup = figma.group([group], <SupportsGuideLineNode>node);
                 lineGroup.name = '分割线集合';
-                lineGroup.x = node.x;
-                lineGroup.y = node.y;
-                lineGroup.resize(node.width, node.height);
+                // lineGroup.resizeWithoutConstraints(node.width, node.height); // bug：无法修改分组宽高
             } else {
                 (lineGroup as GroupNode).appendChild(group);
             }

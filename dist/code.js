@@ -185,9 +185,6 @@ function createGuidelineHandler(saveCard) {
             if (!lineGroup) {
                 lineGroup = figma.group([group], node);
                 lineGroup.name = '分割线集合';
-                lineGroup.x = node.x;
-                lineGroup.y = node.y;
-                lineGroup.resize(node.width, node.height);
             }
             else {
                 lineGroup.appendChild(group);
