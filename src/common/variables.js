@@ -54,7 +54,7 @@ const variables = {
         },
         {
             id: '3',
-            name: '白银分割',
+            name: '行白银分割',
             icon: '',
             guideline: {
                 row: {
@@ -69,7 +69,22 @@ const variables = {
         },
         {
             id: '4',
-            name: '五等分',
+            name: '列白银分割',
+            icon: '',
+            guideline: {
+                row: {
+                    count: 1,
+                    scales: [1]
+                },
+                column: {
+                    count: 2,
+                    scales: [1, 1.414]
+                }
+            }
+        },
+        {
+            id: '5',
+            name: '行五等分',
             icon: '',
             guideline: {
                 row: {
@@ -83,8 +98,23 @@ const variables = {
             }
         },
         {
-            id: '5',
-            name: '一二一',
+            id: '6',
+            name: '列五等分',
+            icon: '',
+            guideline: {
+                row: {
+                    count: 1,
+                    scales: [1]
+                },
+                column: {
+                    count: 5,
+                    scales: [1, 1, 1, 1, 1]
+                }
+            }
+        },
+        {
+            id: '7',
+            name: '行一二一',
             icon: '',
             guideline: {
                 row: {
@@ -98,8 +128,23 @@ const variables = {
             }
         },
         {
-            id: '6',
-            name: '一三二',
+            id: '8',
+            name: '列一二一',
+            icon: '',
+            guideline: {
+                row: {
+                    count: 1,
+                    scales: [1]
+                },
+                column: {
+                    count: 3,
+                    scales: [1, 2, 1]
+                }
+            }
+        },
+        {
+            id: '9',
+            name: '行一三二',
             icon: '',
             guideline: {
                 row: {
@@ -109,6 +154,21 @@ const variables = {
                 column: {
                     count: 1,
                     scales: [1]
+                }
+            }
+        },
+        {
+            id: '10',
+            name: '列一三二',
+            icon: '',
+            guideline: {
+                row: {
+                    count: 1,
+                    scales: [1]
+                },
+                column: {
+                    count: 3,
+                    scales: [1, 3, 2]
                 }
             }
         }
