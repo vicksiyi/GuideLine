@@ -19,13 +19,13 @@
   let lineSelected = [];
   let hasSelected = false;
   let basedColor = "CCCCCC";
+  let _guideline = guideline;
 
   // 重置选择
   function resetSelection() {
     lineSelected = [];
     emit("clear-line");
   }
-
   // 导航栏选择
   function handleActiveChange(event) {
     active = event.detail.active;
@@ -50,7 +50,6 @@
   function colorChange() {
     emit("update-color", basedColor);
   }
-
   // 重置
   function resetHandler(event) {
     resetSelection();
@@ -86,12 +85,10 @@
     <!-- 正文 -->
     <div class="content">
       {#if active === 2}
-        <!-- 辅助线 -->
         <div class="guide-lines">
-          <Card {guideline} />
+          <Card bind:guideline={_guideline} />
         </div>
       {:else}
-        <!-- 已保存 -->
         <SaveCard
           {saveCardList}
           on:activeChange={lineActiveChange}
@@ -104,20 +101,38 @@
     <footer>
       <div class="manage-btn">
         <div class="clear-btn">
-          <Button
-            disabled={lineSelected.length === 0}
-            on:click={active === 2 ? clearHandler : resetHandler}
-            text={active === 2 ? "取消" : "重置"}
-          />
+          {#if active === 0 || active === 1}
+            <Button
+              disabled={lineSelected.length === 0}
+              on:click={resetHandler}
+              text={"重置"}
+            />
+          {:else}
+            <Button
+              disabled={lineSelected.length === 0}
+              on:click={clearHandler}
+              text={"取消"}
+            />
+          {/if}
         </div>
         <div class="show-btn">
-          <Button
-            disabled={lineSelected.length === 0}
-            class="show-btn"
-            on:click={active === 2 ? saveHandler : applyHandler}
-            text={active === 2 ? "保存" : "应用"}
-            hasMasters
-          />
+          {#if active === 0 || active === 1}
+            <Button
+              disabled={lineSelected.length === 0}
+              class="show-btn"
+              on:click={applyHandler}
+              text={"应用"}
+              hasMasters
+            />
+          {:else}
+            <Button
+              disabled={!(_guideline.row.count && _guideline.column.count)}
+              class="show-btn"
+              on:click={saveHandler}
+              text={`保存`}
+              hasMasters
+            />
+          {/if}
         </div>
       </div>
     </footer>

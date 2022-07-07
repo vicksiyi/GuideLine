@@ -2952,8 +2952,8 @@ function add_css(target) {
 	Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append_styles"])(target, "svelte-14422fb", ".toast{position:absolute;bottom:16px;left:16px;right:16px;padding:8px 16px;border:1px solid #909399;border-radius:4px;background-color:#909399;box-shadow:0 2px 12px 0 rgba(0, 0, 0, 0.1);color:#ffffff;transition:all 0.5s ease-in-out;text-align:center;font-size:12px}.toast--error{border:1px solid #f56c6c;background-color:#f56c6c}.toast--warning{border:1px solid #e6a23c;background-color:#e6a23c}.toast--success{border:1px solid #67c23a;background-color:#67c23a}footer.svelte-14422fb{width:100%;height:64px;margin-top:16px;background-color:rgba(0, 0, 0, 0.03)}.manage-btn.svelte-14422fb{display:flex;justify-content:space-between;padding:16px}.manage-btn.svelte-14422fb .clear-btn{width:58px;height:32px}.manage-btn.svelte-14422fb .show-btn{flex:1;margin-left:12px}");
 }
 
-// (125:0) {:else}
-function create_else_block_1(ctx) {
+// (140:0) {:else}
+function create_else_block_3(ctx) {
 	let main;
 	let empty_1;
 	let current;
@@ -2987,7 +2987,7 @@ function create_else_block_1(ctx) {
 	};
 }
 
-// (80:0) {#if hasSelected}
+// (79:0) {#if hasSelected}
 function create_if_block(ctx) {
 	let main;
 	let header;
@@ -2995,23 +2995,25 @@ function create_if_block(ctx) {
 	let t0;
 	let div0;
 	let current_block_type_index;
-	let if_block;
+	let if_block0;
 	let t1;
 	let footer;
 	let div3;
 	let div1;
-	let button0;
+	let current_block_type_index_1;
+	let if_block1;
 	let t2;
 	let div2;
-	let button1;
+	let current_block_type_index_2;
+	let if_block2;
 	let current;
 
 	tags_1 = new _components_Tags_svelte__WEBPACK_IMPORTED_MODULE_2__["default"]({
 			props: { tags: _common_variables__WEBPACK_IMPORTED_MODULE_4__["tags"], active: /*active*/ ctx[0] }
 		});
 
-	tags_1.$on("activeChange", /*handleActiveChange*/ ctx[4]);
-	const if_block_creators = [create_if_block_1, create_else_block];
+	tags_1.$on("activeChange", /*handleActiveChange*/ ctx[5]);
+	const if_block_creators = [create_if_block_3, create_else_block_2];
 	const if_blocks = [];
 
 	function select_block_type_1(ctx, dirty) {
@@ -3020,39 +3022,27 @@ function create_if_block(ctx) {
 	}
 
 	current_block_type_index = select_block_type_1(ctx, -1);
-	if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+	if_block0 = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+	const if_block_creators_1 = [create_if_block_2, create_else_block_1];
+	const if_blocks_1 = [];
 
-	button0 = new _components_Button_svelte__WEBPACK_IMPORTED_MODULE_5__["default"]({
-			props: {
-				disabled: /*lineSelected*/ ctx[1].length === 0,
-				text: /*active*/ ctx[0] === 2 ? "取消" : "重置"
-			}
-		});
+	function select_block_type_2(ctx, dirty) {
+		if (/*active*/ ctx[0] === 0 || /*active*/ ctx[0] === 1) return 0;
+		return 1;
+	}
 
-	button0.$on("click", function () {
-		if (Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["is_function"])(/*active*/ ctx[0] === 2
-		? clearHandler
-		: /*resetHandler*/ ctx[7])) (/*active*/ ctx[0] === 2
-		? clearHandler
-		: /*resetHandler*/ ctx[7]).apply(this, arguments);
-	});
+	current_block_type_index_1 = select_block_type_2(ctx, -1);
+	if_block1 = if_blocks_1[current_block_type_index_1] = if_block_creators_1[current_block_type_index_1](ctx);
+	const if_block_creators_2 = [create_if_block_1, create_else_block];
+	const if_blocks_2 = [];
 
-	button1 = new _components_Button_svelte__WEBPACK_IMPORTED_MODULE_5__["default"]({
-			props: {
-				disabled: /*lineSelected*/ ctx[1].length === 0,
-				class: "show-btn",
-				text: /*active*/ ctx[0] === 2 ? "保存" : "应用",
-				hasMasters: true
-			}
-		});
+	function select_block_type_3(ctx, dirty) {
+		if (/*active*/ ctx[0] === 0 || /*active*/ ctx[0] === 1) return 0;
+		return 1;
+	}
 
-	button1.$on("click", function () {
-		if (Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["is_function"])(/*active*/ ctx[0] === 2
-		? saveHandler
-		: /*applyHandler*/ ctx[8])) (/*active*/ ctx[0] === 2
-		? saveHandler
-		: /*applyHandler*/ ctx[8]).apply(this, arguments);
-	});
+	current_block_type_index_2 = select_block_type_3(ctx, -1);
+	if_block2 = if_blocks_2[current_block_type_index_2] = if_block_creators_2[current_block_type_index_2](ctx);
 
 	return {
 		c() {
@@ -3061,15 +3051,15 @@ function create_if_block(ctx) {
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["create_component"])(tags_1.$$.fragment);
 			t0 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
 			div0 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
-			if_block.c();
+			if_block0.c();
 			t1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
 			footer = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("footer");
 			div3 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
 			div1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["create_component"])(button0.$$.fragment);
+			if_block1.c();
 			t2 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
 			div2 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["create_component"])(button1.$$.fragment);
+			if_block2.c();
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div0, "class", "content");
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div1, "class", "clear-btn");
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div2, "class", "show-btn");
@@ -3088,14 +3078,13 @@ function create_if_block(ctx) {
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(main, footer);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(footer, div3);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div3, div1);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["mount_component"])(button0, div1, null);
+			if_blocks_1[current_block_type_index_1].m(div1, null);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div3, t2);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div3, div2);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["mount_component"])(button1, div2, null);
+			if_blocks_2[current_block_type_index_2].m(div2, null);
 			current = true;
 		},
-		p(new_ctx, dirty) {
-			ctx = new_ctx;
+		p(ctx, dirty) {
 			const tags_1_changes = {};
 			if (dirty & /*active*/ 1) tags_1_changes.active = /*active*/ ctx[0];
 			tags_1.$set(tags_1_changes);
@@ -3112,55 +3101,98 @@ function create_if_block(ctx) {
 				});
 
 				Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["check_outros"])();
-				if_block = if_blocks[current_block_type_index];
+				if_block0 = if_blocks[current_block_type_index];
 
-				if (!if_block) {
-					if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
-					if_block.c();
+				if (!if_block0) {
+					if_block0 = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+					if_block0.c();
 				} else {
-					if_block.p(ctx, dirty);
+					if_block0.p(ctx, dirty);
 				}
 
-				Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_in"])(if_block, 1);
-				if_block.m(div0, null);
+				Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_in"])(if_block0, 1);
+				if_block0.m(div0, null);
 			}
 
-			const button0_changes = {};
-			if (dirty & /*lineSelected*/ 2) button0_changes.disabled = /*lineSelected*/ ctx[1].length === 0;
-			if (dirty & /*active*/ 1) button0_changes.text = /*active*/ ctx[0] === 2 ? "取消" : "重置";
-			button0.$set(button0_changes);
-			const button1_changes = {};
-			if (dirty & /*lineSelected*/ 2) button1_changes.disabled = /*lineSelected*/ ctx[1].length === 0;
-			if (dirty & /*active*/ 1) button1_changes.text = /*active*/ ctx[0] === 2 ? "保存" : "应用";
-			button1.$set(button1_changes);
+			let previous_block_index_1 = current_block_type_index_1;
+			current_block_type_index_1 = select_block_type_2(ctx, dirty);
+
+			if (current_block_type_index_1 === previous_block_index_1) {
+				if_blocks_1[current_block_type_index_1].p(ctx, dirty);
+			} else {
+				Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["group_outros"])();
+
+				Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_out"])(if_blocks_1[previous_block_index_1], 1, 1, () => {
+					if_blocks_1[previous_block_index_1] = null;
+				});
+
+				Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["check_outros"])();
+				if_block1 = if_blocks_1[current_block_type_index_1];
+
+				if (!if_block1) {
+					if_block1 = if_blocks_1[current_block_type_index_1] = if_block_creators_1[current_block_type_index_1](ctx);
+					if_block1.c();
+				} else {
+					if_block1.p(ctx, dirty);
+				}
+
+				Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_in"])(if_block1, 1);
+				if_block1.m(div1, null);
+			}
+
+			let previous_block_index_2 = current_block_type_index_2;
+			current_block_type_index_2 = select_block_type_3(ctx, dirty);
+
+			if (current_block_type_index_2 === previous_block_index_2) {
+				if_blocks_2[current_block_type_index_2].p(ctx, dirty);
+			} else {
+				Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["group_outros"])();
+
+				Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_out"])(if_blocks_2[previous_block_index_2], 1, 1, () => {
+					if_blocks_2[previous_block_index_2] = null;
+				});
+
+				Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["check_outros"])();
+				if_block2 = if_blocks_2[current_block_type_index_2];
+
+				if (!if_block2) {
+					if_block2 = if_blocks_2[current_block_type_index_2] = if_block_creators_2[current_block_type_index_2](ctx);
+					if_block2.c();
+				} else {
+					if_block2.p(ctx, dirty);
+				}
+
+				Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_in"])(if_block2, 1);
+				if_block2.m(div2, null);
+			}
 		},
 		i(local) {
 			if (current) return;
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_in"])(tags_1.$$.fragment, local);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_in"])(if_block);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_in"])(button0.$$.fragment, local);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_in"])(button1.$$.fragment, local);
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_in"])(if_block0);
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_in"])(if_block1);
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_in"])(if_block2);
 			current = true;
 		},
 		o(local) {
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_out"])(tags_1.$$.fragment, local);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_out"])(if_block);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_out"])(button0.$$.fragment, local);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_out"])(button1.$$.fragment, local);
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_out"])(if_block0);
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_out"])(if_block1);
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_out"])(if_block2);
 			current = false;
 		},
 		d(detaching) {
 			if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(main);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["destroy_component"])(tags_1);
 			if_blocks[current_block_type_index].d();
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["destroy_component"])(button0);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["destroy_component"])(button1);
+			if_blocks_1[current_block_type_index_1].d();
+			if_blocks_2[current_block_type_index_2].d();
 		}
 	};
 }
 
-// (93:6) {:else}
-function create_else_block(ctx) {
+// (91:6) {:else}
+function create_else_block_2(ctx) {
 	let savecard;
 	let updating_selected;
 	let t;
@@ -3169,7 +3201,7 @@ function create_else_block(ctx) {
 	let current;
 
 	function savecard_selected_binding(value) {
-		/*savecard_selected_binding*/ ctx[9](value);
+		/*savecard_selected_binding*/ ctx[11](value);
 	}
 
 	let savecard_props = { saveCardList: _common_variables__WEBPACK_IMPORTED_MODULE_4__["saveCardList"] };
@@ -3180,10 +3212,10 @@ function create_else_block(ctx) {
 
 	savecard = new _components_SaveCard_svelte__WEBPACK_IMPORTED_MODULE_9__["default"]({ props: savecard_props });
 	svelte_internal__WEBPACK_IMPORTED_MODULE_0__["binding_callbacks"].push(() => Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["bind"])(savecard, 'selected', savecard_selected_binding));
-	savecard.$on("activeChange", /*lineActiveChange*/ ctx[5]);
+	savecard.$on("activeChange", /*lineActiveChange*/ ctx[6]);
 
 	function color_basedColor_binding(value) {
-		/*color_basedColor_binding*/ ctx[10](value);
+		/*color_basedColor_binding*/ ctx[12](value);
 	}
 
 	let color_props = {};
@@ -3194,7 +3226,7 @@ function create_else_block(ctx) {
 
 	color = new _components_Color_svelte__WEBPACK_IMPORTED_MODULE_1__["default"]({ props: color_props });
 	svelte_internal__WEBPACK_IMPORTED_MODULE_0__["binding_callbacks"].push(() => Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["bind"])(color, 'basedColor', color_basedColor_binding));
-	color.$on("colorChange", /*colorChange*/ ctx[6]);
+	color.$on("colorChange", /*colorChange*/ ctx[7]);
 
 	return {
 		c() {
@@ -3247,12 +3279,25 @@ function create_else_block(ctx) {
 	};
 }
 
-// (88:6) {#if active === 2}
-function create_if_block_1(ctx) {
+// (87:6) {#if active === 2}
+function create_if_block_3(ctx) {
 	let div;
 	let card;
+	let updating_guideline;
 	let current;
-	card = new _components_Card_svelte__WEBPACK_IMPORTED_MODULE_3__["default"]({ props: { guideline: _common_variables__WEBPACK_IMPORTED_MODULE_4__["guideline"] } });
+
+	function card_guideline_binding(value) {
+		/*card_guideline_binding*/ ctx[10](value);
+	}
+
+	let card_props = {};
+
+	if (/*_guideline*/ ctx[4] !== void 0) {
+		card_props.guideline = /*_guideline*/ ctx[4];
+	}
+
+	card = new _components_Card_svelte__WEBPACK_IMPORTED_MODULE_3__["default"]({ props: card_props });
+	svelte_internal__WEBPACK_IMPORTED_MODULE_0__["binding_callbacks"].push(() => Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["bind"])(card, 'guideline', card_guideline_binding));
 
 	return {
 		c() {
@@ -3265,7 +3310,17 @@ function create_if_block_1(ctx) {
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["mount_component"])(card, div, null);
 			current = true;
 		},
-		p: svelte_internal__WEBPACK_IMPORTED_MODULE_0__["noop"],
+		p(ctx, dirty) {
+			const card_changes = {};
+
+			if (!updating_guideline && dirty & /*_guideline*/ 16) {
+				updating_guideline = true;
+				card_changes.guideline = /*_guideline*/ ctx[4];
+				Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_flush_callback"])(() => updating_guideline = false);
+			}
+
+			card.$set(card_changes);
+		},
 		i(local) {
 			if (current) return;
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_in"])(card.$$.fragment, local);
@@ -3282,12 +3337,184 @@ function create_if_block_1(ctx) {
 	};
 }
 
+// (110:10) {:else}
+function create_else_block_1(ctx) {
+	let button;
+	let current;
+
+	button = new _components_Button_svelte__WEBPACK_IMPORTED_MODULE_5__["default"]({
+			props: {
+				disabled: /*lineSelected*/ ctx[1].length === 0,
+				text: "取消"
+			}
+		});
+
+	button.$on("click", clearHandler);
+
+	return {
+		c() {
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["create_component"])(button.$$.fragment);
+		},
+		m(target, anchor) {
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["mount_component"])(button, target, anchor);
+			current = true;
+		},
+		p(ctx, dirty) {
+			const button_changes = {};
+			if (dirty & /*lineSelected*/ 2) button_changes.disabled = /*lineSelected*/ ctx[1].length === 0;
+			button.$set(button_changes);
+		},
+		i(local) {
+			if (current) return;
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_in"])(button.$$.fragment, local);
+			current = true;
+		},
+		o(local) {
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_out"])(button.$$.fragment, local);
+			current = false;
+		},
+		d(detaching) {
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["destroy_component"])(button, detaching);
+		}
+	};
+}
+
+// (104:10) {#if active === 0 || active === 1}
+function create_if_block_2(ctx) {
+	let button;
+	let current;
+
+	button = new _components_Button_svelte__WEBPACK_IMPORTED_MODULE_5__["default"]({
+			props: {
+				disabled: /*lineSelected*/ ctx[1].length === 0,
+				text: "重置"
+			}
+		});
+
+	button.$on("click", /*resetHandler*/ ctx[8]);
+
+	return {
+		c() {
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["create_component"])(button.$$.fragment);
+		},
+		m(target, anchor) {
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["mount_component"])(button, target, anchor);
+			current = true;
+		},
+		p(ctx, dirty) {
+			const button_changes = {};
+			if (dirty & /*lineSelected*/ 2) button_changes.disabled = /*lineSelected*/ ctx[1].length === 0;
+			button.$set(button_changes);
+		},
+		i(local) {
+			if (current) return;
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_in"])(button.$$.fragment, local);
+			current = true;
+		},
+		o(local) {
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_out"])(button.$$.fragment, local);
+			current = false;
+		},
+		d(detaching) {
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["destroy_component"])(button, detaching);
+		}
+	};
+}
+
+// (127:10) {:else}
+function create_else_block(ctx) {
+	let button;
+	let current;
+
+	button = new _components_Button_svelte__WEBPACK_IMPORTED_MODULE_5__["default"]({
+			props: {
+				disabled: !(/*_guideline*/ ctx[4].row.count && /*_guideline*/ ctx[4].column.count),
+				class: "show-btn",
+				text: `保存`,
+				hasMasters: true
+			}
+		});
+
+	button.$on("click", saveHandler);
+
+	return {
+		c() {
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["create_component"])(button.$$.fragment);
+		},
+		m(target, anchor) {
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["mount_component"])(button, target, anchor);
+			current = true;
+		},
+		p(ctx, dirty) {
+			const button_changes = {};
+			if (dirty & /*_guideline*/ 16) button_changes.disabled = !(/*_guideline*/ ctx[4].row.count && /*_guideline*/ ctx[4].column.count);
+			button.$set(button_changes);
+		},
+		i(local) {
+			if (current) return;
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_in"])(button.$$.fragment, local);
+			current = true;
+		},
+		o(local) {
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_out"])(button.$$.fragment, local);
+			current = false;
+		},
+		d(detaching) {
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["destroy_component"])(button, detaching);
+		}
+	};
+}
+
+// (119:10) {#if active === 0 || active === 1}
+function create_if_block_1(ctx) {
+	let button;
+	let current;
+
+	button = new _components_Button_svelte__WEBPACK_IMPORTED_MODULE_5__["default"]({
+			props: {
+				disabled: /*lineSelected*/ ctx[1].length === 0,
+				class: "show-btn",
+				text: "应用",
+				hasMasters: true
+			}
+		});
+
+	button.$on("click", /*applyHandler*/ ctx[9]);
+
+	return {
+		c() {
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["create_component"])(button.$$.fragment);
+		},
+		m(target, anchor) {
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["mount_component"])(button, target, anchor);
+			current = true;
+		},
+		p(ctx, dirty) {
+			const button_changes = {};
+			if (dirty & /*lineSelected*/ 2) button_changes.disabled = /*lineSelected*/ ctx[1].length === 0;
+			button.$set(button_changes);
+		},
+		i(local) {
+			if (current) return;
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_in"])(button.$$.fragment, local);
+			current = true;
+		},
+		o(local) {
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_out"])(button.$$.fragment, local);
+			current = false;
+		},
+		d(detaching) {
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["destroy_component"])(button, detaching);
+		}
+	};
+}
+
 function create_fragment(ctx) {
 	let current_block_type_index;
 	let if_block;
 	let if_block_anchor;
 	let current;
-	const if_block_creators = [create_if_block, create_else_block_1];
+	const if_block_creators = [create_if_block, create_else_block_3];
 	const if_blocks = [];
 
 	function select_block_type(ctx, dirty) {
@@ -3365,6 +3592,7 @@ function instance($$self, $$props, $$invalidate) {
 	let lineSelected = [];
 	let hasSelected = false;
 	let basedColor = "CCCCCC";
+	let _guideline = _common_variables__WEBPACK_IMPORTED_MODULE_4__["guideline"];
 
 	// 重置选择
 	function resetSelection() {
@@ -3425,6 +3653,11 @@ function instance($$self, $$props, $$invalidate) {
 		resetSelection();
 	});
 
+	function card_guideline_binding(value) {
+		_guideline = value;
+		$$invalidate(4, _guideline);
+	}
+
 	function savecard_selected_binding(value) {
 		lineSelected = value;
 		$$invalidate(1, lineSelected);
@@ -3440,11 +3673,13 @@ function instance($$self, $$props, $$invalidate) {
 		lineSelected,
 		hasSelected,
 		basedColor,
+		_guideline,
 		handleActiveChange,
 		lineActiveChange,
 		colorChange,
 		resetHandler,
 		applyHandler,
+		card_guideline_binding,
 		savecard_selected_binding,
 		color_basedColor_binding
 	];
