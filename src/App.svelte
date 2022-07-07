@@ -2,6 +2,7 @@
   import Color from "./components/Color.svelte";
   import Tags from "./components/Tags.svelte";
   import Card from "./components/Card.svelte";
+  import CheckBox from "./components/CheckBox.svelte";
   import {
     tags,
     guiSizeEmpty,
@@ -20,6 +21,7 @@
   let hasSelected = false;
   let basedColor = "CCCCCC";
   let _guideline = guideline;
+  let isPreview = false;
 
   // 重置选择
   function resetSelection() {
@@ -97,6 +99,7 @@
         <!-- 颜色选择器 -->
         <Color on:colorChange={colorChange} bind:basedColor />
       {/if}
+      <CheckBox label={"预览"} bind:checked={isPreview} />
     </div>
     <footer>
       <div class="manage-btn">
