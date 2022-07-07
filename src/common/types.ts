@@ -66,3 +66,8 @@ export interface clearActiveHandler extends EventHandler {
     name: 'clear-active',
     handler: () => void
 }
+
+export interface colorChangeHandler extends EventHandler {
+    name: 'update-color',
+    handler: (color: string) => void
+}

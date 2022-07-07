@@ -1,65 +1,80 @@
 <script>
-    import Tags from "./components/Tags.svelte";
-    import Card from "./components/Card.svelte";
-    import {tags,guiSizeEmpty,guiSize,guideline,saveCardList} from "./common/variables";
-    import Button from "./components/Button.svelte";
-    import Empty from "./components/Empty.svelte";
-    import {on,emit} from "./common/events";
-    import {updateGuiSize} from "./common/global";
-    import SaveCard from "./components/SaveCard.svelte";
-    
-    let active = 0;
-    let lineSelected = [];
-    let hasSelected = false;
-    
-    // 重置选择
-    function resetSelection() {
-      lineSelected = [];  
-      emit('clear-line');
-    }
-    
-    // 导航栏选择
-    function handleActiveChange(event) {
-        active = event.detail.active;
-        resetSelection();
-        updateGuiSize(guiSize);
-	  }
+  import Color from "./components/Color.svelte";
+  import Tags from "./components/Tags.svelte";
+  import Card from "./components/Card.svelte";
+  import {
+    tags,
+    guiSizeEmpty,
+    guiSize,
+    guideline,
+    saveCardList,
+  } from "./common/variables";
+  import Button from "./components/Button.svelte";
+  import Empty from "./components/Empty.svelte";
+  import { on, emit } from "./common/events";
+  import { updateGuiSize } from "./common/global";
+  import SaveCard from "./components/SaveCard.svelte";
 
-    // 分割线选择【渲染生成分割线】
-    function lineActiveChange(event){
-      const index = event.detail.index;
-      const lineIndex = lineSelected.indexOf(index);
-      // 判断是否已经预览
-      if(lineIndex === -1) { 
-        emit('add-line', saveCardList[index]);
-        lineSelected = [...lineSelected, index];
-      }else{ 
-        emit('delete-line', saveCardList[index]);
-        lineSelected.splice(lineIndex,1);
-        lineSelected = lineSelected;
-      }
-    }
+  let active = 0;
+  let lineSelected = [];
+  let hasSelected = false;
+  let basedColor = "CCCCCC";
 
-    // 重置
-    function resetHandler(event){
-      resetSelection();
+  // 重置选择
+  function resetSelection() {
+    lineSelected = [];
+    emit("clear-line");
+  }
+
+  // 导航栏选择
+  function handleActiveChange(event) {
+    active = event.detail.active;
+    resetSelection();
+    updateGuiSize(guiSize);
+  }
+  // 分割线选择【渲染生成分割线】
+  function lineActiveChange(event) {
+    const index = event.detail.index;
+    const lineIndex = lineSelected.indexOf(index);
+    // 判断是否已经预览
+    if (lineIndex === -1) {
+      emit("add-line", saveCardList[index]);
+      lineSelected = [...lineSelected, index];
+    } else {
+      emit("delete-line", saveCardList[index]);
+      lineSelected.splice(lineIndex, 1);
+      lineSelected = lineSelected;
     }
-    // 取消选择
-    function clearHandler(event){
-        
+  }
+  // 颜色更新
+  function colorChange() {
+    emit("update-color", basedColor);
+  }
+
+  // 重置
+  function resetHandler(event) {
+    resetSelection();
+  }
+  // 取消选择
+  function clearHandler(event) {}
+  // 保存
+  function saveHandler(event) {}
+  // 应用
+  function applyHandler(event) {
+    emit("apply-line");
+  }
+  // 监听图层选择情况
+  on("SELECTION_CHANGED", (hasSelection) => {
+    hasSelected = hasSelection;
+    if (!hasSelected) {
+      emit("CHANGE_GUI_SIZE", guiSizeEmpty);
+    } else {
+      updateGuiSize(guiSize);
     }
-    // 监听图层选择情况
-    on("SELECTION_CHANGED",(hasSelection)=>{
-      hasSelected = hasSelection;
-      if(!hasSelected) {
-        emit('CHANGE_GUI_SIZE', guiSizeEmpty)
-      }else {
-        updateGuiSize(guiSize);
-      }
-    })
-    on('clear-active',()=>{
-      resetSelection();
-    })
+  });
+  on("clear-active", () => {
+    resetSelection();
+  });
 </script>
 
 {#if hasSelected}
@@ -82,6 +97,8 @@
           on:activeChange={lineActiveChange}
           bind:selected={lineSelected}
         />
+        <!-- 颜色选择器 -->
+        <Color on:colorChange={colorChange} bind:basedColor />
       {/if}
     </div>
     <footer>
@@ -97,6 +114,7 @@
           <Button
             disabled={lineSelected.length === 0}
             class="show-btn"
+            on:click={active === 2 ? saveHandler : applyHandler}
             text={active === 2 ? "保存" : "应用"}
             hasMasters
           />

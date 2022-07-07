@@ -1,4 +1,5 @@
 import { on, emit } from "./common/events";
+import { hexToJsDesignRGB } from "./common/convertColor";
 import {
     SelectionChangedHandler,
     ChangeGuiSizeHandler,
@@ -10,7 +11,8 @@ import {
     UnApplyGroup,
     GuideLine,
     clearActiveHandler,
-    SupportsGuideLineNode
+    SupportsGuideLineNode,
+    colorChangeHandler
 } from "./common/types";
 
 // 支持的节点
@@ -32,6 +34,7 @@ let typeToName: { [key: string]: string } = {
     'COMPONENT_SET': "变体"
 }
 let dash = [2, 2]
+let basedColor = "CCCCCC";
 
 // 记录未应用分割线[分割线ID:分组ID]
 let unApplyGroup: UnApplyGroup | {} = {};
@@ -49,11 +52,13 @@ function clearCurrentUnApplyGroup(): void {
 function drawLine(node: SupportsGuideLineNode, distance: number, isRow: boolean): LineNode {
     const { width, height, rotation, x, y } = node;
     const lineNode = figma.createLine();
+    const rgbColor = hexToJsDesignRGB(basedColor);
     lineNode.x = isRow ? x : x + distance;
     lineNode.y = isRow ? y + distance : y;
     lineNode.resize(isRow ? width : height, 0);
     lineNode.rotation = isRow ? 0 : -90;
     lineNode.dashPattern = dash;
+    lineNode.strokes = [{ type: 'SOLID', color: rgbColor }]
     lineNode.constraints = {
         horizontal: "SCALE",
         vertical: "SCALE"
@@ -206,5 +211,11 @@ on<DeleteLineHandler>('delete-line', (saveCard: SaveCard) => {
 
 // 应用已经添加的分割线
 on<ApplyLineHandler>('apply-line', () => {
+    unApplyGroup = {};
+    figma.notify("成功应用")
+})
 
+// 监听颜色变化
+on<colorChangeHandler>('update-color', (color: string) => {
+    basedColor = color;
 })

@@ -96,6 +96,8 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _common_events__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./common/events */ "./src/common/events.js");
+/* harmony import */ var _common_convertColor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./common/convertColor */ "./src/common/convertColor.js");
+
 
 let supportNodes = ['FRAME'];
 let typeToName = {
@@ -115,6 +117,7 @@ let typeToName = {
     'COMPONENT_SET': "变体"
 };
 let dash = [2, 2];
+let basedColor = "CCCCCC";
 let unApplyGroup = {};
 function clearCurrentUnApplyGroup() {
     Object.keys(unApplyGroup).forEach(key => {
@@ -126,11 +129,13 @@ function clearCurrentUnApplyGroup() {
 function drawLine(node, distance, isRow) {
     const { width, height, rotation, x, y } = node;
     const lineNode = figma.createLine();
+    const rgbColor = Object(_common_convertColor__WEBPACK_IMPORTED_MODULE_1__["hexToJsDesignRGB"])(basedColor);
     lineNode.x = isRow ? x : x + distance;
     lineNode.y = isRow ? y + distance : y;
     lineNode.resize(isRow ? width : height, 0);
     lineNode.rotation = isRow ? 0 : -90;
     lineNode.dashPattern = dash;
+    lineNode.strokes = [{ type: 'SOLID', color: rgbColor }];
     lineNode.constraints = {
         horizontal: "SCALE",
         vertical: "SCALE"
@@ -241,8 +246,61 @@ Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["on"])('delete-line', (saveCa
     deleteGuideline(saveCard);
 });
 Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["on"])('apply-line', () => {
+    unApplyGroup = {};
+    figma.notify("成功应用");
+});
+Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["on"])('update-color', (color) => {
+    basedColor = color;
 });
 
+
+/***/ }),
+
+/***/ "./src/common/convertColor.js":
+/*!************************************!*\
+  !*** ./src/common/convertColor.js ***!
+  \************************************/
+/*! exports provided: webRGBToJsDesignRGB, hexToJsDesignRGB */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "webRGBToJsDesignRGB", function() { return webRGBToJsDesignRGB; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "hexToJsDesignRGB", function() { return hexToJsDesignRGB; });
+const namesRGB = ['r', 'g', 'b'];
+
+const webRGBToJsDesignRGB = (color) => {
+    const rgb = {};
+    namesRGB.forEach((e, i) => {
+        rgb[e] = color[i] / 255;
+    });
+    if (color[3] !== undefined) rgb['a'] = color[3];
+    return rgb;
+}
+
+// 十六进制转RGB
+const hexToJsDesignRGB = (color) => {
+    let opacity = '';
+    color = color.toLowerCase();
+    if (color[0] === '#') color = color.slice(1);
+
+    if (color.length === 3) {
+        color = color.replace(/(.)(.)(.)?/g, '$1$1$2$2$3$3');
+    } else if (color.length === 8) {
+        const arr = color.match(/(.{6})(.{2})/);
+        color = arr[1];
+        opacity = arr[2];
+    }
+    const num = parseInt(color, 16);
+    const rgb = [num >> 16, num >> 8 & 255, num & 255];
+
+    if (opacity) {
+        rgb.push(parseInt(opacity, 16) / 255);
+        return webRGBToJsDesignRGB(rgb);
+    } else {
+        return webRGBToJsDesignRGB(rgb);
+    }
+}
 
 /***/ }),
 
