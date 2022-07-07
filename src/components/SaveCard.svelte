@@ -1,4 +1,5 @@
 <script>
+    import Color from './Color.svelte';
     import { createEventDispatcher } from 'svelte';
     const dispatch = createEventDispatcher();
     import {baseIcon} from "../common/variables";
@@ -18,6 +19,13 @@
       <span>{item.name}</span>
     </div>
   {/each}
+</div>
+<!-- 颜色选择&预览 -->
+<div class="tools">
+  <div class="color-select">
+    <Color />
+  </div>
+  <div class="show" />
 </div>
 
 <style>

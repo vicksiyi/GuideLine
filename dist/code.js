@@ -131,6 +131,10 @@ function drawLine(node, distance, isRow) {
     lineNode.resize(isRow ? width : height, 0);
     lineNode.rotation = isRow ? 0 : -90;
     lineNode.dashPattern = dash;
+    lineNode.constraints = {
+        horizontal: "SCALE",
+        vertical: "SCALE"
+    };
     return lineNode;
 }
 function createLine(node, guideline) {
