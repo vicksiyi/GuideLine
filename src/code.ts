@@ -54,6 +54,10 @@ function drawLine(node: SupportsGuideLineNode, distance: number, isRow: boolean)
     lineNode.resize(isRow ? width : height, 0);
     lineNode.rotation = isRow ? 0 : -90;
     lineNode.dashPattern = dash;
+    lineNode.constraints = {
+        horizontal: "SCALE",
+        vertical: "SCALE"
+    };
     return lineNode;
 }
 
