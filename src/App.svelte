@@ -20,7 +20,7 @@
   let lineSelected = [];
   let hasSelected = false;
   let basedColor = "CCCCCC";
-  let _guideline = guideline;
+  let _guideline = JSON.parse(JSON.stringify(guideline));
   let isPreview = false;
 
   // 重置选择
@@ -32,6 +32,7 @@
   function handleActiveChange(event) {
     active = event.detail.active;
     isPreview = false;
+    _guideline = JSON.parse(JSON.stringify(guideline));
     resetSelection();
     updateGuiSize(guiSize);
   }
@@ -56,6 +57,11 @@
     } else {
       emit('hide-preview-line')
     }
+  }
+  // 自定义比例输入更新
+  function cardInputChangeHandler(event){
+    isPreview = false;
+    resetSelection();
   }
   // 颜色更新
   function colorChange() {
@@ -82,6 +88,7 @@
       updateGuiSize(guiSize);
     }
   });
+  // 清空所有选择
   on("clear-active", () => {
     resetSelection();
   });
@@ -97,7 +104,10 @@
     <div class="content">
       {#if active === 2}
         <div class="guide-lines">
-          <Card bind:guideline={_guideline} />
+          <Card
+            bind:guideline={_guideline}
+            on:inputChange={cardInputChangeHandler}
+          />
         </div>
         <div class="preview-container">
           <div class="preview">

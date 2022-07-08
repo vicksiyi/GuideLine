@@ -2954,7 +2954,7 @@ function add_css(target) {
 	Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append_styles"])(target, "svelte-2szatm", ".preview-container.svelte-2szatm{display:flex;justify-content:right;padding:0 12px;margin-top:12px}.preview.svelte-2szatm{width:48px}.toast{position:absolute;bottom:16px;left:16px;right:16px;padding:8px 16px;border:1px solid #909399;border-radius:4px;background-color:#909399;box-shadow:0 2px 12px 0 rgba(0, 0, 0, 0.1);color:#ffffff;transition:all 0.5s ease-in-out;text-align:center;font-size:12px}.toast--error{border:1px solid #f56c6c;background-color:#f56c6c}.toast--warning{border:1px solid #e6a23c;background-color:#e6a23c}.toast--success{border:1px solid #67c23a;background-color:#67c23a}footer.svelte-2szatm{width:100%;height:64px;margin-top:16px;background-color:rgba(0, 0, 0, 0.03)}.manage-btn.svelte-2szatm{display:flex;justify-content:space-between;padding:16px}.manage-btn.svelte-2szatm .clear-btn{width:58px;height:32px}.manage-btn.svelte-2szatm .show-btn{flex:1;margin-left:12px}");
 }
 
-// (165:0) {:else}
+// (175:0) {:else}
 function create_else_block_3(ctx) {
 	let main;
 	let empty_1;
@@ -2989,7 +2989,7 @@ function create_else_block_3(ctx) {
 	};
 }
 
-// (90:0) {#if hasSelected}
+// (97:0) {#if hasSelected}
 function create_if_block(ctx) {
 	let main;
 	let header;
@@ -3193,7 +3193,7 @@ function create_if_block(ctx) {
 	};
 }
 
-// (111:6) {:else}
+// (121:6) {:else}
 function create_else_block_2(ctx) {
 	let savecard;
 	let updating_selected;
@@ -3203,7 +3203,7 @@ function create_else_block_2(ctx) {
 	let current;
 
 	function savecard_selected_binding(value) {
-		/*savecard_selected_binding*/ ctx[14](value);
+		/*savecard_selected_binding*/ ctx[15](value);
 	}
 
 	let savecard_props = { saveCardList: _common_variables__WEBPACK_IMPORTED_MODULE_5__["saveCardList"] };
@@ -3217,7 +3217,7 @@ function create_else_block_2(ctx) {
 	savecard.$on("activeChange", /*lineActiveChange*/ ctx[7]);
 
 	function color_basedColor_binding(value) {
-		/*color_basedColor_binding*/ ctx[15](value);
+		/*color_basedColor_binding*/ ctx[16](value);
 	}
 
 	let color_props = {};
@@ -3228,7 +3228,7 @@ function create_else_block_2(ctx) {
 
 	color = new _components_Color_svelte__WEBPACK_IMPORTED_MODULE_1__["default"]({ props: color_props });
 	svelte_internal__WEBPACK_IMPORTED_MODULE_0__["binding_callbacks"].push(() => Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["bind"])(color, 'basedColor', color_basedColor_binding));
-	color.$on("colorChange", /*colorChange*/ ctx[9]);
+	color.$on("colorChange", /*colorChange*/ ctx[10]);
 
 	return {
 		c() {
@@ -3281,7 +3281,7 @@ function create_else_block_2(ctx) {
 	};
 }
 
-// (98:6) {#if active === 2}
+// (105:6) {#if active === 2}
 function create_if_block_3(ctx) {
 	let div0;
 	let card;
@@ -3294,7 +3294,7 @@ function create_if_block_3(ctx) {
 	let current;
 
 	function card_guideline_binding(value) {
-		/*card_guideline_binding*/ ctx[12](value);
+		/*card_guideline_binding*/ ctx[13](value);
 	}
 
 	let card_props = {};
@@ -3305,9 +3305,10 @@ function create_if_block_3(ctx) {
 
 	card = new _components_Card_svelte__WEBPACK_IMPORTED_MODULE_3__["default"]({ props: card_props });
 	svelte_internal__WEBPACK_IMPORTED_MODULE_0__["binding_callbacks"].push(() => Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["bind"])(card, 'guideline', card_guideline_binding));
+	card.$on("inputChange", /*cardInputChangeHandler*/ ctx[9]);
 
 	function checkbox_checked_binding(value) {
-		/*checkbox_checked_binding*/ ctx[13](value);
+		/*checkbox_checked_binding*/ ctx[14](value);
 	}
 
 	let checkbox_props = { label: "预览" };
@@ -3382,7 +3383,7 @@ function create_if_block_3(ctx) {
 	};
 }
 
-// (130:10) {:else}
+// (140:10) {:else}
 function create_else_block_1(ctx) {
 	let button;
 	let current;
@@ -3424,7 +3425,7 @@ function create_else_block_1(ctx) {
 	};
 }
 
-// (124:10) {#if active === 0 || active === 1}
+// (134:10) {#if active === 0 || active === 1}
 function create_if_block_2(ctx) {
 	let button;
 	let current;
@@ -3436,7 +3437,7 @@ function create_if_block_2(ctx) {
 			}
 		});
 
-	button.$on("click", /*resetHandler*/ ctx[10]);
+	button.$on("click", /*resetHandler*/ ctx[11]);
 
 	return {
 		c() {
@@ -3466,7 +3467,7 @@ function create_if_block_2(ctx) {
 	};
 }
 
-// (147:10) {:else}
+// (157:10) {:else}
 function create_else_block(ctx) {
 	let button;
 	let current;
@@ -3510,7 +3511,7 @@ function create_else_block(ctx) {
 	};
 }
 
-// (139:10) {#if active === 0 || active === 1}
+// (149:10) {#if active === 0 || active === 1}
 function create_if_block_1(ctx) {
 	let button;
 	let current;
@@ -3524,7 +3525,7 @@ function create_if_block_1(ctx) {
 			}
 		});
 
-	button.$on("click", /*applyHandler*/ ctx[11]);
+	button.$on("click", /*applyHandler*/ ctx[12]);
 
 	return {
 		c() {
@@ -3637,7 +3638,7 @@ function instance($$self, $$props, $$invalidate) {
 	let lineSelected = [];
 	let hasSelected = false;
 	let basedColor = "CCCCCC";
-	let _guideline = _common_variables__WEBPACK_IMPORTED_MODULE_5__["guideline"];
+	let _guideline = JSON.parse(JSON.stringify(_common_variables__WEBPACK_IMPORTED_MODULE_5__["guideline"]));
 	let isPreview = false;
 
 	// 重置选择
@@ -3650,6 +3651,7 @@ function instance($$self, $$props, $$invalidate) {
 	function handleActiveChange(event) {
 		$$invalidate(0, active = event.detail.active);
 		$$invalidate(5, isPreview = false);
+		$$invalidate(4, _guideline = JSON.parse(JSON.stringify(_common_variables__WEBPACK_IMPORTED_MODULE_5__["guideline"])));
 		resetSelection();
 		Object(_common_global__WEBPACK_IMPORTED_MODULE_9__["updateGuiSize"])(_common_variables__WEBPACK_IMPORTED_MODULE_5__["guiSize"]);
 	}
@@ -3679,6 +3681,12 @@ function instance($$self, $$props, $$invalidate) {
 		}
 	}
 
+	// 自定义比例输入更新
+	function cardInputChangeHandler(event) {
+		$$invalidate(5, isPreview = false);
+		resetSelection();
+	}
+
 	// 颜色更新
 	function colorChange() {
 		Object(_common_events__WEBPACK_IMPORTED_MODULE_8__["emit"])("update-color", basedColor);
@@ -3705,6 +3713,7 @@ function instance($$self, $$props, $$invalidate) {
 		}
 	});
 
+	// 清空所有选择
 	Object(_common_events__WEBPACK_IMPORTED_MODULE_8__["on"])("clear-active", () => {
 		resetSelection();
 	});
@@ -3739,6 +3748,7 @@ function instance($$self, $$props, $$invalidate) {
 		handleActiveChange,
 		lineActiveChange,
 		previewChangeHandler,
+		cardInputChangeHandler,
 		colorChange,
 		resetHandler,
 		applyHandler,
@@ -4225,11 +4235,13 @@ class Button extends svelte_internal__WEBPACK_IMPORTED_MODULE_0__["SvelteCompone
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/internal */ "./node_modules/svelte/internal/index.mjs");
-/* harmony import */ var _NumberField_svelte__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NumberField.svelte */ "./src/components/NumberField.svelte");
-/* harmony import */ var _common_global__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../common/global */ "./src/common/global.js");
-/* harmony import */ var _common_variables__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../common/variables */ "./src/common/variables.js");
-/* harmony import */ var _common_variables__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_common_variables__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var svelte__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! svelte */ "./node_modules/svelte/index.mjs");
+/* harmony import */ var _NumberField_svelte__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./NumberField.svelte */ "./src/components/NumberField.svelte");
+/* harmony import */ var _common_global__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../common/global */ "./src/common/global.js");
+/* harmony import */ var _common_variables__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../common/variables */ "./src/common/variables.js");
+/* harmony import */ var _common_variables__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_common_variables__WEBPACK_IMPORTED_MODULE_4__);
 /* src/components/Card.svelte generated by Svelte v3.48.0 */
+
 
 
 
@@ -4241,7 +4253,7 @@ function add_css(target) {
 	Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append_styles"])(target, "svelte-1hvucur", ".card.svelte-1hvucur>[class^=\"card\"].svelte-1hvucur.svelte-1hvucur{border:1px solid rgba(32, 32, 32, 0.2);border-radius:8px;margin:0 12px;position:relative;padding:16px}.card.svelte-1hvucur>[class^=\"card\"].svelte-1hvucur>.header-text.svelte-1hvucur{position:absolute;top:-20px;left:16px;font-weight:400;color:rgba(32, 32, 32, 1);font-size:12px;display:block;background-color:rgba(255, 255, 255, 1);padding:4px}.card-column.svelte-1hvucur.svelte-1hvucur.svelte-1hvucur{margin-top:20px !important}span.svelte-1hvucur>.measure.svelte-1hvucur.svelte-1hvucur{text-decoration:underline rgba(32, 32, 32, 0.8)}");
 }
 
-// (59:6) 
+// (64:6) 
 function create_textfield_label_slot_3(ctx) {
 	let span1;
 
@@ -4262,7 +4274,7 @@ function create_textfield_label_slot_3(ctx) {
 	};
 }
 
-// (62:6) 
+// (67:6) 
 function create_unit_measure_slot_1(ctx) {
 	let span;
 
@@ -4282,7 +4294,7 @@ function create_unit_measure_slot_1(ctx) {
 	};
 }
 
-// (66:6) 
+// (75:6) 
 function create_textfield_label_slot_2(ctx) {
 	let span1;
 
@@ -4303,7 +4315,7 @@ function create_textfield_label_slot_2(ctx) {
 	};
 }
 
-// (79:6) 
+// (88:6) 
 function create_textfield_label_slot_1(ctx) {
 	let span1;
 
@@ -4324,7 +4336,7 @@ function create_textfield_label_slot_1(ctx) {
 	};
 }
 
-// (82:6) 
+// (91:6) 
 function create_unit_measure_slot(ctx) {
 	let span;
 
@@ -4344,7 +4356,7 @@ function create_unit_measure_slot(ctx) {
 	};
 }
 
-// (86:6) 
+// (99:6) 
 function create_textfield_label_slot(ctx) {
 	let span1;
 
@@ -4391,8 +4403,8 @@ function create_fragment(ctx) {
 	}
 
 	let numberfield0_props = {
-		min: _common_variables__WEBPACK_IMPORTED_MODULE_3__["MIN_VALUE"],
-		max: _common_variables__WEBPACK_IMPORTED_MODULE_3__["MAX_VALUE"],
+		min: _common_variables__WEBPACK_IMPORTED_MODULE_4__["MIN_VALUE"],
+		max: _common_variables__WEBPACK_IMPORTED_MODULE_4__["MAX_VALUE"],
 		$$slots: {
 			"unit-measure": [create_unit_measure_slot_1],
 			"textfield-label": [create_textfield_label_slot_3]
@@ -4404,7 +4416,7 @@ function create_fragment(ctx) {
 		numberfield0_props.value = /*guideline*/ ctx[0].row.count;
 	}
 
-	numberfield0 = new _NumberField_svelte__WEBPACK_IMPORTED_MODULE_1__["default"]({ props: numberfield0_props });
+	numberfield0 = new _NumberField_svelte__WEBPACK_IMPORTED_MODULE_2__["default"]({ props: numberfield0_props });
 	svelte_internal__WEBPACK_IMPORTED_MODULE_0__["binding_callbacks"].push(() => Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["bind"])(numberfield0, 'value', numberfield0_value_binding));
 	numberfield0.$on("inputChange", /*inputChange_handler*/ ctx[5]);
 
@@ -4424,16 +4436,17 @@ function create_fragment(ctx) {
 		numberfield1_props.value = /*guideline*/ ctx[0].row.scales;
 	}
 
-	numberfield1 = new _NumberField_svelte__WEBPACK_IMPORTED_MODULE_1__["default"]({ props: numberfield1_props });
+	numberfield1 = new _NumberField_svelte__WEBPACK_IMPORTED_MODULE_2__["default"]({ props: numberfield1_props });
 	svelte_internal__WEBPACK_IMPORTED_MODULE_0__["binding_callbacks"].push(() => Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["bind"])(numberfield1, 'value', numberfield1_value_binding));
+	numberfield1.$on("inputChange", /*inputChange_handler_1*/ ctx[7]);
 
 	function numberfield2_value_binding(value) {
-		/*numberfield2_value_binding*/ ctx[7](value);
+		/*numberfield2_value_binding*/ ctx[8](value);
 	}
 
 	let numberfield2_props = {
-		min: _common_variables__WEBPACK_IMPORTED_MODULE_3__["MIN_VALUE"],
-		max: _common_variables__WEBPACK_IMPORTED_MODULE_3__["MAX_VALUE"],
+		min: _common_variables__WEBPACK_IMPORTED_MODULE_4__["MIN_VALUE"],
+		max: _common_variables__WEBPACK_IMPORTED_MODULE_4__["MAX_VALUE"],
 		$$slots: {
 			"unit-measure": [create_unit_measure_slot],
 			"textfield-label": [create_textfield_label_slot_1]
@@ -4445,12 +4458,12 @@ function create_fragment(ctx) {
 		numberfield2_props.value = /*guideline*/ ctx[0].column.count;
 	}
 
-	numberfield2 = new _NumberField_svelte__WEBPACK_IMPORTED_MODULE_1__["default"]({ props: numberfield2_props });
+	numberfield2 = new _NumberField_svelte__WEBPACK_IMPORTED_MODULE_2__["default"]({ props: numberfield2_props });
 	svelte_internal__WEBPACK_IMPORTED_MODULE_0__["binding_callbacks"].push(() => Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["bind"])(numberfield2, 'value', numberfield2_value_binding));
-	numberfield2.$on("inputChange", /*inputChange_handler_1*/ ctx[8]);
+	numberfield2.$on("inputChange", /*inputChange_handler_2*/ ctx[9]);
 
 	function numberfield3_value_binding(value) {
-		/*numberfield3_value_binding*/ ctx[9](value);
+		/*numberfield3_value_binding*/ ctx[10](value);
 	}
 
 	let numberfield3_props = {
@@ -4465,8 +4478,9 @@ function create_fragment(ctx) {
 		numberfield3_props.value = /*guideline*/ ctx[0].column.scales;
 	}
 
-	numberfield3 = new _NumberField_svelte__WEBPACK_IMPORTED_MODULE_1__["default"]({ props: numberfield3_props });
+	numberfield3 = new _NumberField_svelte__WEBPACK_IMPORTED_MODULE_2__["default"]({ props: numberfield3_props });
 	svelte_internal__WEBPACK_IMPORTED_MODULE_0__["binding_callbacks"].push(() => Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["bind"])(numberfield3, 'value', numberfield3_value_binding));
+	numberfield3.$on("inputChange", /*inputChange_handler_3*/ ctx[11]);
 
 	return {
 		c() {
@@ -4512,7 +4526,7 @@ function create_fragment(ctx) {
 		p(ctx, [dirty]) {
 			const numberfield0_changes = {};
 
-			if (dirty & /*$$scope*/ 1024) {
+			if (dirty & /*$$scope*/ 8192) {
 				numberfield0_changes.$$scope = { dirty, ctx };
 			}
 
@@ -4525,7 +4539,7 @@ function create_fragment(ctx) {
 			numberfield0.$set(numberfield0_changes);
 			const numberfield1_changes = {};
 
-			if (dirty & /*$$scope*/ 1024) {
+			if (dirty & /*$$scope*/ 8192) {
 				numberfield1_changes.$$scope = { dirty, ctx };
 			}
 
@@ -4538,7 +4552,7 @@ function create_fragment(ctx) {
 			numberfield1.$set(numberfield1_changes);
 			const numberfield2_changes = {};
 
-			if (dirty & /*$$scope*/ 1024) {
+			if (dirty & /*$$scope*/ 8192) {
 				numberfield2_changes.$$scope = { dirty, ctx };
 			}
 
@@ -4551,7 +4565,7 @@ function create_fragment(ctx) {
 			numberfield2.$set(numberfield2_changes);
 			const numberfield3_changes = {};
 
-			if (dirty & /*$$scope*/ 1024) {
+			if (dirty & /*$$scope*/ 8192) {
 				numberfield3_changes.$$scope = { dirty, ctx };
 			}
 
@@ -4589,24 +4603,27 @@ function create_fragment(ctx) {
 }
 
 function instance($$self, $$props, $$invalidate) {
+	const dispatch = Object(svelte__WEBPACK_IMPORTED_MODULE_1__["createEventDispatcher"])();
 	let { guideline = {} } = $$props;
 
 	// 判断数量是否超过或者小于最大值
-	const inputChange = (event, handler) => {
+	const inputChange = (event, handler, isUpdate = true) => {
+		dispatch('inputChange'); // 卡片里面任何一个input输入都会触发[目的：每次更新都取消预览]
+		if (!isUpdate) return;
 		let { value } = event.detail;
-		let deter = Object(_common_global__WEBPACK_IMPORTED_MODULE_2__["determineSize"])(value, _common_variables__WEBPACK_IMPORTED_MODULE_3__["MIN_VALUE"], _common_variables__WEBPACK_IMPORTED_MODULE_3__["MAX_VALUE"]);
+		let deter = Object(_common_global__WEBPACK_IMPORTED_MODULE_3__["determineSize"])(value, _common_variables__WEBPACK_IMPORTED_MODULE_4__["MIN_VALUE"], _common_variables__WEBPACK_IMPORTED_MODULE_4__["MAX_VALUE"]);
 
 		if (deter === -1) {
-			Object(_common_global__WEBPACK_IMPORTED_MODULE_2__["toast"])(`数量不能小于${_common_variables__WEBPACK_IMPORTED_MODULE_3__["MIN_VALUE"]}`, 'warning');
-			handler(_common_variables__WEBPACK_IMPORTED_MODULE_3__["MIN_VALUE"]);
+			Object(_common_global__WEBPACK_IMPORTED_MODULE_3__["toast"])(`数量不能小于${_common_variables__WEBPACK_IMPORTED_MODULE_4__["MIN_VALUE"]}`, 'warning');
+			handler(_common_variables__WEBPACK_IMPORTED_MODULE_4__["MIN_VALUE"]);
 		} else if (deter === 1) {
-			Object(_common_global__WEBPACK_IMPORTED_MODULE_2__["toast"])(`数量不能大于${_common_variables__WEBPACK_IMPORTED_MODULE_3__["MAX_VALUE"]}`, 'warning');
-			handler(_common_variables__WEBPACK_IMPORTED_MODULE_3__["MAX_VALUE"]);
+			Object(_common_global__WEBPACK_IMPORTED_MODULE_3__["toast"])(`数量不能大于${_common_variables__WEBPACK_IMPORTED_MODULE_4__["MAX_VALUE"]}`, 'warning');
+			handler(_common_variables__WEBPACK_IMPORTED_MODULE_4__["MAX_VALUE"]);
 		} else {
 			handler(value);
 		}
 
-		Object(_common_global__WEBPACK_IMPORTED_MODULE_2__["updateGuiSize"])(_common_variables__WEBPACK_IMPORTED_MODULE_3__["guiSize"]);
+		Object(_common_global__WEBPACK_IMPORTED_MODULE_3__["updateGuiSize"])(_common_variables__WEBPACK_IMPORTED_MODULE_4__["guiSize"]);
 	};
 
 	// 处理行输入
@@ -4651,6 +4668,8 @@ function instance($$self, $$props, $$invalidate) {
 		}
 	}
 
+	const inputChange_handler_1 = event => inputChange(event, {}, false);
+
 	function numberfield2_value_binding(value) {
 		if ($$self.$$.not_equal(guideline.column.count, value)) {
 			guideline.column.count = value;
@@ -4658,7 +4677,7 @@ function instance($$self, $$props, $$invalidate) {
 		}
 	}
 
-	const inputChange_handler_1 = event => inputChange(event, columnHandler);
+	const inputChange_handler_2 = event => inputChange(event, columnHandler);
 
 	function numberfield3_value_binding(value) {
 		if ($$self.$$.not_equal(guideline.column.scales, value)) {
@@ -4666,6 +4685,8 @@ function instance($$self, $$props, $$invalidate) {
 			$$invalidate(0, guideline);
 		}
 	}
+
+	const inputChange_handler_3 = event => inputChange(event, {}, false);
 
 	$$self.$$set = $$props => {
 		if ('guideline' in $$props) $$invalidate(0, guideline = $$props.guideline);
@@ -4679,9 +4700,11 @@ function instance($$self, $$props, $$invalidate) {
 		numberfield0_value_binding,
 		inputChange_handler,
 		numberfield1_value_binding,
-		numberfield2_value_binding,
 		inputChange_handler_1,
-		numberfield3_value_binding
+		numberfield2_value_binding,
+		inputChange_handler_2,
+		numberfield3_value_binding,
+		inputChange_handler_3
 	];
 }
 
@@ -5103,9 +5126,9 @@ function add_css(target) {
 
 function get_each_context(ctx, list, i) {
 	const child_ctx = ctx.slice();
-	child_ctx[13] = list[i];
-	child_ctx[14] = list;
-	child_ctx[15] = i;
+	child_ctx[14] = list[i];
+	child_ctx[15] = list;
+	child_ctx[16] = i;
 	return child_ctx;
 }
 
@@ -5186,7 +5209,7 @@ function create_else_block(ctx) {
 				}
 			}
 
-			if (dirty & /*value, disabled*/ 17) {
+			if (dirty & /*value, disabled, dispatch*/ 145) {
 				each_value = /*value*/ ctx[0];
 				let i;
 
@@ -5383,7 +5406,7 @@ function create_if_block(ctx) {
 	};
 }
 
-// (54:8) {#if value.length !== index + 1}
+// (57:8) {#if value.length !== index + 1}
 function create_if_block_1(ctx) {
 	let span;
 
@@ -5411,10 +5434,10 @@ function create_each_block(ctx) {
 	let dispose;
 
 	function input_input_handler_1() {
-		/*input_input_handler_1*/ ctx[12].call(input, /*each_value*/ ctx[14], /*index*/ ctx[15]);
+		/*input_input_handler_1*/ ctx[12].call(input, /*each_value*/ ctx[15], /*index*/ ctx[16]);
 	}
 
-	let if_block = /*value*/ ctx[0].length !== /*index*/ ctx[15] + 1 && create_if_block_1(ctx);
+	let if_block = /*value*/ ctx[0].length !== /*index*/ ctx[16] + 1 && create_if_block_1(ctx);
 
 	return {
 		c() {
@@ -5428,7 +5451,7 @@ function create_each_block(ctx) {
 		},
 		m(target, anchor) {
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, input, anchor);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_input_value"])(input, /*item*/ ctx[13]);
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_input_value"])(input, /*item*/ ctx[14]);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, t, anchor);
 			if (if_block) if_block.m(target, anchor);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, if_block_anchor, anchor);
@@ -5436,7 +5459,8 @@ function create_each_block(ctx) {
 			if (!mounted) {
 				dispose = [
 					Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["listen"])(input, "input", input_input_handler_1),
-					Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["listen"])(input, "click", click_handler_1)
+					Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["listen"])(input, "click", click_handler_1),
+					Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["listen"])(input, "change", /*change_handler_1*/ ctx[13])
 				];
 
 				mounted = true;
@@ -5449,11 +5473,11 @@ function create_each_block(ctx) {
 				input.disabled = /*disabled*/ ctx[4];
 			}
 
-			if (dirty & /*value*/ 1 && Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["to_number"])(input.value) !== /*item*/ ctx[13]) {
-				Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_input_value"])(input, /*item*/ ctx[13]);
+			if (dirty & /*value*/ 1 && Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["to_number"])(input.value) !== /*item*/ ctx[14]) {
+				Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["set_input_value"])(input, /*item*/ ctx[14]);
 			}
 
-			if (/*value*/ ctx[0].length !== /*index*/ ctx[15] + 1) {
+			if (/*value*/ ctx[0].length !== /*index*/ ctx[16] + 1) {
 				if (if_block) {
 					
 				} else {
@@ -5574,6 +5598,10 @@ function instance($$self, $$props, $$invalidate) {
 		$$invalidate(0, value);
 	}
 
+	const change_handler_1 = () => {
+		dispatch("inputChange");
+	};
+
 	$$self.$$set = $$props => {
 		if ('base' in $$props) $$invalidate(1, base = $$props.base);
 		if ('value' in $$props) $$invalidate(0, value = $$props.value);
@@ -5598,7 +5626,8 @@ function instance($$self, $$props, $$invalidate) {
 		slots,
 		input_input_handler,
 		change_handler,
-		input_input_handler_1
+		input_input_handler_1,
+		change_handler_1
 	];
 }
 

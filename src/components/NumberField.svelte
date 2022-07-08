@@ -50,6 +50,9 @@
           bind:value={item}
           {disabled}
           on:click={(event) => event.currentTarget.select()}
+          on:change={() => {
+            dispatch("inputChange");
+          }}
         />
         {#if value.length !== index + 1}
           <span>:</span>

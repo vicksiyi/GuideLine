@@ -1,4 +1,6 @@
 <script>
+    import { createEventDispatcher } from 'svelte';
+    const dispatch = createEventDispatcher();
     import NumberField from "./NumberField.svelte";
     import {determineSize, toast} from "../common/global";
     import {MIN_VALUE, MAX_VALUE,guiSize} from "../common/variables";
@@ -7,7 +9,9 @@
     export let guideline = {};
 
     // 判断数量是否超过或者小于最大值
-    const inputChange = (event,handler)=> {
+    const inputChange = (event,handler,isUpdate=true)=> {
+        dispatch('inputChange');  // 卡片里面任何一个input输入都会触发[目的：每次更新都取消预览]
+        if(!isUpdate) return;
         let {value} = event.detail;
         let deter = determineSize(value, MIN_VALUE, MAX_VALUE);
         if(deter === -1) {
@@ -20,6 +24,7 @@
             handler(value);
         }
         updateGuiSize(guiSize);
+
     }
     // 处理行输入
     const rowHandler = (value)=>{
@@ -62,7 +67,11 @@
       <span slot="unit-measure">份</span>
     </NumberField>
     <!-- 比例 -->
-    <NumberField base={false} bind:value={guideline.row.scales}>
+    <NumberField
+      base={false}
+      bind:value={guideline.row.scales}
+      on:inputChange={(event) => inputChange(event, {}, false)}
+    >
       <span class="label" slot="textfield-label"
         >比例(<span class="measure">G</span>)</span
       >
@@ -82,7 +91,11 @@
       <span slot="unit-measure">份</span>
     </NumberField>
     <!-- 比例 -->
-    <NumberField base={false} bind:value={guideline.column.scales}>
+    <NumberField
+      base={false}
+      bind:value={guideline.column.scales}
+      on:inputChange={(event) => inputChange(event, {}, false)}
+    >
       <span class="label" slot="textfield-label"
         >比例(<span class="measure">G</span>)</span
       >
