@@ -187,13 +187,13 @@ function createGuidelineHandler(saveCard) {
     selections.forEach(node => {
         if (supportNodes.indexOf(node.type) !== -1) {
             const nodes = createLine(node, saveCard.guideline);
-            let group = figma.group(nodes, node.parent);
+            let group = figma.group(nodes, node);
             group.name = saveCard.name;
             group.locked = true;
-            const parentChild = node.parent.children;
-            let lineGroup = parentChild.find(_node => _node.type === 'GROUP' && _node.name === `${node.name} 分割线`);
+            const children = node.children;
+            let lineGroup = children.find(_node => _node.type === 'GROUP' && _node.name === `${node.name} 分割线`);
             if (!lineGroup) {
-                lineGroup = figma.group([group], node.parent);
+                lineGroup = figma.group([group], node);
                 lineGroup.name = `${node.name} 分割线`;
                 lineGroup.locked = true;
             }
