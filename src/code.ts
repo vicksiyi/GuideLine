@@ -50,7 +50,9 @@ function clearCurrentUnApplyGroup(): void {
 
 // 画分割线[注意：需要解决画板旋转角度问题]
 function drawLine(node: SupportsGuideLineNode, distance: number, isRow: boolean): LineNode {
-    const { width, height, rotation, x, y } = node;
+    const { width, height, rotation } = node;
+    const x = node.absoluteTransform[0][2];
+    const y = node.absoluteTransform[1][2];
     const lineNode = figma.createLine();
     const rgbColor = hexToJsDesignRGB(basedColor);
     lineNode.x = isRow ? x : x + distance;

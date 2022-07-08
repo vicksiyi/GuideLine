@@ -127,7 +127,9 @@ function clearCurrentUnApplyGroup() {
     unApplyGroup = {};
 }
 function drawLine(node, distance, isRow) {
-    const { width, height, rotation, x, y } = node;
+    const { width, height, rotation } = node;
+    const x = node.absoluteTransform[0][2];
+    const y = node.absoluteTransform[1][2];
     const lineNode = figma.createLine();
     const rgbColor = Object(_common_convertColor__WEBPACK_IMPORTED_MODULE_1__["hexToJsDesignRGB"])(basedColor);
     lineNode.x = isRow ? x : x + distance;
