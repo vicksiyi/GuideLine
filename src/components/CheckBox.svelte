@@ -1,4 +1,6 @@
 <script>
+    import { createEventDispatcher } from 'svelte';
+    const dispatch = createEventDispatcher();
     import checkmark from '../assets/check_mask.svg';
     export let checked = false;
     export let label = '';
@@ -6,31 +8,39 @@
 
 <div class="checkbox-label">
   <label>
-    <input type="checkbox" bind:checked />
+    <input
+      type="checkbox"
+      on:change={() => {
+        setTimeout(() => {
+          dispatch("checkboxChange", checked);
+        }, 0);
+      }}
+      bind:checked
+    />
 
     <div class="checkbox-toggle">
       <div class="checkbox-icon">
         {@html checkmark}
       </div>
     </div>
+    <div class="label">
+      <span>
+        {label}
+      </span>
+    </div>
   </label>
-
-  <div class="label">
-    <span>
-      {label}
-    </span>
-  </div>
 </div>
 
 <style>
   .checkbox-label {
     display: flex;
     height: 20px;
-    line-height: 20px;
+    line-height: 12px;
     align-items: center;
   }
   .checkbox-label label {
     position: relative;
+    display: flex;
   }
   input {
     position: absolute;
@@ -97,6 +107,8 @@
     width: 10px;
     height: 10px;
     margin: auto;
+    padding-left: 2px;
+    padding-top: 1px;
   }
 
   input:checked ~ .checkbox-toggle .checkbox-icon {

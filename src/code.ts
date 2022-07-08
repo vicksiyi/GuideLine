@@ -12,7 +12,9 @@ import {
     GuideLine,
     clearActiveHandler,
     SupportsGuideLineNode,
-    colorChangeHandler
+    colorChangeHandler,
+    PreviewLineHandler,
+    HidePreviewLineHandler
 } from "./common/types";
 
 // 支持的节点
@@ -51,7 +53,6 @@ function hideFrameGuideLine(node: SupportsGuideLineNode, isHide: boolean) {
         }
     })
 }
-
 
 // 记录未应用分割线[分割线ID:分组ID]
 let unApplyGroup: UnApplyGroup | {} = {};
@@ -243,4 +244,20 @@ on<ApplyLineHandler>('apply-line', () => {
 // 监听颜色变化
 on<colorChangeHandler>('update-color', (color: string) => {
     basedColor = color;
+})
+
+// 监听预览
+on<PreviewLineHandler>('preview-line', (guideline: GuideLine) => {
+    let saveCard: SaveCard = {
+        id: new Date().getTime().toString(),
+        name: '临时',
+        icon: '',
+        guideline
+    }
+    createGuideline(saveCard);
+})
+
+// 监听取消预览
+on<HidePreviewLineHandler>('hide-preview-line', () => {
+    clearCurrentUnApplyGroup();
 })

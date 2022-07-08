@@ -31,6 +31,7 @@
   // 导航栏选择
   function handleActiveChange(event) {
     active = event.detail.active;
+    isPreview = false;
     resetSelection();
     updateGuiSize(guiSize);
   }
@@ -46,6 +47,14 @@
       emit("delete-line", saveCardList[index]);
       lineSelected.splice(lineIndex, 1);
       lineSelected = lineSelected;
+    }
+  }
+  // 预览更新
+  function previewChangeHandler(event) {
+    if(isPreview) {
+      emit('preview-line', _guideline)
+    } else {
+      emit('hide-preview-line')
     }
   }
   // 颜色更新
@@ -90,6 +99,15 @@
         <div class="guide-lines">
           <Card bind:guideline={_guideline} />
         </div>
+        <div class="preview-container">
+          <div class="preview">
+            <CheckBox
+              on:checkboxChange={previewChangeHandler}
+              label={"预览"}
+              bind:checked={isPreview}
+            />
+          </div>
+        </div>
       {:else}
         <SaveCard
           {saveCardList}
@@ -99,7 +117,6 @@
         <!-- 颜色选择器 -->
         <Color on:colorChange={colorChange} bind:basedColor />
       {/if}
-      <CheckBox label={"预览"} bind:checked={isPreview} />
     </div>
     <footer>
       <div class="manage-btn">
@@ -129,7 +146,12 @@
             />
           {:else}
             <Button
-              disabled={!(_guideline.row.count && _guideline.column.count)}
+              disabled={!(
+                (_guideline.row.scales.length > 1 &&
+                  _guideline.column.scales.length > 0) ||
+                (_guideline.column.scales.length > 1 &&
+                  _guideline.row.scales.length > 0)
+              )}
               class="show-btn"
               on:click={saveHandler}
               text={`保存`}
@@ -148,6 +170,15 @@
 {/if}
 
 <style>
+  .preview-container {
+    display: flex;
+    justify-content: right;
+    padding: 0 12px;
+    margin-top: 12px;
+  }
+  .preview {
+    width: 48px;
+  }
   :global(.toast) {
     position: absolute;
     bottom: 16px;

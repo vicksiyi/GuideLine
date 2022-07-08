@@ -2951,10 +2951,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function add_css(target) {
-	Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append_styles"])(target, "svelte-14422fb", ".toast{position:absolute;bottom:16px;left:16px;right:16px;padding:8px 16px;border:1px solid #909399;border-radius:4px;background-color:#909399;box-shadow:0 2px 12px 0 rgba(0, 0, 0, 0.1);color:#ffffff;transition:all 0.5s ease-in-out;text-align:center;font-size:12px}.toast--error{border:1px solid #f56c6c;background-color:#f56c6c}.toast--warning{border:1px solid #e6a23c;background-color:#e6a23c}.toast--success{border:1px solid #67c23a;background-color:#67c23a}footer.svelte-14422fb{width:100%;height:64px;margin-top:16px;background-color:rgba(0, 0, 0, 0.03)}.manage-btn.svelte-14422fb{display:flex;justify-content:space-between;padding:16px}.manage-btn.svelte-14422fb .clear-btn{width:58px;height:32px}.manage-btn.svelte-14422fb .show-btn{flex:1;margin-left:12px}");
+	Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append_styles"])(target, "svelte-2szatm", ".preview-container.svelte-2szatm{display:flex;justify-content:right;padding:0 12px;margin-top:12px}.preview.svelte-2szatm{width:48px}.toast{position:absolute;bottom:16px;left:16px;right:16px;padding:8px 16px;border:1px solid #909399;border-radius:4px;background-color:#909399;box-shadow:0 2px 12px 0 rgba(0, 0, 0, 0.1);color:#ffffff;transition:all 0.5s ease-in-out;text-align:center;font-size:12px}.toast--error{border:1px solid #f56c6c;background-color:#f56c6c}.toast--warning{border:1px solid #e6a23c;background-color:#e6a23c}.toast--success{border:1px solid #67c23a;background-color:#67c23a}footer.svelte-2szatm{width:100%;height:64px;margin-top:16px;background-color:rgba(0, 0, 0, 0.03)}.manage-btn.svelte-2szatm{display:flex;justify-content:space-between;padding:16px}.manage-btn.svelte-2szatm .clear-btn{width:58px;height:32px}.manage-btn.svelte-2szatm .show-btn{flex:1;margin-left:12px}");
 }
 
-// (143:0) {:else}
+// (165:0) {:else}
 function create_else_block_3(ctx) {
 	let main;
 	let empty_1;
@@ -2989,7 +2989,7 @@ function create_else_block_3(ctx) {
 	};
 }
 
-// (81:0) {#if hasSelected}
+// (90:0) {#if hasSelected}
 function create_if_block(ctx) {
 	let main;
 	let header;
@@ -2999,15 +2999,12 @@ function create_if_block(ctx) {
 	let current_block_type_index;
 	let if_block0;
 	let t1;
-	let checkbox;
-	let updating_checked;
-	let t2;
 	let footer;
 	let div3;
 	let div1;
 	let current_block_type_index_1;
 	let if_block1;
-	let t3;
+	let t2;
 	let div2;
 	let current_block_type_index_2;
 	let if_block2;
@@ -3028,19 +3025,6 @@ function create_if_block(ctx) {
 
 	current_block_type_index = select_block_type_1(ctx, -1);
 	if_block0 = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
-
-	function checkbox_checked_binding(value) {
-		/*checkbox_checked_binding*/ ctx[14](value);
-	}
-
-	let checkbox_props = { label: "预览" };
-
-	if (/*isPreview*/ ctx[5] !== void 0) {
-		checkbox_props.checked = /*isPreview*/ ctx[5];
-	}
-
-	checkbox = new _components_CheckBox_svelte__WEBPACK_IMPORTED_MODULE_4__["default"]({ props: checkbox_props });
-	svelte_internal__WEBPACK_IMPORTED_MODULE_0__["binding_callbacks"].push(() => Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["bind"])(checkbox, 'checked', checkbox_checked_binding));
 	const if_block_creators_1 = [create_if_block_2, create_else_block_1];
 	const if_blocks_1 = [];
 
@@ -3071,20 +3055,18 @@ function create_if_block(ctx) {
 			div0 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
 			if_block0.c();
 			t1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["create_component"])(checkbox.$$.fragment);
-			t2 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
 			footer = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("footer");
 			div3 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
 			div1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
 			if_block1.c();
-			t3 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
+			t2 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
 			div2 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
 			if_block2.c();
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div0, "class", "content");
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div1, "class", "clear-btn");
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div2, "class", "show-btn");
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div3, "class", "manage-btn svelte-14422fb");
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(footer, "class", "svelte-14422fb");
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div3, "class", "manage-btn svelte-2szatm");
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(footer, "class", "svelte-2szatm");
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(main, "id", "main");
 		},
 		m(target, anchor) {
@@ -3094,14 +3076,12 @@ function create_if_block(ctx) {
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(main, t0);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(main, div0);
 			if_blocks[current_block_type_index].m(div0, null);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div0, t1);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["mount_component"])(checkbox, div0, null);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(main, t2);
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(main, t1);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(main, footer);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(footer, div3);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div3, div1);
 			if_blocks_1[current_block_type_index_1].m(div1, null);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div3, t3);
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div3, t2);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div3, div2);
 			if_blocks_2[current_block_type_index_2].m(div2, null);
 			current = true;
@@ -3133,18 +3113,9 @@ function create_if_block(ctx) {
 				}
 
 				Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_in"])(if_block0, 1);
-				if_block0.m(div0, t1);
+				if_block0.m(div0, null);
 			}
 
-			const checkbox_changes = {};
-
-			if (!updating_checked && dirty & /*isPreview*/ 32) {
-				updating_checked = true;
-				checkbox_changes.checked = /*isPreview*/ ctx[5];
-				Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_flush_callback"])(() => updating_checked = false);
-			}
-
-			checkbox.$set(checkbox_changes);
 			let previous_block_index_1 = current_block_type_index_1;
 			current_block_type_index_1 = select_block_type_2(ctx, dirty);
 
@@ -3201,7 +3172,6 @@ function create_if_block(ctx) {
 			if (current) return;
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_in"])(tags_1.$$.fragment, local);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_in"])(if_block0);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_in"])(checkbox.$$.fragment, local);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_in"])(if_block1);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_in"])(if_block2);
 			current = true;
@@ -3209,7 +3179,6 @@ function create_if_block(ctx) {
 		o(local) {
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_out"])(tags_1.$$.fragment, local);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_out"])(if_block0);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_out"])(checkbox.$$.fragment, local);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_out"])(if_block1);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_out"])(if_block2);
 			current = false;
@@ -3218,14 +3187,13 @@ function create_if_block(ctx) {
 			if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(main);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["destroy_component"])(tags_1);
 			if_blocks[current_block_type_index].d();
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["destroy_component"])(checkbox);
 			if_blocks_1[current_block_type_index_1].d();
 			if_blocks_2[current_block_type_index_2].d();
 		}
 	};
 }
 
-// (93:6) {:else}
+// (111:6) {:else}
 function create_else_block_2(ctx) {
 	let savecard;
 	let updating_selected;
@@ -3235,7 +3203,7 @@ function create_else_block_2(ctx) {
 	let current;
 
 	function savecard_selected_binding(value) {
-		/*savecard_selected_binding*/ ctx[12](value);
+		/*savecard_selected_binding*/ ctx[14](value);
 	}
 
 	let savecard_props = { saveCardList: _common_variables__WEBPACK_IMPORTED_MODULE_5__["saveCardList"] };
@@ -3249,7 +3217,7 @@ function create_else_block_2(ctx) {
 	savecard.$on("activeChange", /*lineActiveChange*/ ctx[7]);
 
 	function color_basedColor_binding(value) {
-		/*color_basedColor_binding*/ ctx[13](value);
+		/*color_basedColor_binding*/ ctx[15](value);
 	}
 
 	let color_props = {};
@@ -3260,7 +3228,7 @@ function create_else_block_2(ctx) {
 
 	color = new _components_Color_svelte__WEBPACK_IMPORTED_MODULE_1__["default"]({ props: color_props });
 	svelte_internal__WEBPACK_IMPORTED_MODULE_0__["binding_callbacks"].push(() => Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["bind"])(color, 'basedColor', color_basedColor_binding));
-	color.$on("colorChange", /*colorChange*/ ctx[8]);
+	color.$on("colorChange", /*colorChange*/ ctx[9]);
 
 	return {
 		c() {
@@ -3313,15 +3281,20 @@ function create_else_block_2(ctx) {
 	};
 }
 
-// (89:6) {#if active === 2}
+// (98:6) {#if active === 2}
 function create_if_block_3(ctx) {
-	let div;
+	let div0;
 	let card;
 	let updating_guideline;
+	let t;
+	let div2;
+	let div1;
+	let checkbox;
+	let updating_checked;
 	let current;
 
 	function card_guideline_binding(value) {
-		/*card_guideline_binding*/ ctx[11](value);
+		/*card_guideline_binding*/ ctx[12](value);
 	}
 
 	let card_props = {};
@@ -3333,15 +3306,39 @@ function create_if_block_3(ctx) {
 	card = new _components_Card_svelte__WEBPACK_IMPORTED_MODULE_3__["default"]({ props: card_props });
 	svelte_internal__WEBPACK_IMPORTED_MODULE_0__["binding_callbacks"].push(() => Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["bind"])(card, 'guideline', card_guideline_binding));
 
+	function checkbox_checked_binding(value) {
+		/*checkbox_checked_binding*/ ctx[13](value);
+	}
+
+	let checkbox_props = { label: "预览" };
+
+	if (/*isPreview*/ ctx[5] !== void 0) {
+		checkbox_props.checked = /*isPreview*/ ctx[5];
+	}
+
+	checkbox = new _components_CheckBox_svelte__WEBPACK_IMPORTED_MODULE_4__["default"]({ props: checkbox_props });
+	svelte_internal__WEBPACK_IMPORTED_MODULE_0__["binding_callbacks"].push(() => Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["bind"])(checkbox, 'checked', checkbox_checked_binding));
+	checkbox.$on("checkboxChange", /*previewChangeHandler*/ ctx[8]);
+
 	return {
 		c() {
-			div = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
+			div0 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["create_component"])(card.$$.fragment);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div, "class", "guide-lines");
+			t = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["space"])();
+			div2 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
+			div1 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("div");
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["create_component"])(checkbox.$$.fragment);
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div0, "class", "guide-lines");
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div1, "class", "preview svelte-2szatm");
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div2, "class", "preview-container svelte-2szatm");
 		},
 		m(target, anchor) {
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, div, anchor);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["mount_component"])(card, div, null);
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, div0, anchor);
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["mount_component"])(card, div0, null);
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, t, anchor);
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, div2, anchor);
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div2, div1);
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["mount_component"])(checkbox, div1, null);
 			current = true;
 		},
 		p(ctx, dirty) {
@@ -3354,24 +3351,38 @@ function create_if_block_3(ctx) {
 			}
 
 			card.$set(card_changes);
+			const checkbox_changes = {};
+
+			if (!updating_checked && dirty & /*isPreview*/ 32) {
+				updating_checked = true;
+				checkbox_changes.checked = /*isPreview*/ ctx[5];
+				Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["add_flush_callback"])(() => updating_checked = false);
+			}
+
+			checkbox.$set(checkbox_changes);
 		},
 		i(local) {
 			if (current) return;
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_in"])(card.$$.fragment, local);
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_in"])(checkbox.$$.fragment, local);
 			current = true;
 		},
 		o(local) {
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_out"])(card.$$.fragment, local);
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_out"])(checkbox.$$.fragment, local);
 			current = false;
 		},
 		d(detaching) {
-			if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(div);
+			if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(div0);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["destroy_component"])(card);
+			if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(t);
+			if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(div2);
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["destroy_component"])(checkbox);
 		}
 	};
 }
 
-// (113:10) {:else}
+// (130:10) {:else}
 function create_else_block_1(ctx) {
 	let button;
 	let current;
@@ -3413,7 +3424,7 @@ function create_else_block_1(ctx) {
 	};
 }
 
-// (107:10) {#if active === 0 || active === 1}
+// (124:10) {#if active === 0 || active === 1}
 function create_if_block_2(ctx) {
 	let button;
 	let current;
@@ -3425,7 +3436,7 @@ function create_if_block_2(ctx) {
 			}
 		});
 
-	button.$on("click", /*resetHandler*/ ctx[9]);
+	button.$on("click", /*resetHandler*/ ctx[10]);
 
 	return {
 		c() {
@@ -3455,14 +3466,14 @@ function create_if_block_2(ctx) {
 	};
 }
 
-// (130:10) {:else}
+// (147:10) {:else}
 function create_else_block(ctx) {
 	let button;
 	let current;
 
 	button = new _components_Button_svelte__WEBPACK_IMPORTED_MODULE_6__["default"]({
 			props: {
-				disabled: !(/*_guideline*/ ctx[4].row.count && /*_guideline*/ ctx[4].column.count),
+				disabled: !(/*_guideline*/ ctx[4].row.scales.length > 1 && /*_guideline*/ ctx[4].column.scales.length > 0 || /*_guideline*/ ctx[4].column.scales.length > 1 && /*_guideline*/ ctx[4].row.scales.length > 0),
 				class: "show-btn",
 				text: `保存`,
 				hasMasters: true
@@ -3481,7 +3492,7 @@ function create_else_block(ctx) {
 		},
 		p(ctx, dirty) {
 			const button_changes = {};
-			if (dirty & /*_guideline*/ 16) button_changes.disabled = !(/*_guideline*/ ctx[4].row.count && /*_guideline*/ ctx[4].column.count);
+			if (dirty & /*_guideline*/ 16) button_changes.disabled = !(/*_guideline*/ ctx[4].row.scales.length > 1 && /*_guideline*/ ctx[4].column.scales.length > 0 || /*_guideline*/ ctx[4].column.scales.length > 1 && /*_guideline*/ ctx[4].row.scales.length > 0);
 			button.$set(button_changes);
 		},
 		i(local) {
@@ -3499,7 +3510,7 @@ function create_else_block(ctx) {
 	};
 }
 
-// (122:10) {#if active === 0 || active === 1}
+// (139:10) {#if active === 0 || active === 1}
 function create_if_block_1(ctx) {
 	let button;
 	let current;
@@ -3513,7 +3524,7 @@ function create_if_block_1(ctx) {
 			}
 		});
 
-	button.$on("click", /*applyHandler*/ ctx[10]);
+	button.$on("click", /*applyHandler*/ ctx[11]);
 
 	return {
 		c() {
@@ -3638,6 +3649,7 @@ function instance($$self, $$props, $$invalidate) {
 	// 导航栏选择
 	function handleActiveChange(event) {
 		$$invalidate(0, active = event.detail.active);
+		$$invalidate(5, isPreview = false);
 		resetSelection();
 		Object(_common_global__WEBPACK_IMPORTED_MODULE_9__["updateGuiSize"])(_common_variables__WEBPACK_IMPORTED_MODULE_5__["guiSize"]);
 	}
@@ -3655,6 +3667,15 @@ function instance($$self, $$props, $$invalidate) {
 			Object(_common_events__WEBPACK_IMPORTED_MODULE_8__["emit"])("delete-line", _common_variables__WEBPACK_IMPORTED_MODULE_5__["saveCardList"][index]);
 			lineSelected.splice(lineIndex, 1);
 			$$invalidate(1, lineSelected);
+		}
+	}
+
+	// 预览更新
+	function previewChangeHandler(event) {
+		if (isPreview) {
+			Object(_common_events__WEBPACK_IMPORTED_MODULE_8__["emit"])('preview-line', _guideline);
+		} else {
+			Object(_common_events__WEBPACK_IMPORTED_MODULE_8__["emit"])('hide-preview-line');
 		}
 	}
 
@@ -3693,6 +3714,11 @@ function instance($$self, $$props, $$invalidate) {
 		$$invalidate(4, _guideline);
 	}
 
+	function checkbox_checked_binding(value) {
+		isPreview = value;
+		$$invalidate(5, isPreview);
+	}
+
 	function savecard_selected_binding(value) {
 		lineSelected = value;
 		$$invalidate(1, lineSelected);
@@ -3701,11 +3727,6 @@ function instance($$self, $$props, $$invalidate) {
 	function color_basedColor_binding(value) {
 		basedColor = value;
 		$$invalidate(3, basedColor);
-	}
-
-	function checkbox_checked_binding(value) {
-		isPreview = value;
-		$$invalidate(5, isPreview);
 	}
 
 	return [
@@ -3717,13 +3738,14 @@ function instance($$self, $$props, $$invalidate) {
 		isPreview,
 		handleActiveChange,
 		lineActiveChange,
+		previewChangeHandler,
 		colorChange,
 		resetHandler,
 		applyHandler,
 		card_guideline_binding,
+		checkbox_checked_binding,
 		savecard_selected_binding,
-		color_basedColor_binding,
-		checkbox_checked_binding
+		color_basedColor_binding
 	];
 }
 
@@ -4684,15 +4706,17 @@ class Card extends svelte_internal__WEBPACK_IMPORTED_MODULE_0__["SvelteComponent
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/internal */ "./node_modules/svelte/internal/index.mjs");
-/* harmony import */ var _assets_check_mask_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../assets/check_mask.svg */ "./src/assets/check_mask.svg");
-/* harmony import */ var _assets_check_mask_svg__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_assets_check_mask_svg__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var svelte__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! svelte */ "./node_modules/svelte/index.mjs");
+/* harmony import */ var _assets_check_mask_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../assets/check_mask.svg */ "./src/assets/check_mask.svg");
+/* harmony import */ var _assets_check_mask_svg__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_assets_check_mask_svg__WEBPACK_IMPORTED_MODULE_2__);
 /* src/components/CheckBox.svelte generated by Svelte v3.48.0 */
 
 
 
 
+
 function add_css(target) {
-	Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append_styles"])(target, "svelte-c5a9ji", ".checkbox-label.svelte-c5a9ji.svelte-c5a9ji.svelte-c5a9ji{display:flex;height:20px;line-height:20px;align-items:center}.checkbox-label.svelte-c5a9ji label.svelte-c5a9ji.svelte-c5a9ji{position:relative}input.svelte-c5a9ji.svelte-c5a9ji.svelte-c5a9ji{position:absolute;width:12px;height:12px;z-index:-1;opacity:0}input.svelte-c5a9ji.svelte-c5a9ji.svelte-c5a9ji:focus{outline:0}.checkbox-toggle.svelte-c5a9ji.svelte-c5a9ji.svelte-c5a9ji{position:relative;height:12px;width:12px;display:flex;align-items:center}.checkbox-toggle.svelte-c5a9ji.svelte-c5a9ji.svelte-c5a9ji:before,.checkbox-toggle.svelte-c5a9ji.svelte-c5a9ji.svelte-c5a9ji:after{background:rgba(255, 255, 255, 1);display:inline-block;position:absolute;content:\"\";opacity:1;border-radius:2px;filter:brightness(100%);height:12px;width:12px;transform-origin:center center}.checkbox-toggle.svelte-c5a9ji.svelte-c5a9ji.svelte-c5a9ji:before{z-index:-2}.checkbox-toggle.svelte-c5a9ji.svelte-c5a9ji.svelte-c5a9ji:after{z-index:-1;border:1px solid rgba(32, 32, 32, 1)}label.svelte-c5a9ji:hover .checkbox-toggle.svelte-c5a9ji.svelte-c5a9ji:after{border:1px solid rgba(69, 150, 255, 1)}label.svelte-c5a9ji:hover input.svelte-c5a9ji:checked~.checkbox-toggle.svelte-c5a9ji:after,label.svelte-c5a9ji:hover input.svelte-c5a9ji:checked~.checkbox-toggle.svelte-c5a9ji:before{filter:brightness(90%)}input.svelte-c5a9ji:checked~.checkbox-toggle.svelte-c5a9ji.svelte-c5a9ji:after,input.svelte-c5a9ji:checked~.checkbox-toggle.svelte-c5a9ji.svelte-c5a9ji:before{background:rgba(69, 150, 255, 1);border:1px solid rgba(69, 150, 255, 1)}input.svelte-c5a9ji:checked~.checkbox-toggle.svelte-c5a9ji.svelte-c5a9ji:before{opacity:0}.checkbox-icon.svelte-c5a9ji.svelte-c5a9ji.svelte-c5a9ji{display:inline-block;transform:scale(0);width:10px;height:10px;margin:auto}input:checked~.checkbox-toggle.svelte-c5a9ji .checkbox-icon.svelte-c5a9ji.svelte-c5a9ji{transform:scale(1);opacity:1}.label.svelte-c5a9ji.svelte-c5a9ji.svelte-c5a9ji{display:flex;justify-content:space-between;font-size:12px;color:rgba(32, 32, 32, 1);margin-left:6px}");
+	Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append_styles"])(target, "svelte-44omb2", ".checkbox-label.svelte-44omb2.svelte-44omb2.svelte-44omb2{display:flex;height:20px;line-height:12px;align-items:center}.checkbox-label.svelte-44omb2 label.svelte-44omb2.svelte-44omb2{position:relative;display:flex}input.svelte-44omb2.svelte-44omb2.svelte-44omb2{position:absolute;width:12px;height:12px;z-index:-1;opacity:0}input.svelte-44omb2.svelte-44omb2.svelte-44omb2:focus{outline:0}.checkbox-toggle.svelte-44omb2.svelte-44omb2.svelte-44omb2{position:relative;height:12px;width:12px;display:flex;align-items:center}.checkbox-toggle.svelte-44omb2.svelte-44omb2.svelte-44omb2:before,.checkbox-toggle.svelte-44omb2.svelte-44omb2.svelte-44omb2:after{background:rgba(255, 255, 255, 1);display:inline-block;position:absolute;content:\"\";opacity:1;border-radius:2px;filter:brightness(100%);height:12px;width:12px;transform-origin:center center}.checkbox-toggle.svelte-44omb2.svelte-44omb2.svelte-44omb2:before{z-index:-2}.checkbox-toggle.svelte-44omb2.svelte-44omb2.svelte-44omb2:after{z-index:-1;border:1px solid rgba(32, 32, 32, 1)}label.svelte-44omb2:hover .checkbox-toggle.svelte-44omb2.svelte-44omb2:after{border:1px solid rgba(69, 150, 255, 1)}label.svelte-44omb2:hover input.svelte-44omb2:checked~.checkbox-toggle.svelte-44omb2:after,label.svelte-44omb2:hover input.svelte-44omb2:checked~.checkbox-toggle.svelte-44omb2:before{filter:brightness(90%)}input.svelte-44omb2:checked~.checkbox-toggle.svelte-44omb2.svelte-44omb2:after,input.svelte-44omb2:checked~.checkbox-toggle.svelte-44omb2.svelte-44omb2:before{background:rgba(69, 150, 255, 1);border:1px solid rgba(69, 150, 255, 1)}input.svelte-44omb2:checked~.checkbox-toggle.svelte-44omb2.svelte-44omb2:before{opacity:0}.checkbox-icon.svelte-44omb2.svelte-44omb2.svelte-44omb2{display:inline-block;transform:scale(0);width:10px;height:10px;margin:auto;padding-left:2px;padding-top:1px}input:checked~.checkbox-toggle.svelte-44omb2 .checkbox-icon.svelte-44omb2.svelte-44omb2{transform:scale(1);opacity:1}.label.svelte-44omb2.svelte-44omb2.svelte-44omb2{display:flex;justify-content:space-between;font-size:12px;color:rgba(32, 32, 32, 1);margin-left:6px}");
 }
 
 function create_fragment(ctx) {
@@ -4722,12 +4746,12 @@ function create_fragment(ctx) {
 			span = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["element"])("span");
 			t2 = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["text"])(/*label*/ ctx[1]);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(input, "type", "checkbox");
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(input, "class", "svelte-c5a9ji");
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div0, "class", "checkbox-icon svelte-c5a9ji");
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div1, "class", "checkbox-toggle svelte-c5a9ji");
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(label_1, "class", "svelte-c5a9ji");
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div2, "class", "label svelte-c5a9ji");
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div3, "class", "checkbox-label svelte-c5a9ji");
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(input, "class", "svelte-44omb2");
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div0, "class", "checkbox-icon svelte-44omb2");
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div1, "class", "checkbox-toggle svelte-44omb2");
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div2, "class", "label svelte-44omb2");
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(label_1, "class", "svelte-44omb2");
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["attr"])(div3, "class", "checkbox-label svelte-44omb2");
 		},
 		m(target, anchor) {
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["insert"])(target, div3, anchor);
@@ -4737,14 +4761,18 @@ function create_fragment(ctx) {
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(label_1, t0);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(label_1, div1);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div1, div0);
-			div0.innerHTML = _assets_check_mask_svg__WEBPACK_IMPORTED_MODULE_1___default.a;
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div3, t1);
-			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div3, div2);
+			div0.innerHTML = _assets_check_mask_svg__WEBPACK_IMPORTED_MODULE_2___default.a;
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(label_1, t1);
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(label_1, div2);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(div2, span);
 			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append"])(span, t2);
 
 			if (!mounted) {
-				dispose = Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["listen"])(input, "change", /*input_change_handler*/ ctx[2]);
+				dispose = [
+					Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["listen"])(input, "change", /*change_handler*/ ctx[3]),
+					Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["listen"])(input, "change", /*input_change_handler*/ ctx[4])
+				];
+
 				mounted = true;
 			}
 		},
@@ -4760,14 +4788,24 @@ function create_fragment(ctx) {
 		d(detaching) {
 			if (detaching) Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["detach"])(div3);
 			mounted = false;
-			dispose();
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["run_all"])(dispose);
 		}
 	};
 }
 
 function instance($$self, $$props, $$invalidate) {
+	const dispatch = Object(svelte__WEBPACK_IMPORTED_MODULE_1__["createEventDispatcher"])();
 	let { checked = false } = $$props;
 	let { label = '' } = $$props;
+
+	const change_handler = () => {
+		setTimeout(
+			() => {
+				dispatch("checkboxChange", checked);
+			},
+			0
+		);
+	};
 
 	function input_change_handler() {
 		checked = this.checked;
@@ -4779,7 +4817,7 @@ function instance($$self, $$props, $$invalidate) {
 		if ('label' in $$props) $$invalidate(1, label = $$props.label);
 	};
 
-	return [checked, label, input_change_handler];
+	return [checked, label, dispatch, change_handler, input_change_handler];
 }
 
 class CheckBox extends svelte_internal__WEBPACK_IMPORTED_MODULE_0__["SvelteComponent"] {

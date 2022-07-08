@@ -71,3 +71,13 @@ export interface colorChangeHandler extends EventHandler {
     name: 'update-color',
     handler: (color: string) => void
 }
+
+export interface PreviewLineHandler extends EventHandler {
+    name: 'preview-line',
+    handler: (guideline: GuideLine) => void
+}
+
+export interface HidePreviewLineHandler extends EventHandler {
+    name: 'hide-preview-line',
+    handler: () => void
+}

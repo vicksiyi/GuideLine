@@ -273,6 +273,18 @@ Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["on"])('apply-line', () => {
 Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["on"])('update-color', (color) => {
     basedColor = color;
 });
+Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["on"])('preview-line', (guideline) => {
+    let saveCard = {
+        id: new Date().getTime().toString(),
+        name: '临时',
+        icon: '',
+        guideline
+    };
+    createGuideline(saveCard);
+});
+Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["on"])('hide-preview-line', () => {
+    clearCurrentUnApplyGroup();
+});
 
 
 /***/ }),
