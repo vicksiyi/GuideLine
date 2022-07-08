@@ -249,6 +249,7 @@ Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["on"])('delete-line', (saveCa
 });
 Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["on"])('apply-line', () => {
     unApplyGroup = {};
+    Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["emit"])('clear-active');
     figma.notify("成功应用");
 });
 Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["on"])('update-color', (color) => {

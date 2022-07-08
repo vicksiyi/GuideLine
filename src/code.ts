@@ -213,6 +213,7 @@ on<DeleteLineHandler>('delete-line', (saveCard: SaveCard) => {
 // 应用已经添加的分割线
 on<ApplyLineHandler>('apply-line', () => {
     unApplyGroup = {};
+    emit<clearActiveHandler>('clear-active')
     figma.notify("成功应用")
 })
 
