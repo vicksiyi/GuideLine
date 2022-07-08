@@ -130,6 +130,7 @@ function createGuidelineHandler(saveCard: SaveCard): void {
             } else {
                 (lineGroup as GroupNode).appendChild(group);
             }
+            lineGroup.locked = true;
 
 
             unApplyGroup[saveCard?.id] = group;

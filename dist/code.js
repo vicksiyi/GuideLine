@@ -198,6 +198,7 @@ function createGuidelineHandler(saveCard) {
             else {
                 lineGroup.appendChild(group);
             }
+            lineGroup.locked = true;
             unApplyGroup[saveCard === null || saveCard === void 0 ? void 0 : saveCard.id] = group;
             figma.notify(`创建${saveCard.name}分割线成功`);
         }
