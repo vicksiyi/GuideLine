@@ -140,6 +140,7 @@ function drawLine(node, distance, isRow) {
         horizontal: "SCALE",
         vertical: "SCALE"
     };
+    lineNode.strokeWeight = 1;
     return lineNode;
 }
 function createLine(node, guideline) {
@@ -186,19 +187,19 @@ function createGuidelineHandler(saveCard) {
     selections.forEach(node => {
         if (supportNodes.indexOf(node.type) !== -1) {
             const nodes = createLine(node, saveCard.guideline);
-            let group = figma.group(nodes, node);
+            let group = figma.group(nodes, node.parent);
             group.name = saveCard.name;
             group.locked = true;
-            const children = node.children;
-            let lineGroup = children.find(node => node.name === '分割线集合');
+            const parentChild = node.parent.children;
+            let lineGroup = parentChild.find(_node => _node.type === 'GROUP' && _node.name === `${node.name} 分割线`);
             if (!lineGroup) {
-                lineGroup = figma.group([group], node);
-                lineGroup.name = '分割线集合';
+                lineGroup = figma.group([group], node.parent);
+                lineGroup.name = `${node.name} 分割线`;
+                lineGroup.locked = true;
             }
             else {
                 lineGroup.appendChild(group);
             }
-            lineGroup.locked = true;
             unApplyGroup[saveCard === null || saveCard === void 0 ? void 0 : saveCard.id] = group;
             figma.notify(`创建${saveCard.name}分割线成功`);
         }

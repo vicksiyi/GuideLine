@@ -63,6 +63,7 @@ function drawLine(node: SupportsGuideLineNode, distance: number, isRow: boolean)
         horizontal: "SCALE",
         vertical: "SCALE"
     };
+    lineNode.strokeWeight = 1;
     return lineNode;
 }
 
@@ -116,21 +117,21 @@ function createGuidelineHandler(saveCard: SaveCard): void {
         // 判断类型是否支持
         if (supportNodes.indexOf(node.type) !== -1) {
             const nodes = createLine((node as SupportsGuideLineNode), saveCard.guideline);
-            let group = figma.group(nodes, <SupportsGuideLineNode>node);
+            let group = figma.group(nodes, node.parent);
             group.name = saveCard.name;
             group.locked = true;
 
-            const children = (node as SupportsGuideLineNode).children;
-            let lineGroup = children.find(node => node.name === '分割线集合');
+            const parentChild = node.parent.children;
+            let lineGroup = parentChild.find(_node => _node.type === 'GROUP' && _node.name === `${node.name} 分割线`);
             // 首次创建分割线时候，创建一个大集合
             if (!lineGroup) {
-                lineGroup = figma.group([group], <SupportsGuideLineNode>node);
-                lineGroup.name = '分割线集合';
+                lineGroup = figma.group([group], node.parent);
+                lineGroup.name = `${node.name} 分割线`;
+                lineGroup.locked = true;
                 // lineGroup.resizeWithoutConstraints(node.width, node.height); // bug：无法修改分组宽高
             } else {
                 (lineGroup as GroupNode).appendChild(group);
             }
-            lineGroup.locked = true;
 
 
             unApplyGroup[saveCard?.id] = group;
