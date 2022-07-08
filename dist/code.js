@@ -99,8 +99,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _common_convertColor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./common/convertColor */ "./src/common/convertColor.js");
 
 
-let supportNodes = ['FRAME'];
-let typeToName = {
+const supportNodes = ['FRAME'];
+const typeToName = {
     'FRAME': "画板",
     'GROUP': "分组",
     'RECTANGLE': "矩形",
@@ -116,8 +116,20 @@ let typeToName = {
     'INSTANCE': "实例组件",
     'COMPONENT_SET': "变体"
 };
-let dash = [2, 2];
+const dash = [2, 2];
+const guideLinesGroupName = (name) => `${name}--分割线`;
+const guideLineGroupName = (name) => `${name}--分割线`;
 let basedColor = "CCCCCC";
+function hideFrameGuideLine(node, isHide) {
+    node.children && node.children.forEach(child_node => {
+        if (child_node.name.endsWith('--分割线')) {
+            child_node.visible = !isHide;
+        }
+        if (child_node.type === 'FRAME') {
+            hideFrameGuideLine(child_node, !isHide);
+        }
+    });
+}
 let unApplyGroup = {};
 function clearCurrentUnApplyGroup() {
     Object.keys(unApplyGroup).forEach(key => {
@@ -189,14 +201,18 @@ function createGuidelineHandler(saveCard) {
     selections.forEach(node => {
         if (supportNodes.indexOf(node.type) !== -1) {
             const nodes = createLine(node, saveCard.guideline);
+            if (nodes.length === 0) {
+                figma.notify('无效辅助线');
+                return;
+            }
             let group = figma.group(nodes, node);
-            group.name = saveCard.name;
+            group.name = guideLineGroupName(saveCard.name);
             group.locked = true;
             const children = node.children;
-            let lineGroup = children.find(_node => _node.type === 'GROUP' && _node.name === `${node.name} 分割线`);
+            let lineGroup = children.find(_node => _node.type === 'GROUP' && _node.name === guideLinesGroupName(node.name));
             if (!lineGroup) {
                 lineGroup = figma.group([group], node);
-                lineGroup.name = `${node.name} 分割线`;
+                lineGroup.name = guideLinesGroupName(node.name);
                 lineGroup.locked = true;
             }
             else {

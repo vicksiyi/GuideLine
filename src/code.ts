@@ -16,8 +16,8 @@ import {
 } from "./common/types";
 
 // 支持的节点
-let supportNodes = ['FRAME'];
-let typeToName: { [key: string]: string } = {
+const supportNodes = ['FRAME'];
+const typeToName: { [key: string]: string } = {
     'FRAME': "画板",
     'GROUP': "分组",
     'RECTANGLE': "矩形",
@@ -33,8 +33,25 @@ let typeToName: { [key: string]: string } = {
     'INSTANCE': "实例组件",
     'COMPONENT_SET': "变体"
 }
-let dash = [2, 2]
+const dash = [2, 2]
+// 画板分割线集合名称格式
+const guideLinesGroupName = (name: string): string => `${name}--分割线`;
+// 分割线名称格式
+const guideLineGroupName = (name: string): string => `${name}--分割线`;
 let basedColor = "CCCCCC";
+
+// 隐藏/显示当前画板中所有分割线
+function hideFrameGuideLine(node: SupportsGuideLineNode, isHide: boolean) {
+    node.children && node.children.forEach(child_node => {
+        if (child_node.name.endsWith('--分割线')) {
+            child_node.visible = !isHide;
+        }
+        if (child_node.type === 'FRAME') {
+            hideFrameGuideLine(child_node, !isHide);
+        }
+    })
+}
+
 
 // 记录未应用分割线[分割线ID:分组ID]
 let unApplyGroup: UnApplyGroup | {} = {};
@@ -119,16 +136,20 @@ function createGuidelineHandler(saveCard: SaveCard): void {
         // 判断类型是否支持
         if (supportNodes.indexOf(node.type) !== -1) {
             const nodes = createLine((node as SupportsGuideLineNode), saveCard.guideline);
+            if (nodes.length === 0) {
+                figma.notify('无效辅助线');
+                return;
+            }
             let group = figma.group(nodes, <SupportsGuideLineNode>node);
-            group.name = saveCard.name;
+            group.name = guideLineGroupName(saveCard.name);
             group.locked = true;
 
             const children = (node as SupportsGuideLineNode).children;
-            let lineGroup = children.find(_node => _node.type === 'GROUP' && _node.name === `${node.name} 分割线`);
+            let lineGroup = children.find(_node => _node.type === 'GROUP' && _node.name === guideLinesGroupName(node.name));
             // 首次创建分割线时候，创建一个大集合
             if (!lineGroup) {
                 lineGroup = figma.group([group], <SupportsGuideLineNode>node);
-                lineGroup.name = `${node.name} 分割线`;
+                lineGroup.name = guideLinesGroupName(node.name);
                 lineGroup.locked = true;
             } else {
                 (lineGroup as GroupNode).appendChild(group);
