@@ -14,7 +14,8 @@ import {
     SupportsGuideLineNode,
     colorChangeHandler,
     PreviewLineHandler,
-    HidePreviewLineHandler
+    HidePreviewLineHandler,
+    SaveGuidelineHandler
 } from "./common/types";
 
 // 支持的节点
@@ -40,7 +41,8 @@ const dash = [2, 2]
 const guideLinesGroupName = (name: string): string => `${name}--分割线`;
 // 分割线名称格式
 const guideLineGroupName = (name: string): string => `${name}--分割线`;
-let basedColor = "CCCCCC";
+const storageKey: string = 'guideline-save-cards';
+let basedColor: string = "CCCCCC";
 
 // 隐藏/显示当前画板中所有分割线
 function hideFrameGuideLine(node: SupportsGuideLineNode, isHide: boolean) {
@@ -260,4 +262,20 @@ on<PreviewLineHandler>('preview-line', (guideline: GuideLine) => {
 // 监听取消预览
 on<HidePreviewLineHandler>('hide-preview-line', () => {
     clearCurrentUnApplyGroup();
+})
+
+// 监听保存分割线
+on<SaveGuidelineHandler>('save-guideline', async (saveCard: SaveCard) => {
+    let saveCards: SaveCard[] | undefined = await figma.clientStorage.getAsync(storageKey);
+    if (saveCards === undefined) {
+        saveCards = [];
+    }
+    clearCurrentUnApplyGroup();
+    figma.clientStorage.setAsync(storageKey, [...saveCards, saveCard])
+        .then(() => {
+            figma.notify('保存成功');
+        }).catch(err => {
+            figma.notify('保存失败');
+            console.error(err);
+        });
 })

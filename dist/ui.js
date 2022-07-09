@@ -2956,7 +2956,7 @@ function add_css(target) {
 	Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append_styles"])(target, "svelte-1qi4n8e", ".save-name-container.svelte-1qi4n8e{justify-content:start !important}.color-select.svelte-1qi4n8e{width:131px}.save-name-container.svelte-1qi4n8e,.color-select-container.svelte-1qi4n8e,.preview-container.svelte-1qi4n8e{display:flex;justify-content:right;padding:0 12px;margin-top:12px}.preview.svelte-1qi4n8e{width:48px}.toast{position:absolute;bottom:16px;left:16px;right:16px;padding:8px 16px;border:1px solid #909399;border-radius:4px;background-color:#909399;box-shadow:0 2px 12px 0 rgba(0, 0, 0, 0.1);color:#ffffff;transition:all 0.5s ease-in-out;text-align:center;font-size:12px}.toast--error{border:1px solid #f56c6c;background-color:#f56c6c}.toast--warning{border:1px solid #e6a23c;background-color:#e6a23c}.toast--success{border:1px solid #67c23a;background-color:#67c23a}footer.svelte-1qi4n8e{width:100%;height:64px;margin-top:16px;background-color:rgba(0, 0, 0, 0.03)}.manage-btn.svelte-1qi4n8e{display:flex;justify-content:space-between;padding:16px}.manage-btn.svelte-1qi4n8e .clear-btn{width:58px;height:32px}.manage-btn.svelte-1qi4n8e .show-btn{flex:1;margin-left:12px}");
 }
 
-// (190:0) {:else}
+// (208:0) {:else}
 function create_else_block_3(ctx) {
 	let main;
 	let empty_1;
@@ -2991,7 +2991,7 @@ function create_else_block_3(ctx) {
 	};
 }
 
-// (99:0) {#if hasSelected}
+// (117:0) {#if hasSelected}
 function create_if_block(ctx) {
 	let main;
 	let header;
@@ -3195,7 +3195,7 @@ function create_if_block(ctx) {
 	};
 }
 
-// (130:6) {:else}
+// (148:6) {:else}
 function create_else_block_2(ctx) {
 	let savecard;
 	let updating_selected;
@@ -3207,7 +3207,7 @@ function create_else_block_2(ctx) {
 	let current;
 
 	function savecard_selected_binding(value) {
-		/*savecard_selected_binding*/ ctx[18](value);
+		/*savecard_selected_binding*/ ctx[19](value);
 	}
 
 	let savecard_props = { saveCardList: _common_variables__WEBPACK_IMPORTED_MODULE_6__["saveCardList"] };
@@ -3221,7 +3221,7 @@ function create_else_block_2(ctx) {
 	savecard.$on("activeChange", /*lineActiveChange*/ ctx[8]);
 
 	function color_basedColor_binding(value) {
-		/*color_basedColor_binding*/ ctx[19](value);
+		/*color_basedColor_binding*/ ctx[20](value);
 	}
 
 	let color_props = {};
@@ -3292,7 +3292,7 @@ function create_else_block_2(ctx) {
 	};
 }
 
-// (107:6) {#if active === 2}
+// (125:6) {#if active === 2}
 function create_if_block_3(ctx) {
 	let div0;
 	let card;
@@ -3311,7 +3311,7 @@ function create_if_block_3(ctx) {
 	let current;
 
 	function card_guideline_binding(value) {
-		/*card_guideline_binding*/ ctx[14](value);
+		/*card_guideline_binding*/ ctx[15](value);
 	}
 
 	let card_props = {};
@@ -3325,11 +3325,11 @@ function create_if_block_3(ctx) {
 	card.$on("inputChange", /*cardInputChangeHandler*/ ctx[10]);
 
 	function checkbox_guideline_binding(value) {
-		/*checkbox_guideline_binding*/ ctx[15](value);
+		/*checkbox_guideline_binding*/ ctx[16](value);
 	}
 
 	function checkbox_checked_binding(value) {
-		/*checkbox_checked_binding*/ ctx[16](value);
+		/*checkbox_checked_binding*/ ctx[17](value);
 	}
 
 	let checkbox_props = { label: "预览" };
@@ -3348,7 +3348,7 @@ function create_if_block_3(ctx) {
 	checkbox.$on("checkboxChange", /*previewChangeHandler*/ ctx[9]);
 
 	function input_value_binding(value) {
-		/*input_value_binding*/ ctx[17](value);
+		/*input_value_binding*/ ctx[18](value);
 	}
 
 	let input_props = { label: "分割线名称" };
@@ -3452,7 +3452,7 @@ function create_if_block_3(ctx) {
 	};
 }
 
-// (153:10) {:else}
+// (171:10) {:else}
 function create_else_block_1(ctx) {
 	let button;
 	let current;
@@ -3494,7 +3494,7 @@ function create_else_block_1(ctx) {
 	};
 }
 
-// (147:10) {#if active === 0 || active === 1}
+// (165:10) {#if active === 0 || active === 1}
 function create_if_block_2(ctx) {
 	let button;
 	let current;
@@ -3536,7 +3536,7 @@ function create_if_block_2(ctx) {
 	};
 }
 
-// (170:10) {:else}
+// (188:10) {:else}
 function create_else_block(ctx) {
 	let button;
 	let current;
@@ -3550,7 +3550,7 @@ function create_else_block(ctx) {
 			}
 		});
 
-	button.$on("click", saveHandler);
+	button.$on("click", /*saveHandler*/ ctx[13]);
 
 	return {
 		c() {
@@ -3580,7 +3580,7 @@ function create_else_block(ctx) {
 	};
 }
 
-// (162:10) {#if active === 0 || active === 1}
+// (180:10) {#if active === 0 || active === 1}
 function create_if_block_1(ctx) {
 	let button;
 	let current;
@@ -3594,7 +3594,7 @@ function create_if_block_1(ctx) {
 			}
 		});
 
-	button.$on("click", /*applyHandler*/ ctx[13]);
+	button.$on("click", /*applyHandler*/ ctx[14]);
 
 	return {
 		c() {
@@ -3697,11 +3697,6 @@ function clearHandler(event) {
 	
 }
 
-// 保存
-function saveHandler(event) {
-	
-}
-
 function instance($$self, $$props, $$invalidate) {
 	let active = 0;
 	let lineSelected = [];
@@ -3765,6 +3760,29 @@ function instance($$self, $$props, $$invalidate) {
 	// 重置
 	function resetHandler(event) {
 		resetSelection();
+	}
+
+	// 保存
+	function saveHandler(event) {
+		if (_guidelineName !== "") {
+			Object(_common_events__WEBPACK_IMPORTED_MODULE_9__["emit"])("save-guideline", {
+				name: _guidelineName,
+				icon: "",
+				guideline: _guideline
+			});
+
+			resetCustomCard();
+			Object(_common_global__WEBPACK_IMPORTED_MODULE_10__["updateGuiSize"])(_common_variables__WEBPACK_IMPORTED_MODULE_6__["guiSize"]);
+		} else {
+			Object(_common_global__WEBPACK_IMPORTED_MODULE_10__["toast"])("分割线名称不能为空");
+		}
+	}
+
+	// 重置自定义画板
+	function resetCustomCard() {
+		$$invalidate(4, _guideline = JSON.parse(JSON.stringify(_common_variables__WEBPACK_IMPORTED_MODULE_6__["guideline"])));
+		$$invalidate(6, _guidelineName = "");
+		$$invalidate(5, isPreview = false);
 	}
 
 	// 应用
@@ -3832,6 +3850,7 @@ function instance($$self, $$props, $$invalidate) {
 		cardInputChangeHandler,
 		colorChange,
 		resetHandler,
+		saveHandler,
 		applyHandler,
 		card_guideline_binding,
 		checkbox_guideline_binding,

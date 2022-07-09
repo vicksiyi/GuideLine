@@ -14,7 +14,7 @@
   import Button from "./components/Button.svelte";
   import Empty from "./components/Empty.svelte";
   import { on, emit } from "./common/events";
-  import { updateGuiSize } from "./common/global";
+  import { updateGuiSize,toast } from "./common/global";
   import SaveCard from "./components/SaveCard.svelte";
 
   let active = 0;
@@ -76,7 +76,25 @@
   // 取消选择
   function clearHandler(event) {}
   // 保存
-  function saveHandler(event) {}
+  function saveHandler(event) {
+    if(_guidelineName !== "") {
+      emit("save-guideline", {
+        name:_guidelineName,
+        icon:"",
+        guideline:_guideline
+      });
+      resetCustomCard();
+      updateGuiSize(guiSize);
+    }else {
+      toast("分割线名称不能为空");
+    }
+  }
+  // 重置自定义画板
+  function resetCustomCard() {
+    _guideline = JSON.parse(JSON.stringify(guideline));
+    _guidelineName = "";
+    isPreview = false;
+  }
   // 应用
   function applyHandler(event) {
     emit("apply-line");

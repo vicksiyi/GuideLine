@@ -81,3 +81,8 @@ export interface HidePreviewLineHandler extends EventHandler {
     name: 'hide-preview-line',
     handler: () => void
 }
+
+export interface SaveGuidelineHandler extends EventHandler {
+    name: 'save-guideline',
+    handler: (saveCard: SaveCard) => void
+}

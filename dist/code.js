@@ -119,6 +119,7 @@ const typeToName = {
 const dash = [2, 2];
 const guideLinesGroupName = (name) => `${name}--分割线`;
 const guideLineGroupName = (name) => `${name}--分割线`;
+const storageKey = 'guideline-save-cards';
 let basedColor = "CCCCCC";
 function hideFrameGuideLine(node, isHide) {
     node.children && node.children.forEach(child_node => {
@@ -284,6 +285,20 @@ Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["on"])('preview-line', (guide
 });
 Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["on"])('hide-preview-line', () => {
     clearCurrentUnApplyGroup();
+});
+Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["on"])('save-guideline', async (saveCard) => {
+    let saveCards = await figma.clientStorage.getAsync(storageKey);
+    if (saveCards === undefined) {
+        saveCards = [];
+    }
+    clearCurrentUnApplyGroup();
+    figma.clientStorage.setAsync(storageKey, [...saveCards, saveCard])
+        .then(() => {
+        figma.notify('保存成功');
+    }).catch(err => {
+        figma.notify('保存失败');
+        console.error(err);
+    });
 });
 
 
