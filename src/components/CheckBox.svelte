@@ -4,11 +4,17 @@
     import checkmark from '../assets/check_mask.svg';
     export let checked = false;
     export let label = '';
+    export let guideline = {};
 </script>
 
 <div class="checkbox-label">
   <label>
     <input
+      disabled={!(
+        (guideline.row.scales.length > 1 &&
+          guideline.column.scales.length > 0) ||
+        (guideline.column.scales.length > 1 && guideline.row.scales.length > 0)
+      )}
       type="checkbox"
       on:change={() => {
         setTimeout(() => {
@@ -114,6 +120,12 @@
   input:checked ~ .checkbox-toggle .checkbox-icon {
     transform: scale(1);
     opacity: 1;
+  }
+
+  input[disabled] ~ .checkbox-toggle:after,
+  input[disabled] ~ .checkbox-toggle:before {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.2);
   }
 
   .label {

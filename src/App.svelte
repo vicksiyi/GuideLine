@@ -114,6 +114,7 @@
             <CheckBox
               on:checkboxChange={previewChangeHandler}
               label={"预览"}
+              bind:guideline={_guideline}
               bind:checked={isPreview}
             />
           </div>
@@ -125,7 +126,11 @@
           bind:selected={lineSelected}
         />
         <!-- 颜色选择器 -->
-        <Color on:colorChange={colorChange} bind:basedColor />
+        <div class="color-select-container">
+          <div class="color-select">
+            <Color on:colorChange={colorChange} bind:basedColor />
+          </div>
+        </div>
       {/if}
     </div>
     <footer>
@@ -180,6 +185,15 @@
 {/if}
 
 <style>
+  .color-select-container {
+    display: flex;
+    justify-content: right;
+    padding: 0 12px;
+    margin-top: 12px;
+  }
+  .color-select {
+    width: 131px;
+  }
   .preview-container {
     display: flex;
     justify-content: right;
