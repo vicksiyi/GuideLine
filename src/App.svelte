@@ -3,6 +3,7 @@
   import Tags from "./components/Tags.svelte";
   import Card from "./components/Card.svelte";
   import CheckBox from "./components/CheckBox.svelte";
+  import Input from "./components/Input.svelte";
   import {
     tags,
     guiSizeEmpty,
@@ -22,6 +23,7 @@
   let basedColor = "CCCCCC";
   let _guideline = JSON.parse(JSON.stringify(guideline));
   let isPreview = false;
+  let _guidelineName = "";
 
   // 重置选择
   function resetSelection() {
@@ -119,6 +121,12 @@
             />
           </div>
         </div>
+        <!-- 输入保存名称 -->
+        <div class="save-name-container">
+          <div class="save-name">
+            <Input label={"分割线名称"} bind:value={_guidelineName} />
+          </div>
+        </div>
       {:else}
         <SaveCard
           {saveCardList}
@@ -163,9 +171,11 @@
             <Button
               disabled={!(
                 (_guideline.row.scales.length > 1 &&
-                  _guideline.column.scales.length > 0) ||
+                  _guideline.column.scales.length > 0 &&
+                  _guidelineName !== "") ||
                 (_guideline.column.scales.length > 1 &&
-                  _guideline.row.scales.length > 0)
+                  _guideline.row.scales.length > 0 &&
+                  _guidelineName !== "")
               )}
               class="show-btn"
               on:click={saveHandler}
@@ -185,15 +195,14 @@
 {/if}
 
 <style>
-  .color-select-container {
-    display: flex;
-    justify-content: right;
-    padding: 0 12px;
-    margin-top: 12px;
+  .save-name-container {
+    justify-content: start !important;
   }
   .color-select {
     width: 131px;
   }
+  .save-name-container,
+  .color-select-container,
   .preview-container {
     display: flex;
     justify-content: right;
