@@ -3027,7 +3027,7 @@ function add_css(target) {
 	Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append_styles"])(target, "svelte-1qi4n8e", ".save-name-container.svelte-1qi4n8e{justify-content:start !important}.color-select.svelte-1qi4n8e{width:131px}.save-name-container.svelte-1qi4n8e,.color-select-container.svelte-1qi4n8e,.preview-container.svelte-1qi4n8e{display:flex;justify-content:right;padding:0 12px;margin-top:12px}.preview.svelte-1qi4n8e{width:48px}.toast{position:absolute;bottom:16px;left:16px;right:16px;padding:8px 16px;border:1px solid #909399;border-radius:4px;background-color:#909399;box-shadow:0 2px 12px 0 rgba(0, 0, 0, 0.1);color:#ffffff;transition:all 0.5s ease-in-out;text-align:center;font-size:12px}.toast--error{border:1px solid #f56c6c;background-color:#f56c6c}.toast--warning{border:1px solid #e6a23c;background-color:#e6a23c}.toast--success{border:1px solid #67c23a;background-color:#67c23a}footer.svelte-1qi4n8e{width:100%;height:64px;margin-top:16px;background-color:rgba(0, 0, 0, 0.03)}.manage-btn.svelte-1qi4n8e{display:flex;justify-content:space-between;padding:16px}.manage-btn.svelte-1qi4n8e .clear-btn{width:58px;height:32px}.manage-btn.svelte-1qi4n8e .show-btn{flex:1;margin-left:12px}");
 }
 
-// (224:0) {:else}
+// (226:0) {:else}
 function create_else_block_3(ctx) {
 	let main;
 	let empty_1;
@@ -3088,12 +3088,13 @@ function create_if_block(ctx) {
 		});
 
 	tags_1.$on("activeChange", /*handleActiveChange*/ ctx[8]);
-	const if_block_creators = [create_if_block_3, create_else_block_2];
+	const if_block_creators = [create_if_block_3, create_if_block_4, create_else_block_2];
 	const if_blocks = [];
 
 	function select_block_type_1(ctx, dirty) {
 		if (/*active*/ ctx[0] === 2) return 0;
-		return 1;
+		if (/*_saveCardList*/ ctx[5].length) return 1;
+		return 2;
 	}
 
 	current_block_type_index = select_block_type_1(ctx, -1);
@@ -3266,8 +3267,47 @@ function create_if_block(ctx) {
 	};
 }
 
-// (164:6) {:else}
+// (176:6) {:else}
 function create_else_block_2(ctx) {
+	let empty_1;
+	let current;
+
+	empty_1 = new _components_Empty_svelte__WEBPACK_IMPORTED_MODULE_9__["default"]({
+			props: {
+				text: `${/*active*/ ctx[0] === 1 ? "自定义" : "默认"}数据为空`
+			}
+		});
+
+	return {
+		c() {
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["create_component"])(empty_1.$$.fragment);
+		},
+		m(target, anchor) {
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["mount_component"])(empty_1, target, anchor);
+			current = true;
+		},
+		p(ctx, dirty) {
+			const empty_1_changes = {};
+			if (dirty & /*active*/ 1) empty_1_changes.text = `${/*active*/ ctx[0] === 1 ? "自定义" : "默认"}数据为空`;
+			empty_1.$set(empty_1_changes);
+		},
+		i(local) {
+			if (current) return;
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_in"])(empty_1.$$.fragment, local);
+			current = true;
+		},
+		o(local) {
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["transition_out"])(empty_1.$$.fragment, local);
+			current = false;
+		},
+		d(detaching) {
+			Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["destroy_component"])(empty_1, detaching);
+		}
+	};
+}
+
+// (164:37) 
+function create_if_block_4(ctx) {
 	let savecard;
 	let updating_saveCardList;
 	let updating_selected;
@@ -3539,7 +3579,7 @@ function create_if_block_3(ctx) {
 	};
 }
 
-// (187:10) {:else}
+// (189:10) {:else}
 function create_else_block_1(ctx) {
 	let button;
 	let current;
@@ -3581,7 +3621,7 @@ function create_else_block_1(ctx) {
 	};
 }
 
-// (181:10) {#if active === 0 || active === 1}
+// (183:10) {#if active === 0 || active === 1}
 function create_if_block_2(ctx) {
 	let button;
 	let current;
@@ -3623,7 +3663,7 @@ function create_if_block_2(ctx) {
 	};
 }
 
-// (204:10) {:else}
+// (206:10) {:else}
 function create_else_block(ctx) {
 	let button;
 	let current;
@@ -3667,7 +3707,7 @@ function create_else_block(ctx) {
 	};
 }
 
-// (196:10) {#if active === 0 || active === 1}
+// (198:10) {#if active === 0 || active === 1}
 function create_if_block_1(ctx) {
 	let button;
 	let current;

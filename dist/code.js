@@ -306,7 +306,7 @@ Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["on"])('save-guideline', asyn
 });
 Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["on"])('get-storage', () => {
     figma.clientStorage.getAsync(storageKey).then((data) => {
-        Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["emit"])('STORAGE', data);
+        Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["emit"])('STORAGE', data === undefined ? [] : data);
     });
 });
 

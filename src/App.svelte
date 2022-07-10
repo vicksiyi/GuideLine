@@ -161,7 +161,7 @@
             <Input label={"分割线名称"} bind:value={_guidelineName} />
           </div>
         </div>
-      {:else}
+      {:else if _saveCardList.length}
         <SaveCard
           bind:saveCardList={_saveCardList}
           on:activeChange={lineActiveChange}
@@ -173,6 +173,8 @@
             <Color on:colorChange={colorChange} bind:basedColor />
           </div>
         </div>
+      {:else}
+        <Empty text={`${active === 1 ? "自定义" : "默认"}数据为空`} />
       {/if}
     </div>
     <footer>

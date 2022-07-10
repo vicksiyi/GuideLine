@@ -286,6 +286,6 @@ on<SaveGuidelineHandler>('save-guideline', async (saveCard: SaveCard) => {
 // 监听获取本地数据
 on<GetStorageHandler>('get-storage', () => {
     figma.clientStorage.getAsync(storageKey).then((data) => {
-        emit<StoragesHandler>('STORAGE', data)
+        emit<StoragesHandler>('STORAGE', data === undefined ? [] : data)
     })
 })
