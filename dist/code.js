@@ -145,7 +145,7 @@ function drawLine(node, distance, isRow) {
     const { width, height, rotation } = node;
     const x = node.absoluteTransform[0][2];
     const y = node.absoluteTransform[1][2];
-    const lineNode = figma.createLine();
+    const lineNode = jsDesign.createLine();
     const rgbColor = Object(_common_convertColor__WEBPACK_IMPORTED_MODULE_1__["hexToJsDesignRGB"])(basedColor);
     lineNode.x = isRow ? x : x + distance;
     lineNode.y = isRow ? y + distance : y;
@@ -200,21 +200,21 @@ function createLine(node, guideline) {
     return nodes;
 }
 function createGuidelineHandler(saveCard) {
-    const selections = figma.currentPage.selection;
+    const selections = jsDesign.currentPage.selection;
     selections.forEach(node => {
         if (supportNodes.indexOf(node.type) !== -1) {
             const nodes = createLine(node, saveCard.guideline);
             if (nodes.length === 0) {
-                figma.notify('无效辅助线');
+                jsDesign.notify('无效辅助线');
                 return;
             }
-            let group = figma.group(nodes, node);
+            let group = jsDesign.group(nodes, node);
             group.name = guideLineGroupName(saveCard.name);
             group.locked = true;
             const children = node.children;
             let lineGroup = children.find(_node => _node.type === 'GROUP' && _node.name === guideLinesGroupName(node.name));
             if (!lineGroup) {
-                lineGroup = figma.group([group], node);
+                lineGroup = jsDesign.group([group], node);
                 lineGroup.name = guideLinesGroupName(node.name);
                 lineGroup.locked = true;
             }
@@ -222,16 +222,16 @@ function createGuidelineHandler(saveCard) {
                 lineGroup.appendChild(group);
             }
             multiFrameUnApplyGroup[node.id][saveCard === null || saveCard === void 0 ? void 0 : saveCard.id] = group;
-            figma.notify(`创建${saveCard.name}分割线成功`);
+            jsDesign.notify(`创建${saveCard.name}分割线成功`);
         }
         else {
-            figma.notify(`${typeToName[node.type]}节点 ${node.name} 暂时支持`);
+            jsDesign.notify(`${typeToName[node.type]}节点 ${node.name} 暂时支持`);
         }
     });
 }
 function createGuideline(saveCard) {
     if (Object.keys(multiFrameUnApplyGroup).length === 0) {
-        const selections = figma.currentPage.selection;
+        const selections = jsDesign.currentPage.selection;
         multiFrameUnApplyGroup = (() => {
             let _multi = {};
             selections.forEach(node => {
@@ -242,7 +242,7 @@ function createGuideline(saveCard) {
     }
     Object.keys(multiFrameUnApplyGroup).forEach(key => {
         if (multiFrameUnApplyGroup[key].hasOwnProperty(saveCard.id)) {
-            figma.notify("请勿重复添加分割线");
+            jsDesign.notify("请勿重复添加分割线");
         }
         else {
             multiFrameUnApplyGroup[key][saveCard.id] = { remove: () => { console.log('删除成功'); } };
@@ -254,24 +254,24 @@ function deleteGuideline(saveCard) {
     const id = saveCard.id;
     Object.keys(multiFrameUnApplyGroup).forEach(key => {
         if (!multiFrameUnApplyGroup[key].hasOwnProperty(id)) {
-            figma.notify("分割线不存在");
+            jsDesign.notify("分割线不存在");
         }
         else {
             const node = multiFrameUnApplyGroup[key][id];
             node === null || node === void 0 ? void 0 : node.remove();
             delete multiFrameUnApplyGroup[key][id];
-            figma.notify(`取消${saveCard.name}分割线成功`);
+            jsDesign.notify(`取消${saveCard.name}分割线成功`);
         }
     });
 }
-figma.showUI(__html__, { width: 260, height: 440 });
-Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["emit"])('SELECTION_CHANGED', figma.currentPage.selection.length > 0);
-figma.on('selectionchange', function () {
-    Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["emit"])('SELECTION_CHANGED', figma.currentPage.selection.length > 0);
+jsDesign.showUI(__html__, { width: 260, height: 440 });
+Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["emit"])('SELECTION_CHANGED', jsDesign.currentPage.selection.length > 0);
+jsDesign.on('selectionchange', function () {
+    Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["emit"])('SELECTION_CHANGED', jsDesign.currentPage.selection.length > 0);
     Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["emit"])('clear-active');
 });
 Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["on"])("CHANGE_GUI_SIZE", (guiSize) => {
-    figma.ui.resize(guiSize === null || guiSize === void 0 ? void 0 : guiSize.width, guiSize === null || guiSize === void 0 ? void 0 : guiSize.height);
+    jsDesign.ui.resize(guiSize === null || guiSize === void 0 ? void 0 : guiSize.width, guiSize === null || guiSize === void 0 ? void 0 : guiSize.height);
 });
 Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["on"])('clear-line', () => {
     clearCurrentUnApplyGroup();
@@ -285,7 +285,7 @@ Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["on"])('delete-line', (saveCa
 Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["on"])('apply-line', () => {
     multiFrameUnApplyGroup = {};
     Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["emit"])('clear-active');
-    figma.notify("成功应用");
+    jsDesign.notify("成功应用");
 });
 Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["on"])('update-color', (color) => {
     basedColor = color;
@@ -303,21 +303,21 @@ Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["on"])('hide-preview-line', (
     clearCurrentUnApplyGroup();
 });
 Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["on"])('save-guideline', async (saveCard) => {
-    let saveCards = await figma.clientStorage.getAsync(storageKey);
+    let saveCards = await jsDesign.clientStorage.getAsync(storageKey);
     if (saveCards === undefined) {
         saveCards = [];
     }
     clearCurrentUnApplyGroup();
-    figma.clientStorage.setAsync(storageKey, [...saveCards, saveCard])
+    jsDesign.clientStorage.setAsync(storageKey, [...saveCards, saveCard])
         .then(() => {
-        figma.notify('保存成功');
+        jsDesign.notify('保存成功');
     }).catch(err => {
-        figma.notify('保存失败');
+        jsDesign.notify('保存失败');
         console.error(err);
     });
 });
 Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["on"])('get-storage', () => {
-    figma.clientStorage.getAsync(storageKey).then((data) => {
+    jsDesign.clientStorage.getAsync(storageKey).then((data) => {
         Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["emit"])('STORAGE', data === undefined ? [] : data);
     });
 });
@@ -407,7 +407,7 @@ function once(name, handler) {
 }
 const emit = typeof window === 'undefined'
     ? function (name, ...args) {
-        figma.ui.postMessage([name, ...args]);
+        jsDesign.ui.postMessage([name, ...args]);
     }
     : function (name, ...args) {
         window.parent.postMessage({
@@ -422,7 +422,7 @@ function invokeEventHandler(name, args) {
     }
 }
 if (typeof window === 'undefined') {
-    figma.ui.onmessage = function ([name, ...args]) {
+    jsDesign.ui.onmessage = function ([name, ...args]) {
         invokeEventHandler(name, args);
     };
 }

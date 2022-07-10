@@ -77,7 +77,7 @@ function drawLine(node: SupportsGuideLineNode, distance: number, isRow: boolean)
     const { width, height, rotation } = node;
     const x = node.absoluteTransform[0][2];
     const y = node.absoluteTransform[1][2];
-    const lineNode = figma.createLine();
+    const lineNode = jsDesign.createLine();
     const rgbColor = hexToJsDesignRGB(basedColor);
     lineNode.x = isRow ? x : x + distance;
     lineNode.y = isRow ? y + distance : y;
@@ -138,17 +138,17 @@ function createLine(node: SupportsGuideLineNode, guideline: GuideLine): LineNode
 // 处理节点
 function createGuidelineHandler(saveCard: SaveCard): void {
     // 已经选择的组件
-    const selections = figma.currentPage.selection;
-    // if (selections.length > 1) { figma.notify('只能选择一个画板'); return; }
+    const selections = jsDesign.currentPage.selection;
+    // if (selections.length > 1) { jsDesign.notify('只能选择一个画板'); return; }
     selections.forEach(node => {
         // 判断类型是否支持
         if (supportNodes.indexOf(node.type) !== -1) {
             const nodes = createLine((node as SupportsGuideLineNode), saveCard.guideline);
             if (nodes.length === 0) {
-                figma.notify('无效辅助线');
+                jsDesign.notify('无效辅助线');
                 return;
             }
-            let group = figma.group(nodes, <SupportsGuideLineNode>node);
+            let group = jsDesign.group(nodes, <SupportsGuideLineNode>node);
             group.name = guideLineGroupName(saveCard.name);
             group.locked = true;
 
@@ -156,7 +156,7 @@ function createGuidelineHandler(saveCard: SaveCard): void {
             let lineGroup = children.find(_node => _node.type === 'GROUP' && _node.name === guideLinesGroupName(node.name));
             // 首次创建分割线时候，创建一个大集合
             if (!lineGroup) {
-                lineGroup = figma.group([group], <SupportsGuideLineNode>node);
+                lineGroup = jsDesign.group([group], <SupportsGuideLineNode>node);
                 lineGroup.name = guideLinesGroupName(node.name);
                 lineGroup.locked = true;
             } else {
@@ -165,11 +165,11 @@ function createGuidelineHandler(saveCard: SaveCard): void {
 
             multiFrameUnApplyGroup[node.id][saveCard?.id] = group;
             // 添加未引用组件
-            figma.notify(`创建${saveCard.name}分割线成功`);
+            jsDesign.notify(`创建${saveCard.name}分割线成功`);
         }
         else {
             // 问题：平台不支持同时提示两个notify
-            figma.notify(`${typeToName[node.type]}节点 ${node.name} 暂时支持`);
+            jsDesign.notify(`${typeToName[node.type]}节点 ${node.name} 暂时支持`);
         }
     })
 }
@@ -177,7 +177,7 @@ function createGuidelineHandler(saveCard: SaveCard): void {
 // 生成辅助线
 function createGuideline(saveCard: SaveCard): void {
     if (Object.keys(multiFrameUnApplyGroup).length === 0) {  // 初始化multiFrameUnApplyGroup
-        const selections = figma.currentPage.selection;
+        const selections = jsDesign.currentPage.selection;
         multiFrameUnApplyGroup = (() => {
             let _multi = {};
             selections.forEach(node => {
@@ -188,7 +188,7 @@ function createGuideline(saveCard: SaveCard): void {
     }
     Object.keys(multiFrameUnApplyGroup).forEach(key => {
         if (multiFrameUnApplyGroup[key].hasOwnProperty(saveCard.id)) {
-            figma.notify("请勿重复添加分割线");
+            jsDesign.notify("请勿重复添加分割线");
         } else {
             // 生成
             multiFrameUnApplyGroup[key][saveCard.id] = <GroupNode>{ remove: () => { console.log('删除成功'); } };
@@ -202,31 +202,31 @@ function deleteGuideline(saveCard: SaveCard): void {
     const id = saveCard.id;
     Object.keys(multiFrameUnApplyGroup).forEach(key => {
         if (!multiFrameUnApplyGroup[key].hasOwnProperty(id)) {
-            figma.notify("分割线不存在");
+            jsDesign.notify("分割线不存在");
         } else {
             // 删除
             const node = multiFrameUnApplyGroup[key][id];
             node?.remove();
             delete multiFrameUnApplyGroup[key][id];
-            figma.notify(`取消${saveCard.name}分割线成功`);
+            jsDesign.notify(`取消${saveCard.name}分割线成功`);
         }
     })
 }
 
-figma.showUI(__html__, { width: 260, height: 440 });
+jsDesign.showUI(__html__, { width: 260, height: 440 });
 
 // GUI 界面发送消息【已选择图层，启动的时候发一次】
 emit<SelectionChangedHandler>(
     'SELECTION_CHANGED',
-    figma.currentPage.selection.length > 0
+    jsDesign.currentPage.selection.length > 0
 )
 
 // 监听图层选择事件
-figma.on('selectionchange', function () {
+jsDesign.on('selectionchange', function () {
     // 向GUI 界面发送消息【已选择图层】
     emit<SelectionChangedHandler>(
         'SELECTION_CHANGED',
-        figma.currentPage.selection.length > 0
+        jsDesign.currentPage.selection.length > 0
     );
 
 
@@ -236,7 +236,7 @@ figma.on('selectionchange', function () {
 
 // 监听GUI发送过来的消息【改变窗口】
 on<ChangeGuiSizeHandler>("CHANGE_GUI_SIZE", (guiSize) => {
-    figma.ui.resize(guiSize?.width, guiSize?.height);
+    jsDesign.ui.resize(guiSize?.width, guiSize?.height);
 })
 
 // 监听清空分割线消息【清空未应用】
@@ -258,7 +258,7 @@ on<DeleteLineHandler>('delete-line', (saveCard: SaveCard) => {
 on<ApplyLineHandler>('apply-line', () => {
     multiFrameUnApplyGroup = {};
     emit<clearActiveHandler>('clear-active')
-    figma.notify("成功应用")
+    jsDesign.notify("成功应用")
 })
 
 // 监听颜色变化
@@ -284,23 +284,23 @@ on<HidePreviewLineHandler>('hide-preview-line', () => {
 
 // 监听保存分割线
 on<SaveGuidelineHandler>('save-guideline', async (saveCard: SaveCard) => {
-    let saveCards: SaveCard[] | undefined = await figma.clientStorage.getAsync(storageKey);
+    let saveCards: SaveCard[] | undefined = await jsDesign.clientStorage.getAsync(storageKey);
     if (saveCards === undefined) {
         saveCards = [];
     }
     clearCurrentUnApplyGroup();
-    figma.clientStorage.setAsync(storageKey, [...saveCards, saveCard])
+    jsDesign.clientStorage.setAsync(storageKey, [...saveCards, saveCard])
         .then(() => {
-            figma.notify('保存成功');
+            jsDesign.notify('保存成功');
         }).catch(err => {
-            figma.notify('保存失败');
+            jsDesign.notify('保存失败');
             console.error(err);
         });
 })
 
 // 监听获取本地数据
 on<GetStorageHandler>('get-storage', () => {
-    figma.clientStorage.getAsync(storageKey).then((data) => {
+    jsDesign.clientStorage.getAsync(storageKey).then((data) => {
         emit<StoragesHandler>('STORAGE', data === undefined ? [] : data)
     })
 })

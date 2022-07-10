@@ -20,7 +20,7 @@ export function once(name, handler) {
 }
 export const emit = typeof window === 'undefined'
     ? function (name, ...args) {
-        figma.ui.postMessage([name, ...args]);
+        jsDesign.ui.postMessage([name, ...args]);
     }
     : function (name, ...args) {
         window.parent.postMessage({
@@ -35,7 +35,7 @@ function invokeEventHandler(name, args) {
     }
 }
 if (typeof window === 'undefined') {
-    figma.ui.onmessage = function ([name, ...args]) {
+    jsDesign.ui.onmessage = function ([name, ...args]) {
         invokeEventHandler(name, args);
     };
 }

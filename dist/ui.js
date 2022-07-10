@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head></head><body><script>/******/ (function(modules) { // webpackBootstrap
+/******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -1535,7 +1535,7 @@ function add_resize_listener(node, fn) {
     const crossorigin = is_crossorigin();
     let unsubscribe;
     if (crossorigin) {
-        iframe.src = "data:text/html,<script>onresize=function(){parent.postMessage(0,'*')}\x3C/script>";
+        iframe.src = "data:text/html,<script>onresize=function(){parent.postMessage(0,'*')}</script>";
         unsubscribe = listen(window, 'message', (event) => {
             if (event.source === iframe.contentWindow)
                 fn();
@@ -2951,7 +2951,7 @@ class SvelteComponentDev extends SvelteComponent {
  * ```svelte
  * <script lang="ts">
  * 	import { MyComponent } from "component-library";
- * \x3C/script>
+ * </script>
  * <MyComponent foo={'bar'} />
  * ```
  *
@@ -6429,4 +6429,4 @@ const app = new _App_svelte__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /***/ })
 
 /******/ });
-//# sourceMappingURL=ui.js.map</script></body></html>
+//# sourceMappingURL=ui.js.map
