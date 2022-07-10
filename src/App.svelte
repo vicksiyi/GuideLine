@@ -129,6 +129,26 @@
       updateGuiSize(guiSize);
     }
   })
+
+  // 监听明暗模式[切换]
+  window.addEventListener("message", e => {
+    if (e.source === window.parent.parent) {
+        if (e.data && e.data.themes) {
+            const classesToRemove = []
+            // 先移除原本的class
+            document.documentElement.classList.forEach(value => {
+                if (value.startsWith("jsdesign-")) {
+                    classesToRemove.push(value)
+                }
+            })
+            for (const className of classesToRemove) {
+                document.documentElement.classList.remove(className)
+            }
+            // 再添加class
+            document.documentElement.classList.add("jsdesign-" + e.data.themes)
+        }
+    }
+})
 </script>
 
 {#if hasSelected}

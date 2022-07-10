@@ -213,7 +213,7 @@ function deleteGuideline(saveCard: SaveCard): void {
     })
 }
 
-jsDesign.showUI(__html__, { width: 260, height: 440 });
+jsDesign.showUI(__html__, { width: 260, height: 440, themeColors: true });
 
 // GUI 界面发送消息【已选择图层，启动的时候发一次】
 emit<SelectionChangedHandler>(

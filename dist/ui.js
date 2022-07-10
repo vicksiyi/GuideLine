@@ -3027,7 +3027,7 @@ function add_css(target) {
 	Object(svelte_internal__WEBPACK_IMPORTED_MODULE_0__["append_styles"])(target, "svelte-1qi4n8e", ".save-name-container.svelte-1qi4n8e{justify-content:start !important}.color-select.svelte-1qi4n8e{width:131px}.save-name-container.svelte-1qi4n8e,.color-select-container.svelte-1qi4n8e,.preview-container.svelte-1qi4n8e{display:flex;justify-content:right;padding:0 12px;margin-top:12px}.preview.svelte-1qi4n8e{width:48px}.toast{position:absolute;bottom:16px;left:16px;right:16px;padding:8px 16px;border:1px solid #909399;border-radius:4px;background-color:#909399;box-shadow:0 2px 12px 0 rgba(0, 0, 0, 0.1);color:#ffffff;transition:all 0.5s ease-in-out;text-align:center;font-size:12px}.toast--error{border:1px solid #f56c6c;background-color:#f56c6c}.toast--warning{border:1px solid #e6a23c;background-color:#e6a23c}.toast--success{border:1px solid #67c23a;background-color:#67c23a}footer.svelte-1qi4n8e{width:100%;height:64px;margin-top:16px;background-color:rgba(0, 0, 0, 0.03)}.manage-btn.svelte-1qi4n8e{display:flex;justify-content:space-between;padding:16px}.manage-btn.svelte-1qi4n8e .clear-btn{width:58px;height:32px}.manage-btn.svelte-1qi4n8e .show-btn{flex:1;margin-left:12px}");
 }
 
-// (227:0) {:else}
+// (247:0) {:else}
 function create_else_block_3(ctx) {
 	let main;
 	let empty_1;
@@ -3062,7 +3062,7 @@ function create_else_block_3(ctx) {
 	};
 }
 
-// (134:0) {#if hasSelected}
+// (154:0) {#if hasSelected}
 function create_if_block(ctx) {
 	let main;
 	let header;
@@ -3267,7 +3267,7 @@ function create_if_block(ctx) {
 	};
 }
 
-// (177:6) {:else}
+// (197:6) {:else}
 function create_else_block_2(ctx) {
 	let empty_1;
 	let current;
@@ -3306,7 +3306,7 @@ function create_else_block_2(ctx) {
 	};
 }
 
-// (165:37) 
+// (185:37) 
 function create_if_block_4(ctx) {
 	let savecard;
 	let updating_saveCardList;
@@ -3419,7 +3419,7 @@ function create_if_block_4(ctx) {
 	};
 }
 
-// (142:6) {#if active === 2}
+// (162:6) {#if active === 2}
 function create_if_block_3(ctx) {
 	let div0;
 	let card;
@@ -3579,7 +3579,7 @@ function create_if_block_3(ctx) {
 	};
 }
 
-// (190:10) {:else}
+// (210:10) {:else}
 function create_else_block_1(ctx) {
 	let button;
 	let current;
@@ -3621,7 +3621,7 @@ function create_else_block_1(ctx) {
 	};
 }
 
-// (184:10) {#if active === 0 || active === 1}
+// (204:10) {#if active === 0 || active === 1}
 function create_if_block_2(ctx) {
 	let button;
 	let current;
@@ -3663,7 +3663,7 @@ function create_if_block_2(ctx) {
 	};
 }
 
-// (207:10) {:else}
+// (227:10) {:else}
 function create_else_block(ctx) {
 	let button;
 	let current;
@@ -3707,7 +3707,7 @@ function create_else_block(ctx) {
 	};
 }
 
-// (199:10) {#if active === 0 || active === 1}
+// (219:10) {#if active === 0 || active === 1}
 function create_if_block_1(ctx) {
 	let button;
 	let current;
@@ -3951,6 +3951,29 @@ function instance($$self, $$props, $$invalidate) {
 		if (active === storageActive) {
 			$$invalidate(5, _saveCardList = saveCards);
 			Object(_common_global__WEBPACK_IMPORTED_MODULE_11__["updateGuiSize"])(_common_variables__WEBPACK_IMPORTED_MODULE_7__["guiSize"]);
+		}
+	});
+
+	// 监听明暗模式[切换]
+	window.addEventListener("message", e => {
+		if (e.source === window.parent.parent) {
+			if (e.data && e.data.themes) {
+				const classesToRemove = [];
+
+				// 先移除原本的class
+				document.documentElement.classList.forEach(value => {
+					if (value.startsWith("jsdesign-")) {
+						classesToRemove.push(value);
+					}
+				});
+
+				for (const className of classesToRemove) {
+					document.documentElement.classList.remove(className);
+				}
+
+				// 再添加class
+				document.documentElement.classList.add("jsdesign-" + e.data.themes);
+			}
 		}
 	});
 

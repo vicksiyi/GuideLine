@@ -264,7 +264,7 @@ function deleteGuideline(saveCard) {
         }
     });
 }
-jsDesign.showUI(__html__, { width: 260, height: 440 });
+jsDesign.showUI(__html__, { width: 260, height: 440, themeColors: true });
 Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["emit"])('SELECTION_CHANGED', jsDesign.currentPage.selection.length > 0);
 jsDesign.on('selectionchange', function () {
     Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["emit"])('SELECTION_CHANGED', jsDesign.currentPage.selection.length > 0);
