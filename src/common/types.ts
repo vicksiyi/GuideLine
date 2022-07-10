@@ -28,6 +28,10 @@ export type UnApplyGroup = {
     [id: string]: GroupNode
 }
 
+export type MultiFrameUnApplyGroup = {
+    [id: string]: UnApplyGroup
+}
+
 // 只支持画板节点和矩形节点
 export type SupportsGuideLineNode =
     | FrameNode

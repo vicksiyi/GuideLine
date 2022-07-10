@@ -121,7 +121,7 @@ const guideLinesGroupName = (name) => `${name}--分割线`;
 const guideLineGroupName = (name) => `${name}--分割线`;
 const storageKey = 'guideline-save-cards';
 let basedColor = "CCCCCC";
-let unApplyGroup = {};
+let multiFrameUnApplyGroup = {};
 function hideFrameGuideLine(node, isHide) {
     node.children && node.children.forEach(child_node => {
         if (child_node.name.endsWith('--分割线')) {
@@ -133,11 +133,13 @@ function hideFrameGuideLine(node, isHide) {
     });
 }
 function clearCurrentUnApplyGroup() {
-    Object.keys(unApplyGroup).forEach(key => {
-        const node = unApplyGroup[key];
-        node === null || node === void 0 ? void 0 : node.remove();
+    Object.keys(multiFrameUnApplyGroup).forEach(key => {
+        Object.keys(multiFrameUnApplyGroup[key]).forEach(child_key => {
+            const node = multiFrameUnApplyGroup[key][child_key];
+            node === null || node === void 0 ? void 0 : node.remove();
+        });
     });
-    unApplyGroup = {};
+    multiFrameUnApplyGroup = {};
 }
 function drawLine(node, distance, isRow) {
     const { width, height, rotation } = node;
@@ -199,10 +201,6 @@ function createLine(node, guideline) {
 }
 function createGuidelineHandler(saveCard) {
     const selections = figma.currentPage.selection;
-    if (selections.length > 1) {
-        figma.notify('只能选择一个画板');
-        return;
-    }
     selections.forEach(node => {
         if (supportNodes.indexOf(node.type) !== -1) {
             const nodes = createLine(node, saveCard.guideline);
@@ -223,7 +221,7 @@ function createGuidelineHandler(saveCard) {
             else {
                 lineGroup.appendChild(group);
             }
-            unApplyGroup[saveCard === null || saveCard === void 0 ? void 0 : saveCard.id] = group;
+            multiFrameUnApplyGroup[node.id][saveCard === null || saveCard === void 0 ? void 0 : saveCard.id] = group;
             figma.notify(`创建${saveCard.name}分割线成功`);
         }
         else {
@@ -232,25 +230,39 @@ function createGuidelineHandler(saveCard) {
     });
 }
 function createGuideline(saveCard) {
-    if (unApplyGroup.hasOwnProperty(saveCard.id)) {
-        figma.notify("请勿重复添加分割线");
+    if (Object.keys(multiFrameUnApplyGroup).length === 0) {
+        const selections = figma.currentPage.selection;
+        multiFrameUnApplyGroup = (() => {
+            let _multi = {};
+            selections.forEach(node => {
+                _multi[node.id] = {};
+            });
+            return _multi;
+        })();
     }
-    else {
-        unApplyGroup[saveCard.id] = { remove: () => { console.log('删除成功'); } };
-        createGuidelineHandler(saveCard);
-    }
+    Object.keys(multiFrameUnApplyGroup).forEach(key => {
+        if (multiFrameUnApplyGroup[key].hasOwnProperty(saveCard.id)) {
+            figma.notify("请勿重复添加分割线");
+        }
+        else {
+            multiFrameUnApplyGroup[key][saveCard.id] = { remove: () => { console.log('删除成功'); } };
+            createGuidelineHandler(saveCard);
+        }
+    });
 }
 function deleteGuideline(saveCard) {
     const id = saveCard.id;
-    if (!unApplyGroup.hasOwnProperty(id)) {
-        figma.notify("分割线不存在");
-    }
-    else {
-        const node = unApplyGroup[id];
-        node === null || node === void 0 ? void 0 : node.remove();
-        delete unApplyGroup[id];
-        figma.notify(`取消${saveCard.name}分割线成功`);
-    }
+    Object.keys(multiFrameUnApplyGroup).forEach(key => {
+        if (!multiFrameUnApplyGroup[key].hasOwnProperty(id)) {
+            figma.notify("分割线不存在");
+        }
+        else {
+            const node = multiFrameUnApplyGroup[key][id];
+            node === null || node === void 0 ? void 0 : node.remove();
+            delete multiFrameUnApplyGroup[key][id];
+            figma.notify(`取消${saveCard.name}分割线成功`);
+        }
+    });
 }
 figma.showUI(__html__, { width: 260, height: 440 });
 Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["emit"])('SELECTION_CHANGED', figma.currentPage.selection.length > 0);
@@ -271,7 +283,7 @@ Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["on"])('delete-line', (saveCa
     deleteGuideline(saveCard);
 });
 Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["on"])('apply-line', () => {
-    unApplyGroup = {};
+    multiFrameUnApplyGroup = {};
     Object(_common_events__WEBPACK_IMPORTED_MODULE_0__["emit"])('clear-active');
     figma.notify("成功应用");
 });

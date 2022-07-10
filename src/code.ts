@@ -8,7 +8,6 @@ import {
     ApplyLineHandler,
     DeleteLineHandler,
     SaveCard,
-    UnApplyGroup,
     GuideLine,
     clearActiveHandler,
     SupportsGuideLineNode,
@@ -17,7 +16,8 @@ import {
     HidePreviewLineHandler,
     SaveGuidelineHandler,
     GetStorageHandler,
-    StoragesHandler
+    StoragesHandler,
+    MultiFrameUnApplyGroup
 } from "./common/types";
 
 // 支持的节点
@@ -46,7 +46,7 @@ const guideLineGroupName = (name: string): string => `${name}--分割线`;
 const storageKey: string = 'guideline-save-cards';
 let basedColor: string = "CCCCCC";
 // 记录未应用分割线[分割线ID:分组ID]
-let unApplyGroup: UnApplyGroup | {} = {};
+let multiFrameUnApplyGroup: MultiFrameUnApplyGroup | {} = {};
 
 // 隐藏/显示当前画板中所有分割线
 function hideFrameGuideLine(node: SupportsGuideLineNode, isHide: boolean) {
@@ -63,11 +63,13 @@ function hideFrameGuideLine(node: SupportsGuideLineNode, isHide: boolean) {
 
 // 清除所有未应用的分割线
 function clearCurrentUnApplyGroup(): void {
-    Object.keys(unApplyGroup).forEach(key => {
-        const node = unApplyGroup[key];
-        node?.remove();
-    });
-    unApplyGroup = {};
+    Object.keys(multiFrameUnApplyGroup).forEach(key => {
+        Object.keys(multiFrameUnApplyGroup[key]).forEach(child_key => {
+            const node = multiFrameUnApplyGroup[key][child_key];
+            node?.remove();
+        });
+    })
+    multiFrameUnApplyGroup = {};
 }
 
 // 画分割线[注意：需要解决画板旋转角度问题]
@@ -137,7 +139,7 @@ function createLine(node: SupportsGuideLineNode, guideline: GuideLine): LineNode
 function createGuidelineHandler(saveCard: SaveCard): void {
     // 已经选择的组件
     const selections = figma.currentPage.selection;
-    if (selections.length > 1) { figma.notify('只能选择一个画板'); return; }
+    // if (selections.length > 1) { figma.notify('只能选择一个画板'); return; }
     selections.forEach(node => {
         // 判断类型是否支持
         if (supportNodes.indexOf(node.type) !== -1) {
@@ -161,8 +163,7 @@ function createGuidelineHandler(saveCard: SaveCard): void {
                 (lineGroup as GroupNode).appendChild(group);
             }
 
-
-            unApplyGroup[saveCard?.id] = group;
+            multiFrameUnApplyGroup[node.id][saveCard?.id] = group;
             // 添加未引用组件
             figma.notify(`创建${saveCard.name}分割线成功`);
         }
@@ -175,27 +176,41 @@ function createGuidelineHandler(saveCard: SaveCard): void {
 
 // 生成辅助线
 function createGuideline(saveCard: SaveCard): void {
-    if (unApplyGroup.hasOwnProperty(saveCard.id)) {
-        figma.notify("请勿重复添加分割线");
-    } else {
-        // 生成
-        unApplyGroup[saveCard.id] = <GroupNode>{ remove: () => { console.log('删除成功'); } };
-        createGuidelineHandler(saveCard);
+    if (Object.keys(multiFrameUnApplyGroup).length === 0) {  // 初始化multiFrameUnApplyGroup
+        const selections = figma.currentPage.selection;
+        multiFrameUnApplyGroup = (() => {
+            let _multi = {};
+            selections.forEach(node => {
+                _multi[node.id] = {};
+            })
+            return _multi;
+        })();
     }
+    Object.keys(multiFrameUnApplyGroup).forEach(key => {
+        if (multiFrameUnApplyGroup[key].hasOwnProperty(saveCard.id)) {
+            figma.notify("请勿重复添加分割线");
+        } else {
+            // 生成
+            multiFrameUnApplyGroup[key][saveCard.id] = <GroupNode>{ remove: () => { console.log('删除成功'); } };
+            createGuidelineHandler(saveCard);
+        }
+    })
 }
 
 // 删除辅助线 
 function deleteGuideline(saveCard: SaveCard): void {
     const id = saveCard.id;
-    if (!unApplyGroup.hasOwnProperty(id)) {
-        figma.notify("分割线不存在");
-    } else {
-        // 删除
-        const node = unApplyGroup[id];
-        node?.remove();
-        delete unApplyGroup[id];
-        figma.notify(`取消${saveCard.name}分割线成功`);
-    }
+    Object.keys(multiFrameUnApplyGroup).forEach(key => {
+        if (!multiFrameUnApplyGroup[key].hasOwnProperty(id)) {
+            figma.notify("分割线不存在");
+        } else {
+            // 删除
+            const node = multiFrameUnApplyGroup[key][id];
+            node?.remove();
+            delete multiFrameUnApplyGroup[key][id];
+            figma.notify(`取消${saveCard.name}分割线成功`);
+        }
+    })
 }
 
 figma.showUI(__html__, { width: 260, height: 440 });
@@ -241,7 +256,7 @@ on<DeleteLineHandler>('delete-line', (saveCard: SaveCard) => {
 
 // 应用已经添加的分割线
 on<ApplyLineHandler>('apply-line', () => {
-    unApplyGroup = {};
+    multiFrameUnApplyGroup = {};
     emit<clearActiveHandler>('clear-active')
     figma.notify("成功应用")
 })
