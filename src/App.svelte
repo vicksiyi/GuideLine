@@ -112,6 +112,7 @@
   // 监听图层选择情况
   on("SELECTION_CHANGED", (hasSelection) => {
     hasSelected = hasSelection;
+    isPreview = false;
     if (!hasSelected) {
       emit("CHANGE_GUI_SIZE", guiSizeEmpty);
     } else {
