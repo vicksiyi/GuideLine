@@ -1,4 +1,5 @@
 <script>
+  import  { nanoid } from "nanoid";
   import Color from "./components/Color.svelte";
   import Tags from "./components/Tags.svelte";
   import Card from "./components/Card.svelte";
@@ -22,8 +23,10 @@
   let hasSelected = false;
   let basedColor = "CCCCCC";
   let _guideline = JSON.parse(JSON.stringify(guideline));
+  let _saveCardList = JSON.parse(JSON.stringify(saveCardList));
   let isPreview = false;
   let _guidelineName = "";
+  let asyncActive = 1;
 
   // 重置选择
   function resetSelection() {
@@ -35,6 +38,9 @@
     active = event.detail.active;
     isPreview = false;
     _guideline = JSON.parse(JSON.stringify(guideline));
+    if(active === asyncActive) {
+      emit("get-storage");
+    }
     resetSelection();
     updateGuiSize(guiSize);
   }
@@ -44,10 +50,10 @@
     const lineIndex = lineSelected.indexOf(index);
     // 判断是否已经预览
     if (lineIndex === -1) {
-      emit("add-line", saveCardList[index]);
+      emit("add-line", _saveCardList[index]);
       lineSelected = [...lineSelected, index];
     } else {
-      emit("delete-line", saveCardList[index]);
+      emit("delete-line", _saveCardList[index]);
       lineSelected.splice(lineIndex, 1);
       lineSelected = lineSelected;
     }
@@ -79,6 +85,7 @@
   function saveHandler(event) {
     if(_guidelineName !== "") {
       emit("save-guideline", {
+        id:nanoid(),
         name:_guidelineName,
         icon:"",
         guideline:_guideline
@@ -112,6 +119,12 @@
   on("clear-active", () => {
     resetSelection();
   });
+  on("STORAGE", (saveCards)=>{
+    if(active === asyncActive) {
+      _saveCardList = saveCards
+      updateGuiSize(guiSize);
+    }
+  })
 </script>
 
 {#if hasSelected}
@@ -147,7 +160,7 @@
         </div>
       {:else}
         <SaveCard
-          {saveCardList}
+          bind:saveCardList={_saveCardList}
           on:activeChange={lineActiveChange}
           bind:selected={lineSelected}
         />

@@ -86,3 +86,13 @@ export interface SaveGuidelineHandler extends EventHandler {
     name: 'save-guideline',
     handler: (saveCard: SaveCard) => void
 }
+
+export interface GetStorageHandler extends EventHandler {
+    name: 'get-storage',
+    handler: (saveCard: SaveCard) => void
+}
+
+export interface StoragesHandler extends EventHandler {
+    name: 'STORAGE',
+    handler: (saveCards: SaveCard[]) => void
+}

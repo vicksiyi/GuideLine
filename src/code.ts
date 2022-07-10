@@ -15,7 +15,9 @@ import {
     colorChangeHandler,
     PreviewLineHandler,
     HidePreviewLineHandler,
-    SaveGuidelineHandler
+    SaveGuidelineHandler,
+    GetStorageHandler,
+    StoragesHandler
 } from "./common/types";
 
 // 支持的节点
@@ -278,4 +280,11 @@ on<SaveGuidelineHandler>('save-guideline', async (saveCard: SaveCard) => {
             figma.notify('保存失败');
             console.error(err);
         });
+})
+
+// 监听获取本地数据
+on<GetStorageHandler>('get-storage', () => {
+    figma.clientStorage.getAsync(storageKey).then((data) => {
+        emit<StoragesHandler>('STORAGE', data)
+    })
 })
