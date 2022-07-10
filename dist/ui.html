@@ -3032,7 +3032,7 @@ function create_else_block_3(ctx) {
 	let main;
 	let empty_1;
 	let current;
-	empty_1 = new _components_Empty_svelte__WEBPACK_IMPORTED_MODULE_9__["default"]({ props: { text: "请先选择一个图层" } });
+	empty_1 = new _components_Empty_svelte__WEBPACK_IMPORTED_MODULE_9__["default"]({ props: { text: "请先选择一个画板" } });
 
 	return {
 		c() {

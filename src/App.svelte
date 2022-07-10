@@ -226,7 +226,7 @@
 {:else}
   <!-- 没有选择任何组件时 -->
   <main id="main">
-    <Empty text="请先选择一个图层" />
+    <Empty text="请先选择一个画板" />
   </main>
 {/if}
 
