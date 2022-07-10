@@ -26,7 +26,8 @@
   let _saveCardList = JSON.parse(JSON.stringify(saveCardList));
   let isPreview = false;
   let _guidelineName = "";
-  let asyncActive = 1;
+  let storageActive = 1;
+  let defaultActive = 0;
 
   // 重置选择
   function resetSelection() {
@@ -38,8 +39,10 @@
     active = event.detail.active;
     isPreview = false;
     _guideline = JSON.parse(JSON.stringify(guideline));
-    if(active === asyncActive) {
+    if(active === storageActive) {
       emit("get-storage");
+    }else if(active === defaultActive ){
+      _saveCardList =  JSON.parse(JSON.stringify(saveCardList));
     }
     resetSelection();
     updateGuiSize(guiSize);
@@ -120,7 +123,7 @@
     resetSelection();
   });
   on("STORAGE", (saveCards)=>{
-    if(active === asyncActive) {
+    if(active === storageActive) {
       _saveCardList = saveCards
       updateGuiSize(guiSize);
     }
