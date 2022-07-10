@@ -17,7 +17,7 @@
         <slot name="textfield-label" />
       </div>
     </div>
-    <div class="right-side {disabled ? 'right-disabled' : ''}">
+    <div class="right-side {disabled ? 'right-disabled' : ''}" input>
       <input
         type="number"
         bind:value
@@ -43,7 +43,7 @@
         <slot name="textfield-label" />
       </div>
     </div>
-    <div class="right-side right-scale">
+    <div class="right-side right-scale" scale>
       {#each value as item, index}
         <input
           type="number"
@@ -72,6 +72,9 @@
     font-size: 12px;
     color: rgba(32, 32, 32, 0.8);
   }
+  :global(.jsdesign-dark) .label {
+    color: rgba(255, 255, 255, 0.8);
+  }
   .left-side {
     width: auto;
     white-space: nowrap;
@@ -85,6 +88,12 @@
     flex: 1;
     background-color: rgba(0, 0, 0, 0.02);
   }
+  :global(.jsdesign-dark) .right-side[input] {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  :global(.jsdesign-dark) .right-side[input]:hover {
+    background-color: rgba(0, 0, 0, 0.15);
+  }
   .right-disabled {
     background-color: rgba(0, 0, 0, 0.05);
   }
@@ -95,7 +104,14 @@
     padding: 3px 8px;
     font-size: 12px;
     width: 100%;
+    border-radius: 4px;
     color: rgba(32, 32, 32, 1);
+  }
+  :global(.jsdesign-dark) .right-side input {
+    color: rgba(255, 255, 255, 0.8);
+  }
+  :global(.jsdesign-dark) .right-side[scale] input {
+    background-color: rgba(0, 0, 0, 0.1);
   }
   .right-side input::-webkit-inner-spin-button,
   .right-side input::-webkit-outer-spin-button {
@@ -111,6 +127,9 @@
     color: rgba(32, 32, 32, 0.4);
     font-size: 12px;
     white-space: nowrap;
+  }
+  :global(.jsdesign-dark) .right-side .unit-measure {
+    color: rgba(255, 255, 255, 0.3);
   }
 
   .right-scale {

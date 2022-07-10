@@ -111,6 +111,9 @@
     position: relative;
     padding: 16px;
   }
+  :global(.jsdesign-dark) .card > [class^="card"] {
+    border: 1px solid rgba(255, 255, 255, 0.8);
+  }
   .card > [class^="card"] > .header-text {
     position: absolute;
     top: -20px;
@@ -121,6 +124,9 @@
     display: block;
     background-color: rgba(255, 255, 255, 1);
     padding: 4px;
+  }
+  :global(.jsdesign-dark) .card > [class^="card"] > .header-text{
+    border-radius: 4px;
   }
   .card-column {
     margin-top: 20px !important;

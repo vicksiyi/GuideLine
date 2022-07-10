@@ -1,9 +1,10 @@
 <script>
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
-  import { baseIcon } from "../common/variables";
+  import { baseIcon,baseDarkIcon } from "../common/variables";
   export let saveCardList = [];
   export let selected = [];
+  export let themes = "light";
 </script>
 
 <div class="save-card">
@@ -14,7 +15,7 @@
         dispatch("activeChange", { index });
       }}
     >
-      {@html item.icon ? item.icon : baseIcon}
+      {@html item.icon ? item.icon : themes === "dark" ? baseDarkIcon : baseIcon}
       <span>{item.name}</span>
     </div>
   {/each}
@@ -58,5 +59,8 @@
     font-size: 8px;
     margin-top: 8px;
     color: rgba(32, 32, 32, 0.8);
+  }
+  :global(.jsdesign-dark) .save-card .card span {
+    color: rgba(255, 255, 255, 0.8);
   }
 </style>

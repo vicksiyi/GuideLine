@@ -17,6 +17,7 @@
   import { on, emit } from "./common/events";
   import { updateGuiSize,toast } from "./common/global";
   import SaveCard from "./components/SaveCard.svelte";
+import { onMount } from "svelte";
 
   let active = 0;
   let lineSelected = [];
@@ -28,6 +29,7 @@
   let _guidelineName = "";
   let storageActive = 1;
   let defaultActive = 0;
+  let themes = "light";
 
   // 重置选择
   function resetSelection() {
@@ -129,7 +131,10 @@
       updateGuiSize(guiSize);
     }
   })
-
+  onMount(()=>{
+    let node_dark = document.getElementsByClassName('jsdesign-dark');
+    if(node_dark.length !== 0) { themes = 'dark'}
+  })
   // 监听明暗模式[切换]
   window.addEventListener("message", e => {
     if (e.source === window.parent.parent) {
@@ -144,6 +149,7 @@
             for (const className of classesToRemove) {
                 document.documentElement.classList.remove(className)
             }
+            themes = e.data.themes;
             // 再添加class
             document.documentElement.classList.add("jsdesign-" + e.data.themes)
         }
@@ -187,6 +193,7 @@
           bind:saveCardList={_saveCardList}
           on:activeChange={lineActiveChange}
           bind:selected={lineSelected}
+          {themes}
         />
         <!-- 颜色选择器 -->
         <div class="color-select-container">
@@ -247,7 +254,7 @@
 {:else}
   <!-- 没有选择任何组件时 -->
   <main id="main">
-    <Empty text="请先选择一个画板" />
+    <Empty text="请先选择一个画板" {themes} />
   </main>
 {/if}
 

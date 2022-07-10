@@ -63,6 +63,9 @@
     padding: 4px 0;
     line-height: 20px;
   }
+  :global(.jsdesign-dark) .color-select label {
+    color: rgba(255, 255, 255, 0.8);
+  }
   .color-select .panel {
     display: flex;
     background-color: rgba(0, 0, 0, 0.03);
@@ -70,6 +73,9 @@
     width: 99px;
     align-items: center;
     border-radius: 4px;
+  }
+  :global(.jsdesign-dark) .color-select .panel {
+    background-color: rgba(0, 0, 0, 0.1);
   }
   .color-select .panel .color {
     padding: 6px 4px;
@@ -83,6 +89,9 @@
     color: rgba(32, 32, 32, 1);
     font-size: 12px;
   }
+  :global(.jsdesign-dark) .panel span{
+    color: rgba(255, 255, 255, 1);
+  }
   .panel .color-input {
     flex: 1;
     background-color: transparent;
@@ -93,6 +102,9 @@
     margin: 0 4px;
     font-size: 12px;
     line-height: 28px;
+  }
+  :global(.jsdesign-dark) .panel .color-input{
+    color: rgba(255, 255, 255, 1);
   }
   .panel .color-input:focus,
   .panel .color-input:active {

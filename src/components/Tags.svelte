@@ -39,6 +39,13 @@
     font-size: 12px;
     border-bottom: 1px solid rgba(218, 218, 220, 0.6);
   }
+  :global(.jsdesign-dark) .tags > li {
+    color: rgba(255, 255, 255, 0.8);
+    border-bottom: rgba(23, 25, 31, 0.6);
+  }
+  :global(.jsdesign-dark) .tags > li.active {
+    color: rgba(69, 150, 255, 1);
+  }
   .tags > li.active {
     border-bottom: 2px solid rgba(69, 150, 255, 1);
   }

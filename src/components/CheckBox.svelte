@@ -135,4 +135,12 @@
     color: rgba(32, 32, 32, 1);
     margin-left: 6px;
   }
+  :global(.jsdesign-dark) .label {
+    color: rgba(255, 255, 255, 0.8);
+  }
+  :global(.jsdesign-dark) input[disabled] ~ .checkbox-toggle:after,
+  :global(.jsdesign-dark) input[disabled] ~ .checkbox-toggle:before {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
 </style>
