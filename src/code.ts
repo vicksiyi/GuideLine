@@ -45,6 +45,8 @@ const guideLinesGroupName = (name: string): string => `${name}--分割线`;
 const guideLineGroupName = (name: string): string => `${name}--分割线`;
 const storageKey: string = 'guideline-save-cards';
 let basedColor: string = "CCCCCC";
+// 记录未应用分割线[分割线ID:分组ID]
+let unApplyGroup: UnApplyGroup | {} = {};
 
 // 隐藏/显示当前画板中所有分割线
 function hideFrameGuideLine(node: SupportsGuideLineNode, isHide: boolean) {
@@ -58,8 +60,6 @@ function hideFrameGuideLine(node: SupportsGuideLineNode, isHide: boolean) {
     })
 }
 
-// 记录未应用分割线[分割线ID:分组ID]
-let unApplyGroup: UnApplyGroup | {} = {};
 
 // 清除所有未应用的分割线
 function clearCurrentUnApplyGroup(): void {
@@ -137,6 +137,7 @@ function createLine(node: SupportsGuideLineNode, guideline: GuideLine): LineNode
 function createGuidelineHandler(saveCard: SaveCard): void {
     // 已经选择的组件
     const selections = figma.currentPage.selection;
+    if (selections.length > 1) { figma.notify('只能选择一个画板'); return; }
     selections.forEach(node => {
         // 判断类型是否支持
         if (supportNodes.indexOf(node.type) !== -1) {

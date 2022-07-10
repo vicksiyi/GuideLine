@@ -121,6 +121,7 @@ const guideLinesGroupName = (name) => `${name}--分割线`;
 const guideLineGroupName = (name) => `${name}--分割线`;
 const storageKey = 'guideline-save-cards';
 let basedColor = "CCCCCC";
+let unApplyGroup = {};
 function hideFrameGuideLine(node, isHide) {
     node.children && node.children.forEach(child_node => {
         if (child_node.name.endsWith('--分割线')) {
@@ -131,7 +132,6 @@ function hideFrameGuideLine(node, isHide) {
         }
     });
 }
-let unApplyGroup = {};
 function clearCurrentUnApplyGroup() {
     Object.keys(unApplyGroup).forEach(key => {
         const node = unApplyGroup[key];
@@ -199,6 +199,10 @@ function createLine(node, guideline) {
 }
 function createGuidelineHandler(saveCard) {
     const selections = figma.currentPage.selection;
+    if (selections.length > 1) {
+        figma.notify('只能选择一个画板');
+        return;
+    }
     selections.forEach(node => {
         if (supportNodes.indexOf(node.type) !== -1) {
             const nodes = createLine(node, saveCard.guideline);
