@@ -243,7 +243,7 @@ import { onMount } from "svelte";
               )}
               class="show-btn"
               on:click={saveHandler}
-              text={`保存`}
+              text={`保存为预设`}
               hasMasters
             />
           {/if}

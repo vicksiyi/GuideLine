@@ -1,7 +1,7 @@
 const variables = {
     MIN_VALUE: 0,
     MAX_VALUE: 24,
-    tags: ['默认', '自定义', '本地'],
+    tags: ['默认', '预设', '自定义'],
     guideline: {
         row: {
             count: 1,

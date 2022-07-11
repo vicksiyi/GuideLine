@@ -3685,7 +3685,7 @@ function create_else_block(ctx) {
 			props: {
 				disabled: !(/*_guideline*/ ctx[4].row.scales.length > 1 && /*_guideline*/ ctx[4].column.scales.length > 0 && /*_guidelineName*/ ctx[7] !== "" || /*_guideline*/ ctx[4].column.scales.length > 1 && /*_guideline*/ ctx[4].row.scales.length > 0 && /*_guidelineName*/ ctx[7] !== ""),
 				class: "show-btn",
-				text: `保存`,
+				text: `保存为预设`,
 				hasMasters: true
 			}
 		});
@@ -4265,7 +4265,7 @@ function updateGuiSize(guiSize) {
 const variables = {
     MIN_VALUE: 0,
     MAX_VALUE: 24,
-    tags: ['默认', '自定义', '本地'],
+    tags: ['默认', '预设', '自定义'],
     guideline: {
         row: {
             count: 1,
