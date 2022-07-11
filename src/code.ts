@@ -169,7 +169,7 @@ function createGuidelineHandler(saveCard: SaveCard): void {
         }
         else {
             // 问题：平台不支持同时提示两个notify
-            jsDesign.notify(`${typeToName[node.type]}节点 ${node.name} 暂时支持`);
+            jsDesign.notify(`${typeToName[node.type]}节点 ${node.name} 暂时不支持`);
         }
     })
 }
