@@ -225,7 +225,7 @@ function createGuidelineHandler(saveCard) {
             jsDesign.notify(`创建${saveCard.name}分割线成功`);
         }
         else {
-            jsDesign.notify(`${typeToName[node.type]}节点 ${node.name} 暂时支持`);
+            jsDesign.notify(`${typeToName[node.type]}节点 ${node.name} 暂时不支持`);
         }
     });
 }
